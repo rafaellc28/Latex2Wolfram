@@ -4,7 +4,6 @@ import re
 import logging
 
 from SyntaxException import *
-from CodeSetup import *
 from CodeGenerator import *
 from Identifier import *
 
@@ -66,13 +65,6 @@ class Compiler:
 					response = result.generateCode(codeGenerator)
 					res += response
 
-				except CodeGenerationException as msg:
-					lineNum = msg[0]-1
-					linesaux = filter(lambda el: len(el) == 0 or el[0] != "%", lines)
-					line = linesaux[lineNum]
-					
-					res += "Invalid indexing expression at statement %d: '%s'. %s.\nContext: %s." % (msg[0], msg[1], msg[2], line)
-
 				except:
 					res += "Error while generating MathProg code. Please, check your Latex code!"
 
@@ -81,7 +73,6 @@ class Compiler:
 					res += str(result)
 
 				codeGenerator = CodeGenerator()
-				result.setupEnvironment(CodeSetup(codeGenerator))
 				response = result.generateCode(codeGenerator)
 				res += response
 

@@ -32,7 +32,7 @@ class ID(Expression):
         return [self]
     
     def getDependencies(self, codeGenerator):
-        return [self.getSymbolName(codeGenerator)]
+        return [self.value]
     
     def setupEnvironment(self, codeSetup):
         """

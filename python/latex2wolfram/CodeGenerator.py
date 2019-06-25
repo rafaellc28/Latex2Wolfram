@@ -16,7 +16,7 @@ class CodeGenerator:
     def generateCode_Main(self, node):
         return node.problem.generateCode(self)
 
-    # Numeric Expression
+    # Expression
     def generateCode_ExpressionWithFunction(self, node):
         if not isinstance(node.function, str):
             function = node.function.generateCode(self)
@@ -93,25 +93,16 @@ class CodeGenerator:
 
         return res
 
+    def generateCode_ExpressionList(self, node):
+        return (COMMA+SPACE).join(map(lambda el: el.generateCode(self), node.values))
+
     # Value
     def generateCode_Value(self, node):
         return node.value.generateCode(self)
 
     # Identifier
     def generateCode_Identifier(self, node):
-        if isinstance(node.sub_indices, str):
-            return EMPTY_STRING
-
-        if len(node.sub_indices) > 0:
-            if isinstance(node.sub_indices, list):
-                res = node.identifier.generateCode(self) + BEGIN_ARRAY + COMMA.join(map(self._getCodeID, node.sub_indices)) + END_ARRAY
-            else:
-                res = node.identifier.generateCode(self) + BEGIN_ARRAY + self._getCodeID(node.sub_indices) + END_ARRAY
-        
-        else:
-            res = node.identifier.generateCode(self)
-        
-        return res
+        return node.identifier.generateCode(self)
 
     # Number
     def generateCode_Number(self, node):

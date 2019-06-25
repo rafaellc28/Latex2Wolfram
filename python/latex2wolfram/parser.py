@@ -4,11 +4,6 @@ from lexer import tokens
 
 from Main import *
 from Expression import *
-from ValueList import *
-from TupleList import *
-from Tuple import *
-from Range import *
-from Value import *
 from Identifier import *
 from ID import *
 from SyntaxException import *
@@ -122,7 +117,11 @@ def p_FunctionExpression(t):
                          
               | LN LPAREN Expression RPAREN
                          
-              | EXP LPAREN Expression RPAREN'''
+              | EXP LPAREN Expression RPAREN
+
+              | Identifier LPAREN ExpressionList RPAREN
+
+              | Identifier LPAREN RPAREN'''
 
     _type = t.slice[1].type
     if _type == "SQRT":
@@ -158,6 +157,9 @@ def p_FunctionExpression(t):
     elif _type == "ATAN":
         op = ExpressionWithFunction.ATAN
 
+    else:
+      op = t[1]
+
     if len(t) > 5:
         t[0] = ExpressionWithFunction(op, t[3], t[5])
 
@@ -170,11 +172,20 @@ def p_FunctionExpression(t):
         else:
           t[0] = ExpressionWithFunction(op, t[2])
 
-
 def p_Identifier(t):
     '''Identifier : ID'''
     t[0] = Identifier(ID(t[1]))
 
+def p_ExpessionList(t):
+  '''ExpressionList : ExpressionList COMMA Expression
+                    | Expression'''
+
+  if len(t) == 2:
+    t[0] = ExpressionList([t[1]])
+
+  else:
+    t[1].add(t[3])
+    t[0] = t[1]
 
 def p_error(t):
   if t:

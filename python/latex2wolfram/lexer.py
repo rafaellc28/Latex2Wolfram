@@ -3,16 +3,6 @@
 # List of token names.   This is always required
 
 from Number import *
-from String import *
-
-from IntegerSet import *
-from RealSet import *
-from SymbolicSet import *
-from LogicalSet import *
-from BinarySet import *
-from ParameterSet import *
-from VariableSet import *
-from SetSet import *
 
 import sys
 import re

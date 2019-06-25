@@ -2,14 +2,14 @@ from BaseExpression import *
 
 class Expression(BaseExpression):
     """
-    Class representing a numeric expression node in the AST of a MLP
+    Class representing a expression node in the AST
     """
     def __init__(self):
         BaseExpression.__init__(self)
 
 class ExpressionWithFunction(Expression):
     """
-    Class representing a numeric expression with function node in the AST of a MLP
+    Class representing a expression with function node in the AST
     """
 
     ABS       = "abs"
@@ -34,7 +34,7 @@ class ExpressionWithFunction(Expression):
     
     def __init__(self, function, expression1 = None, expression2 = None):
         """
-        Set the numeric expression and the function
+        Set the expression and the function
 
         :param function           : (abs | tan | atan | card | ceil | cos | floor | exp | length | log | log10 | round | sin | sqrt | trunc )
         :param expression1 : Expression
@@ -76,24 +76,24 @@ class ExpressionWithFunction(Expression):
 
     def setupEnvironment(self, codeSetup):
         """
-        Generate the MathProg code for the identifiers and sets used in this numeric expression
+        Generate the Wolfram code for the identifiers and sets used in this expression
         """
         codeSetup.setupEnvironment(self)
 
     def generateCode(self, codeGenerator):
         """
-        Generate the MathProg code for this numeric expression with function
+        Generate the Wolfram code for this expression with function
         """
         return codeGenerator.generateCode(self)
 
 class FractionalExpression(Expression):
     """
-    Class representing a fractional numeric expression node in the AST of a MLP
+    Class representing a fractional expression node in the AST
     """
 
     def __init__(self, numerator, denominator):
         """
-        Set the single value of this numeric expression
+        Set the single value of this expression
 
         :param numerator   : Identifier | Expression
         :param denominator : Identifier | Expression
@@ -137,25 +137,25 @@ class FractionalExpression(Expression):
 
     def setupEnvironment(self, codeSetup):
         """
-        Generate the AMPL code for the identifiers and sets used in this fractional numeric expression
+        Generate the AMPL code for the identifiers and sets used in this fractional expression
         """
         codeSetup.setupEnvironment(self)
 
     def generateCode(self, codeGenerator):
         """
-        Generate the AMPL code for this fractional numeric expression
+        Generate the AMPL code for this fractional expression
         """
         return codeGenerator.generateCode(self)
     
 
 class ValuedExpression(Expression):
     """
-    Class representing a valued numeric expression node in the AST of a MLP
+    Class representing a valued expression node in the AST
     """
 
     def __init__(self, value):
         """
-        Set the single value of this numeric expression
+        Set the single value of this expression
 
         :param value : Identifier | Number
         """
@@ -195,25 +195,25 @@ class ValuedExpression(Expression):
 
     def setupEnvironment(self, codeSetup):
         """
-        Generate the MathProg code for the identifiers and sets used in this numeric expression
+        Generate the Wolfram code for the identifiers and sets used in this expression
         """
         codeSetup.setupEnvironment(self)
 
     def generateCode(self, codeGenerator):
         """
-        Generate the MathProg code for this valued linear expression
+        Generate the Wolfram code for this valued linear expression
         """
         return codeGenerator.generateCode(self)
 
 
 class ExpressionBetweenParenthesis(Expression):
     """
-    Class representing a numeric expression between parenthesis node in the AST of a MLP
+    Class representing a expression between parenthesis node in the AST
     """
 
     def __init__(self, Expression):
         """
-        Set the numeric expression
+        Set the expression
 
         :param expression : Expression
         """
@@ -234,20 +234,20 @@ class ExpressionBetweenParenthesis(Expression):
     
     def setupEnvironment(self, codeSetup):
         """
-        Generate the MathProg code for the identifiers and sets used in this numeric expression
+        Generate the Wolfram code for the identifiers and sets used in this expression
         """
         codeSetup.setupEnvironment(self)
 
     def generateCode(self, codeGenerator):
         """
-        Generate the MathProg code for this numeric expression
+        Generate the Wolfram code for this expression
         """
         return codeGenerator.generateCode(self)
 
 
 class ExpressionWithArithmeticOperation(Expression):
     """
-    Class representing a numeric expression with arithmetic operation node in the AST of a MLP
+    Class representing a expression with arithmetic operation node in the AST
     """
     
     PLUS  = "+"
@@ -290,25 +290,25 @@ class ExpressionWithArithmeticOperation(Expression):
 
     def setupEnvironment(self, codeSetup):
         """
-        Generate the MathProg code for the identifiers and sets used in this numeric expression
+        Generate the Wolfram code for the identifiers and sets used in this expression
         """
         codeSetup.setupEnvironment(self)
 
     def generateCode(self, codeGenerator):
         """
-        Generate the MathProg code for this numeric expression with arithmetic operation
+        Generate the Wolfram code for this expression with arithmetic operation
         """
         return codeGenerator.generateCode(self)
 
 
 class MinusExpression(Expression):
     """
-    Class representing a minus numeric expression node in the AST of a MLP
+    Class representing a minus expression node in the AST
     """
     
     def __init__(self, expression):
         """
-        Set the numeric expression being negated
+        Set the expression being negated
         
         :param expression: Expression
         """
@@ -329,20 +329,20 @@ class MinusExpression(Expression):
 
     def setupEnvironment(self, codeSetup):
         """
-        Generate the MathProg code for the identifiers and sets used in this numeric expression
+        Generate the Wolfram code for the identifiers and sets used in this expression
         """
         codeSetup.setupEnvironment(self)
 
     def generateCode(self, codeGenerator):
         """
-        Generate the MathProg code for this minus numeric expression
+        Generate the Wolfram code for this minus expression
         """
         return codeGenerator.generateCode(self)
 
 
 class IteratedExpression(Expression):
     """
-    Class representing a iterated numeric expression node in the AST of a MLP
+    Class representing a iterated expression node in the AST
     """
 
     SUM  = "sum"
@@ -391,24 +391,24 @@ class IteratedExpression(Expression):
     
     def setupEnvironment(self, codeSetup):
         """
-        Generate the MathProg code for the identifiers and sets used in this numeric expression
+        Generate the Wolfram code for the identifiers and sets used in this expression
         """
         codeSetup.setupEnvironment(self)
 
     def generateCode(self, codeGenerator):
         """
-        Generate the MathProg code for this iterated numeric expression
+        Generate the Wolfram code for this iterated expression
         """
         return codeGenerator.generateCode(self)
 
 class ConditionalExpression(Expression):
     """
-    Class representing a conditional numeric expression node in the AST of a MLP
+    Class representing a conditional expression node in the AST of a MLP
     """
     
     def __init__(self, logicalExpression, expression1, expression2 = None):
         """
-        Set the conditional numeric expression
+        Set the conditional expression
         
         :param logicalExpression : LogicalExpression
         :param expression1: Expression
@@ -445,12 +445,52 @@ class ConditionalExpression(Expression):
 
     def setupEnvironment(self, codeSetup):
         """
-        Generate the MathProg code for the identifiers and sets used in this conditional numeric expression
+        Generate the Wolfram code for the identifiers and sets used in this conditional expression
         """
         codeSetup.setupEnvironment(self)
 
     def generateCode(self, codeGenerator):
         """
-        Generate the MathProg code for this conditional numeric expression
+        Generate the Wolfram code for this conditional expression
+        """
+        return codeGenerator.generateCode(self)
+
+class ExpressionList(Expression):
+    """
+    Class representing a expression list node in the AST
+    """
+    
+    def __init__(self, values = []):
+        """
+        Set the expression list
+        
+        :param values : [Expression]
+        """
+
+        Expression.__init__(self)
+        
+        self.values  = values
+    
+    def __str__(self):
+        """
+        to string
+        """
+        return "ExpressionList: " + "("+", ".join(map(lambda el: str(el), self.values))+")"
+
+    def getDependencies(self, codeGenerator):
+        return self.values.getDependencies(codeGenerator)
+
+    def add(self, value):
+        self.values.append(value)
+
+    def setupEnvironment(self, codeSetup):
+        """
+        Generate the Wolfram code for the identifiers and sets used in this conditional expression
+        """
+        codeSetup.setupEnvironment(self)
+
+    def generateCode(self, codeGenerator):
+        """
+        Generate the Wolfram code for this conditional expression
         """
         return codeGenerator.generateCode(self)
