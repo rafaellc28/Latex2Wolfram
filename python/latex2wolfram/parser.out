@@ -32,22 +32,25 @@ Rule 26    Factor -> LN LPAREN Expression RPAREN
 Rule 27    Factor -> EXP LPAREN Expression RPAREN
 Rule 28    Factor -> Identifier LPAREN ExpressionList RPAREN
 Rule 29    Factor -> Identifier LPAREN RPAREN
-Rule 30    Identifier -> ID
-Rule 31    ExpressionList -> ExpressionList COMMA Expression
-Rule 32    ExpressionList -> Expression
+Rule 30    Factor -> INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+Rule 31    Identifier -> ID
+Rule 32    ExpressionList -> ExpressionList COMMA Expression
+Rule 33    ExpressionList -> Expression
 
 Terminals, with rules where they appear
 
 ATAN                 : 23 24
-CARET                : 10
-COMMA                : 23 31
+CARET                : 10 30
+COMMA                : 23 32
 COS                  : 21
+DIFFERENTIAL         : 30
 DIVIDE               : 7
 EXP                  : 27
 FRAC                 : 15
-ID                   : 30
+ID                   : 31
 INFINITY             : 4
-LBRACE               : 10 15 15 16
+INTEGRAL             : 30
+LBRACE               : 10 15 15 16 30 30
 LCEIL                : 18
 LFLOOR               : 17
 LN                   : 26
@@ -59,7 +62,7 @@ NUMBER               : 2
 PIPE                 : 19 19
 PLUS                 : 12
 QUOTIENT             : 9
-RBRACE               : 10 15 15 16
+RBRACE               : 10 15 15 16 30 30
 RCEIL                : 18
 RFLOOR               : 17
 RPAREN               : 5 20 21 22 23 24 25 26 27 28 29
@@ -67,12 +70,13 @@ SIN                  : 20
 SQRT                 : 16
 TAN                  : 22
 TIMES                : 6
+UNDERLINE            : 30
 error                : 
 
 Nonterminals, with rules where they appear
 
-Expression           : 1 5 12 13 15 15 16 17 18 19 20 21 22 23 23 24 25 26 27 31 32
-ExpressionList       : 28 31
+Expression           : 1 5 12 13 15 15 16 17 18 19 20 21 22 23 23 24 25 26 27 30 30 30 32 33
+ExpressionList       : 28 32
 Factor               : 6 7 8 9 10 11
 Identifier           : 3 28 29
 MAIN                 : 0
@@ -112,30 +116,32 @@ state 0
     (27) Factor -> . EXP LPAREN Expression RPAREN
     (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
     (29) Factor -> . Identifier LPAREN RPAREN
-    (30) Identifier -> . ID
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
 
-    FRAC            shift and go to state 14
-    NUMBER          shift and go to state 5
-    INFINITY        shift and go to state 8
-    LPAREN          shift and go to state 16
-    SQRT            shift and go to state 20
+    FRAC            shift and go to state 15
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
     LFLOOR          shift and go to state 1
     LCEIL           shift and go to state 4
-    PIPE            shift and go to state 11
-    SIN             shift and go to state 10
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
     COS             shift and go to state 2
-    TAN             shift and go to state 12
-    ATAN            shift and go to state 15
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
     LOG             shift and go to state 3
-    LN              shift and go to state 9
-    EXP             shift and go to state 6
-    ID              shift and go to state 19
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
 
-    Term                           shift and go to state 13
-    Identifier                     shift and go to state 17
-    Factor                         shift and go to state 7
-    MAIN                           shift and go to state 21
-    Expression                     shift and go to state 18
+    Term                           shift and go to state 14
+    Identifier                     shift and go to state 18
+    Factor                         shift and go to state 8
+    MAIN                           shift and go to state 22
+    Expression                     shift and go to state 19
 
 state 1
 
@@ -168,42 +174,44 @@ state 1
     (27) Factor -> . EXP LPAREN Expression RPAREN
     (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
     (29) Factor -> . Identifier LPAREN RPAREN
-    (30) Identifier -> . ID
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
 
-    FRAC            shift and go to state 14
-    NUMBER          shift and go to state 5
-    INFINITY        shift and go to state 8
-    LPAREN          shift and go to state 16
-    SQRT            shift and go to state 20
+    FRAC            shift and go to state 15
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
     LFLOOR          shift and go to state 1
     LCEIL           shift and go to state 4
-    PIPE            shift and go to state 11
-    SIN             shift and go to state 10
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
     COS             shift and go to state 2
-    TAN             shift and go to state 12
-    ATAN            shift and go to state 15
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
     LOG             shift and go to state 3
-    LN              shift and go to state 9
-    EXP             shift and go to state 6
-    ID              shift and go to state 19
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
 
-    Term                           shift and go to state 13
-    Identifier                     shift and go to state 17
-    Expression                     shift and go to state 22
-    Factor                         shift and go to state 7
+    Term                           shift and go to state 14
+    Identifier                     shift and go to state 18
+    Expression                     shift and go to state 23
+    Factor                         shift and go to state 8
 
 state 2
 
     (21) Factor -> COS . LPAREN Expression RPAREN
 
-    LPAREN          shift and go to state 23
+    LPAREN          shift and go to state 24
 
 
 state 3
 
     (25) Factor -> LOG . LPAREN Expression RPAREN
 
-    LPAREN          shift and go to state 24
+    LPAREN          shift and go to state 25
 
 
 state 4
@@ -237,31 +245,40 @@ state 4
     (27) Factor -> . EXP LPAREN Expression RPAREN
     (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
     (29) Factor -> . Identifier LPAREN RPAREN
-    (30) Identifier -> . ID
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
 
-    FRAC            shift and go to state 14
-    NUMBER          shift and go to state 5
-    INFINITY        shift and go to state 8
-    LPAREN          shift and go to state 16
-    SQRT            shift and go to state 20
+    FRAC            shift and go to state 15
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
     LFLOOR          shift and go to state 1
     LCEIL           shift and go to state 4
-    PIPE            shift and go to state 11
-    SIN             shift and go to state 10
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
     COS             shift and go to state 2
-    TAN             shift and go to state 12
-    ATAN            shift and go to state 15
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
     LOG             shift and go to state 3
-    LN              shift and go to state 9
-    EXP             shift and go to state 6
-    ID              shift and go to state 19
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
 
-    Term                           shift and go to state 13
-    Identifier                     shift and go to state 17
-    Expression                     shift and go to state 25
-    Factor                         shift and go to state 7
+    Term                           shift and go to state 14
+    Identifier                     shift and go to state 18
+    Expression                     shift and go to state 26
+    Factor                         shift and go to state 8
 
 state 5
+
+    (30) Factor -> INTEGRAL . UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+
+    UNDERLINE       shift and go to state 27
+
+
+state 6
 
     (2) Factor -> NUMBER .
 
@@ -270,25 +287,26 @@ state 5
     MOD             reduce using rule 2 (Factor -> NUMBER .)
     QUOTIENT        reduce using rule 2 (Factor -> NUMBER .)
     CARET           reduce using rule 2 (Factor -> NUMBER .)
-    RPAREN          reduce using rule 2 (Factor -> NUMBER .)
     PLUS            reduce using rule 2 (Factor -> NUMBER .)
     MINUS           reduce using rule 2 (Factor -> NUMBER .)
-    PIPE            reduce using rule 2 (Factor -> NUMBER .)
     $end            reduce using rule 2 (Factor -> NUMBER .)
     RFLOOR          reduce using rule 2 (Factor -> NUMBER .)
     RCEIL           reduce using rule 2 (Factor -> NUMBER .)
+    PIPE            reduce using rule 2 (Factor -> NUMBER .)
+    RPAREN          reduce using rule 2 (Factor -> NUMBER .)
     RBRACE          reduce using rule 2 (Factor -> NUMBER .)
     COMMA           reduce using rule 2 (Factor -> NUMBER .)
-
-
-state 6
-
-    (27) Factor -> EXP . LPAREN Expression RPAREN
-
-    LPAREN          shift and go to state 26
+    DIFFERENTIAL    reduce using rule 2 (Factor -> NUMBER .)
 
 
 state 7
+
+    (27) Factor -> EXP . LPAREN Expression RPAREN
+
+    LPAREN          shift and go to state 28
+
+
+state 8
 
     (11) Term -> Factor .
 
@@ -301,14 +319,15 @@ state 7
     PLUS            reduce using rule 11 (Term -> Factor .)
     MINUS           reduce using rule 11 (Term -> Factor .)
     $end            reduce using rule 11 (Term -> Factor .)
-    RPAREN          reduce using rule 11 (Term -> Factor .)
-    COMMA           reduce using rule 11 (Term -> Factor .)
     RFLOOR          reduce using rule 11 (Term -> Factor .)
     RCEIL           reduce using rule 11 (Term -> Factor .)
     PIPE            reduce using rule 11 (Term -> Factor .)
+    RPAREN          reduce using rule 11 (Term -> Factor .)
+    COMMA           reduce using rule 11 (Term -> Factor .)
+    DIFFERENTIAL    reduce using rule 11 (Term -> Factor .)
 
 
-state 8
+state 9
 
     (4) Factor -> INFINITY .
 
@@ -317,32 +336,33 @@ state 8
     MOD             reduce using rule 4 (Factor -> INFINITY .)
     QUOTIENT        reduce using rule 4 (Factor -> INFINITY .)
     CARET           reduce using rule 4 (Factor -> INFINITY .)
-    RPAREN          reduce using rule 4 (Factor -> INFINITY .)
     PLUS            reduce using rule 4 (Factor -> INFINITY .)
     MINUS           reduce using rule 4 (Factor -> INFINITY .)
-    PIPE            reduce using rule 4 (Factor -> INFINITY .)
     $end            reduce using rule 4 (Factor -> INFINITY .)
     RFLOOR          reduce using rule 4 (Factor -> INFINITY .)
     RCEIL           reduce using rule 4 (Factor -> INFINITY .)
+    PIPE            reduce using rule 4 (Factor -> INFINITY .)
+    RPAREN          reduce using rule 4 (Factor -> INFINITY .)
     RBRACE          reduce using rule 4 (Factor -> INFINITY .)
     COMMA           reduce using rule 4 (Factor -> INFINITY .)
-
-
-state 9
-
-    (26) Factor -> LN . LPAREN Expression RPAREN
-
-    LPAREN          shift and go to state 27
+    DIFFERENTIAL    reduce using rule 4 (Factor -> INFINITY .)
 
 
 state 10
 
-    (20) Factor -> SIN . LPAREN Expression RPAREN
+    (26) Factor -> LN . LPAREN Expression RPAREN
 
-    LPAREN          shift and go to state 28
+    LPAREN          shift and go to state 29
 
 
 state 11
+
+    (20) Factor -> SIN . LPAREN Expression RPAREN
+
+    LPAREN          shift and go to state 30
+
+
+state 12
 
     (19) Factor -> PIPE . Expression PIPE
     (12) Expression -> . Expression PLUS Term
@@ -373,38 +393,40 @@ state 11
     (27) Factor -> . EXP LPAREN Expression RPAREN
     (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
     (29) Factor -> . Identifier LPAREN RPAREN
-    (30) Identifier -> . ID
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
 
-    FRAC            shift and go to state 14
-    NUMBER          shift and go to state 5
-    INFINITY        shift and go to state 8
-    LPAREN          shift and go to state 16
-    SQRT            shift and go to state 20
+    FRAC            shift and go to state 15
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
     LFLOOR          shift and go to state 1
     LCEIL           shift and go to state 4
-    PIPE            shift and go to state 11
-    SIN             shift and go to state 10
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
     COS             shift and go to state 2
-    TAN             shift and go to state 12
-    ATAN            shift and go to state 15
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
     LOG             shift and go to state 3
-    LN              shift and go to state 9
-    EXP             shift and go to state 6
-    ID              shift and go to state 19
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
 
-    Term                           shift and go to state 13
-    Identifier                     shift and go to state 17
-    Expression                     shift and go to state 29
-    Factor                         shift and go to state 7
+    Term                           shift and go to state 14
+    Identifier                     shift and go to state 18
+    Expression                     shift and go to state 31
+    Factor                         shift and go to state 8
 
-state 12
+state 13
 
     (22) Factor -> TAN . LPAREN Expression RPAREN
 
-    LPAREN          shift and go to state 30
+    LPAREN          shift and go to state 32
 
 
-state 13
+state 14
 
     (14) Expression -> Term .
     (6) Term -> Term . TIMES Factor
@@ -417,34 +439,35 @@ state 13
     PLUS            reduce using rule 14 (Expression -> Term .)
     MINUS           reduce using rule 14 (Expression -> Term .)
     RBRACE          reduce using rule 14 (Expression -> Term .)
-    PIPE            reduce using rule 14 (Expression -> Term .)
     RCEIL           reduce using rule 14 (Expression -> Term .)
-    COMMA           reduce using rule 14 (Expression -> Term .)
     RFLOOR          reduce using rule 14 (Expression -> Term .)
     $end            reduce using rule 14 (Expression -> Term .)
-    TIMES           shift and go to state 33
-    DIVIDE          shift and go to state 32
-    MOD             shift and go to state 34
-    QUOTIENT        shift and go to state 35
-    CARET           shift and go to state 31
-
-
-state 14
-
-    (15) Expression -> FRAC . LBRACE Expression RBRACE LBRACE Expression RBRACE
-
-    LBRACE          shift and go to state 36
+    COMMA           reduce using rule 14 (Expression -> Term .)
+    DIFFERENTIAL    reduce using rule 14 (Expression -> Term .)
+    PIPE            reduce using rule 14 (Expression -> Term .)
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 34
+    MOD             shift and go to state 36
+    QUOTIENT        shift and go to state 37
+    CARET           shift and go to state 33
 
 
 state 15
 
-    (23) Factor -> ATAN . LPAREN Expression COMMA Expression RPAREN
-    (24) Factor -> ATAN . LPAREN Expression RPAREN
+    (15) Expression -> FRAC . LBRACE Expression RBRACE LBRACE Expression RBRACE
 
-    LPAREN          shift and go to state 37
+    LBRACE          shift and go to state 38
 
 
 state 16
+
+    (23) Factor -> ATAN . LPAREN Expression COMMA Expression RPAREN
+    (24) Factor -> ATAN . LPAREN Expression RPAREN
+
+    LPAREN          shift and go to state 39
+
+
+state 17
 
     (5) Factor -> LPAREN . Expression RPAREN
     (12) Expression -> . Expression PLUS Term
@@ -475,31 +498,33 @@ state 16
     (27) Factor -> . EXP LPAREN Expression RPAREN
     (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
     (29) Factor -> . Identifier LPAREN RPAREN
-    (30) Identifier -> . ID
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
 
-    FRAC            shift and go to state 14
-    NUMBER          shift and go to state 5
-    INFINITY        shift and go to state 8
-    LPAREN          shift and go to state 16
-    SQRT            shift and go to state 20
+    FRAC            shift and go to state 15
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
     LFLOOR          shift and go to state 1
     LCEIL           shift and go to state 4
-    PIPE            shift and go to state 11
-    SIN             shift and go to state 10
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
     COS             shift and go to state 2
-    TAN             shift and go to state 12
-    ATAN            shift and go to state 15
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
     LOG             shift and go to state 3
-    LN              shift and go to state 9
-    EXP             shift and go to state 6
-    ID              shift and go to state 19
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
 
-    Term                           shift and go to state 13
-    Identifier                     shift and go to state 17
-    Expression                     shift and go to state 38
-    Factor                         shift and go to state 7
+    Term                           shift and go to state 14
+    Identifier                     shift and go to state 18
+    Expression                     shift and go to state 40
+    Factor                         shift and go to state 8
 
-state 17
+state 18
 
     (3) Factor -> Identifier .
     (28) Factor -> Identifier . LPAREN ExpressionList RPAREN
@@ -510,75 +535,77 @@ state 17
     MOD             reduce using rule 3 (Factor -> Identifier .)
     QUOTIENT        reduce using rule 3 (Factor -> Identifier .)
     CARET           reduce using rule 3 (Factor -> Identifier .)
-    RPAREN          reduce using rule 3 (Factor -> Identifier .)
     PLUS            reduce using rule 3 (Factor -> Identifier .)
     MINUS           reduce using rule 3 (Factor -> Identifier .)
-    PIPE            reduce using rule 3 (Factor -> Identifier .)
     $end            reduce using rule 3 (Factor -> Identifier .)
     RFLOOR          reduce using rule 3 (Factor -> Identifier .)
     RCEIL           reduce using rule 3 (Factor -> Identifier .)
+    PIPE            reduce using rule 3 (Factor -> Identifier .)
+    RPAREN          reduce using rule 3 (Factor -> Identifier .)
     RBRACE          reduce using rule 3 (Factor -> Identifier .)
     COMMA           reduce using rule 3 (Factor -> Identifier .)
-    LPAREN          shift and go to state 39
+    DIFFERENTIAL    reduce using rule 3 (Factor -> Identifier .)
+    LPAREN          shift and go to state 41
 
 
-state 18
+state 19
 
     (1) MAIN -> Expression .
     (12) Expression -> Expression . PLUS Term
     (13) Expression -> Expression . MINUS Term
 
     $end            reduce using rule 1 (MAIN -> Expression .)
-    PLUS            shift and go to state 40
-    MINUS           shift and go to state 41
-
-
-state 19
-
-    (30) Identifier -> ID .
-
-    LPAREN          reduce using rule 30 (Identifier -> ID .)
-    TIMES           reduce using rule 30 (Identifier -> ID .)
-    DIVIDE          reduce using rule 30 (Identifier -> ID .)
-    MOD             reduce using rule 30 (Identifier -> ID .)
-    QUOTIENT        reduce using rule 30 (Identifier -> ID .)
-    CARET           reduce using rule 30 (Identifier -> ID .)
-    RBRACE          reduce using rule 30 (Identifier -> ID .)
-    PLUS            reduce using rule 30 (Identifier -> ID .)
-    MINUS           reduce using rule 30 (Identifier -> ID .)
-    $end            reduce using rule 30 (Identifier -> ID .)
-    RFLOOR          reduce using rule 30 (Identifier -> ID .)
-    RCEIL           reduce using rule 30 (Identifier -> ID .)
-    PIPE            reduce using rule 30 (Identifier -> ID .)
-    RPAREN          reduce using rule 30 (Identifier -> ID .)
-    COMMA           reduce using rule 30 (Identifier -> ID .)
+    PLUS            shift and go to state 42
+    MINUS           shift and go to state 43
 
 
 state 20
 
-    (16) Factor -> SQRT . LBRACE Expression RBRACE
+    (31) Identifier -> ID .
 
-    LBRACE          shift and go to state 42
+    LPAREN          reduce using rule 31 (Identifier -> ID .)
+    TIMES           reduce using rule 31 (Identifier -> ID .)
+    DIVIDE          reduce using rule 31 (Identifier -> ID .)
+    MOD             reduce using rule 31 (Identifier -> ID .)
+    QUOTIENT        reduce using rule 31 (Identifier -> ID .)
+    CARET           reduce using rule 31 (Identifier -> ID .)
+    PLUS            reduce using rule 31 (Identifier -> ID .)
+    MINUS           reduce using rule 31 (Identifier -> ID .)
+    $end            reduce using rule 31 (Identifier -> ID .)
+    RFLOOR          reduce using rule 31 (Identifier -> ID .)
+    RCEIL           reduce using rule 31 (Identifier -> ID .)
+    PIPE            reduce using rule 31 (Identifier -> ID .)
+    RPAREN          reduce using rule 31 (Identifier -> ID .)
+    RBRACE          reduce using rule 31 (Identifier -> ID .)
+    COMMA           reduce using rule 31 (Identifier -> ID .)
+    DIFFERENTIAL    reduce using rule 31 (Identifier -> ID .)
 
 
 state 21
+
+    (16) Factor -> SQRT . LBRACE Expression RBRACE
+
+    LBRACE          shift and go to state 44
+
+
+state 22
 
     (0) S' -> MAIN .
 
 
 
-state 22
+state 23
 
     (17) Factor -> LFLOOR Expression . RFLOOR
     (12) Expression -> Expression . PLUS Term
     (13) Expression -> Expression . MINUS Term
 
-    RFLOOR          shift and go to state 43
-    PLUS            shift and go to state 40
-    MINUS           shift and go to state 41
+    RFLOOR          shift and go to state 45
+    PLUS            shift and go to state 42
+    MINUS           shift and go to state 43
 
 
-state 23
+state 24
 
     (21) Factor -> COS LPAREN . Expression RPAREN
     (12) Expression -> . Expression PLUS Term
@@ -609,31 +636,33 @@ state 23
     (27) Factor -> . EXP LPAREN Expression RPAREN
     (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
     (29) Factor -> . Identifier LPAREN RPAREN
-    (30) Identifier -> . ID
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
 
-    FRAC            shift and go to state 14
-    NUMBER          shift and go to state 5
-    INFINITY        shift and go to state 8
-    LPAREN          shift and go to state 16
-    SQRT            shift and go to state 20
+    FRAC            shift and go to state 15
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
     LFLOOR          shift and go to state 1
     LCEIL           shift and go to state 4
-    PIPE            shift and go to state 11
-    SIN             shift and go to state 10
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
     COS             shift and go to state 2
-    TAN             shift and go to state 12
-    ATAN            shift and go to state 15
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
     LOG             shift and go to state 3
-    LN              shift and go to state 9
-    EXP             shift and go to state 6
-    ID              shift and go to state 19
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
 
-    Term                           shift and go to state 13
-    Identifier                     shift and go to state 17
-    Expression                     shift and go to state 44
-    Factor                         shift and go to state 7
+    Term                           shift and go to state 14
+    Identifier                     shift and go to state 18
+    Expression                     shift and go to state 46
+    Factor                         shift and go to state 8
 
-state 24
+state 25
 
     (25) Factor -> LOG LPAREN . Expression RPAREN
     (12) Expression -> . Expression PLUS Term
@@ -664,42 +693,51 @@ state 24
     (27) Factor -> . EXP LPAREN Expression RPAREN
     (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
     (29) Factor -> . Identifier LPAREN RPAREN
-    (30) Identifier -> . ID
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
 
-    FRAC            shift and go to state 14
-    NUMBER          shift and go to state 5
-    INFINITY        shift and go to state 8
-    LPAREN          shift and go to state 16
-    SQRT            shift and go to state 20
+    FRAC            shift and go to state 15
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
     LFLOOR          shift and go to state 1
     LCEIL           shift and go to state 4
-    PIPE            shift and go to state 11
-    SIN             shift and go to state 10
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
     COS             shift and go to state 2
-    TAN             shift and go to state 12
-    ATAN            shift and go to state 15
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
     LOG             shift and go to state 3
-    LN              shift and go to state 9
-    EXP             shift and go to state 6
-    ID              shift and go to state 19
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
 
-    Term                           shift and go to state 13
-    Identifier                     shift and go to state 17
-    Expression                     shift and go to state 45
-    Factor                         shift and go to state 7
+    Term                           shift and go to state 14
+    Identifier                     shift and go to state 18
+    Expression                     shift and go to state 47
+    Factor                         shift and go to state 8
 
-state 25
+state 26
 
     (18) Factor -> LCEIL Expression . RCEIL
     (12) Expression -> Expression . PLUS Term
     (13) Expression -> Expression . MINUS Term
 
-    RCEIL           shift and go to state 46
-    PLUS            shift and go to state 40
-    MINUS           shift and go to state 41
+    RCEIL           shift and go to state 48
+    PLUS            shift and go to state 42
+    MINUS           shift and go to state 43
 
 
-state 26
+state 27
+
+    (30) Factor -> INTEGRAL UNDERLINE . LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+
+    LBRACE          shift and go to state 49
+
+
+state 28
 
     (27) Factor -> EXP LPAREN . Expression RPAREN
     (12) Expression -> . Expression PLUS Term
@@ -730,31 +768,33 @@ state 26
     (27) Factor -> . EXP LPAREN Expression RPAREN
     (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
     (29) Factor -> . Identifier LPAREN RPAREN
-    (30) Identifier -> . ID
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
 
-    FRAC            shift and go to state 14
-    NUMBER          shift and go to state 5
-    INFINITY        shift and go to state 8
-    LPAREN          shift and go to state 16
-    SQRT            shift and go to state 20
+    FRAC            shift and go to state 15
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
     LFLOOR          shift and go to state 1
     LCEIL           shift and go to state 4
-    PIPE            shift and go to state 11
-    SIN             shift and go to state 10
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
     COS             shift and go to state 2
-    TAN             shift and go to state 12
-    ATAN            shift and go to state 15
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
     LOG             shift and go to state 3
-    LN              shift and go to state 9
-    EXP             shift and go to state 6
-    ID              shift and go to state 19
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
 
-    Term                           shift and go to state 13
-    Identifier                     shift and go to state 17
-    Expression                     shift and go to state 47
-    Factor                         shift and go to state 7
+    Term                           shift and go to state 14
+    Identifier                     shift and go to state 18
+    Expression                     shift and go to state 50
+    Factor                         shift and go to state 8
 
-state 27
+state 29
 
     (26) Factor -> LN LPAREN . Expression RPAREN
     (12) Expression -> . Expression PLUS Term
@@ -785,31 +825,33 @@ state 27
     (27) Factor -> . EXP LPAREN Expression RPAREN
     (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
     (29) Factor -> . Identifier LPAREN RPAREN
-    (30) Identifier -> . ID
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
 
-    FRAC            shift and go to state 14
-    NUMBER          shift and go to state 5
-    INFINITY        shift and go to state 8
-    LPAREN          shift and go to state 16
-    SQRT            shift and go to state 20
+    FRAC            shift and go to state 15
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
     LFLOOR          shift and go to state 1
     LCEIL           shift and go to state 4
-    PIPE            shift and go to state 11
-    SIN             shift and go to state 10
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
     COS             shift and go to state 2
-    TAN             shift and go to state 12
-    ATAN            shift and go to state 15
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
     LOG             shift and go to state 3
-    LN              shift and go to state 9
-    EXP             shift and go to state 6
-    ID              shift and go to state 19
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
 
-    Term                           shift and go to state 13
-    Identifier                     shift and go to state 17
-    Expression                     shift and go to state 48
-    Factor                         shift and go to state 7
+    Term                           shift and go to state 14
+    Identifier                     shift and go to state 18
+    Expression                     shift and go to state 51
+    Factor                         shift and go to state 8
 
-state 28
+state 30
 
     (20) Factor -> SIN LPAREN . Expression RPAREN
     (12) Expression -> . Expression PLUS Term
@@ -840,42 +882,44 @@ state 28
     (27) Factor -> . EXP LPAREN Expression RPAREN
     (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
     (29) Factor -> . Identifier LPAREN RPAREN
-    (30) Identifier -> . ID
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
 
-    FRAC            shift and go to state 14
-    NUMBER          shift and go to state 5
-    INFINITY        shift and go to state 8
-    LPAREN          shift and go to state 16
-    SQRT            shift and go to state 20
+    FRAC            shift and go to state 15
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
     LFLOOR          shift and go to state 1
     LCEIL           shift and go to state 4
-    PIPE            shift and go to state 11
-    SIN             shift and go to state 10
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
     COS             shift and go to state 2
-    TAN             shift and go to state 12
-    ATAN            shift and go to state 15
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
     LOG             shift and go to state 3
-    LN              shift and go to state 9
-    EXP             shift and go to state 6
-    ID              shift and go to state 19
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
 
-    Term                           shift and go to state 13
-    Identifier                     shift and go to state 17
-    Expression                     shift and go to state 49
-    Factor                         shift and go to state 7
+    Term                           shift and go to state 14
+    Identifier                     shift and go to state 18
+    Expression                     shift and go to state 52
+    Factor                         shift and go to state 8
 
-state 29
+state 31
 
     (19) Factor -> PIPE Expression . PIPE
     (12) Expression -> Expression . PLUS Term
     (13) Expression -> Expression . MINUS Term
 
-    PIPE            shift and go to state 50
-    PLUS            shift and go to state 40
-    MINUS           shift and go to state 41
+    PIPE            shift and go to state 53
+    PLUS            shift and go to state 42
+    MINUS           shift and go to state 43
 
 
-state 30
+state 32
 
     (22) Factor -> TAN LPAREN . Expression RPAREN
     (12) Expression -> . Expression PLUS Term
@@ -906,38 +950,40 @@ state 30
     (27) Factor -> . EXP LPAREN Expression RPAREN
     (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
     (29) Factor -> . Identifier LPAREN RPAREN
-    (30) Identifier -> . ID
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
 
-    FRAC            shift and go to state 14
-    NUMBER          shift and go to state 5
-    INFINITY        shift and go to state 8
-    LPAREN          shift and go to state 16
-    SQRT            shift and go to state 20
+    FRAC            shift and go to state 15
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
     LFLOOR          shift and go to state 1
     LCEIL           shift and go to state 4
-    PIPE            shift and go to state 11
-    SIN             shift and go to state 10
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
     COS             shift and go to state 2
-    TAN             shift and go to state 12
-    ATAN            shift and go to state 15
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
     LOG             shift and go to state 3
-    LN              shift and go to state 9
-    EXP             shift and go to state 6
-    ID              shift and go to state 19
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
 
-    Term                           shift and go to state 13
-    Identifier                     shift and go to state 17
-    Expression                     shift and go to state 51
-    Factor                         shift and go to state 7
+    Term                           shift and go to state 14
+    Identifier                     shift and go to state 18
+    Expression                     shift and go to state 54
+    Factor                         shift and go to state 8
 
-state 31
+state 33
 
     (10) Term -> Term CARET . LBRACE Factor RBRACE
 
-    LBRACE          shift and go to state 52
+    LBRACE          shift and go to state 55
 
 
-state 32
+state 34
 
     (7) Term -> Term DIVIDE . Factor
     (2) Factor -> . NUMBER
@@ -958,28 +1004,30 @@ state 32
     (27) Factor -> . EXP LPAREN Expression RPAREN
     (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
     (29) Factor -> . Identifier LPAREN RPAREN
-    (30) Identifier -> . ID
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
 
-    NUMBER          shift and go to state 5
-    INFINITY        shift and go to state 8
-    LPAREN          shift and go to state 16
-    SQRT            shift and go to state 20
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
     LFLOOR          shift and go to state 1
     LCEIL           shift and go to state 4
-    PIPE            shift and go to state 11
-    SIN             shift and go to state 10
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
     COS             shift and go to state 2
-    TAN             shift and go to state 12
-    ATAN            shift and go to state 15
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
     LOG             shift and go to state 3
-    LN              shift and go to state 9
-    EXP             shift and go to state 6
-    ID              shift and go to state 19
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
 
-    Identifier                     shift and go to state 17
-    Factor                         shift and go to state 53
+    Identifier                     shift and go to state 18
+    Factor                         shift and go to state 56
 
-state 33
+state 35
 
     (6) Term -> Term TIMES . Factor
     (2) Factor -> . NUMBER
@@ -1000,28 +1048,30 @@ state 33
     (27) Factor -> . EXP LPAREN Expression RPAREN
     (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
     (29) Factor -> . Identifier LPAREN RPAREN
-    (30) Identifier -> . ID
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
 
-    NUMBER          shift and go to state 5
-    INFINITY        shift and go to state 8
-    LPAREN          shift and go to state 16
-    SQRT            shift and go to state 20
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
     LFLOOR          shift and go to state 1
     LCEIL           shift and go to state 4
-    PIPE            shift and go to state 11
-    SIN             shift and go to state 10
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
     COS             shift and go to state 2
-    TAN             shift and go to state 12
-    ATAN            shift and go to state 15
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
     LOG             shift and go to state 3
-    LN              shift and go to state 9
-    EXP             shift and go to state 6
-    ID              shift and go to state 19
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
 
-    Identifier                     shift and go to state 17
-    Factor                         shift and go to state 54
+    Identifier                     shift and go to state 18
+    Factor                         shift and go to state 57
 
-state 34
+state 36
 
     (8) Term -> Term MOD . Factor
     (2) Factor -> . NUMBER
@@ -1042,28 +1092,30 @@ state 34
     (27) Factor -> . EXP LPAREN Expression RPAREN
     (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
     (29) Factor -> . Identifier LPAREN RPAREN
-    (30) Identifier -> . ID
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
 
-    NUMBER          shift and go to state 5
-    INFINITY        shift and go to state 8
-    LPAREN          shift and go to state 16
-    SQRT            shift and go to state 20
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
     LFLOOR          shift and go to state 1
     LCEIL           shift and go to state 4
-    PIPE            shift and go to state 11
-    SIN             shift and go to state 10
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
     COS             shift and go to state 2
-    TAN             shift and go to state 12
-    ATAN            shift and go to state 15
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
     LOG             shift and go to state 3
-    LN              shift and go to state 9
-    EXP             shift and go to state 6
-    ID              shift and go to state 19
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
 
-    Identifier                     shift and go to state 17
-    Factor                         shift and go to state 55
+    Identifier                     shift and go to state 18
+    Factor                         shift and go to state 58
 
-state 35
+state 37
 
     (9) Term -> Term QUOTIENT . Factor
     (2) Factor -> . NUMBER
@@ -1084,28 +1136,30 @@ state 35
     (27) Factor -> . EXP LPAREN Expression RPAREN
     (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
     (29) Factor -> . Identifier LPAREN RPAREN
-    (30) Identifier -> . ID
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
 
-    NUMBER          shift and go to state 5
-    INFINITY        shift and go to state 8
-    LPAREN          shift and go to state 16
-    SQRT            shift and go to state 20
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
     LFLOOR          shift and go to state 1
     LCEIL           shift and go to state 4
-    PIPE            shift and go to state 11
-    SIN             shift and go to state 10
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
     COS             shift and go to state 2
-    TAN             shift and go to state 12
-    ATAN            shift and go to state 15
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
     LOG             shift and go to state 3
-    LN              shift and go to state 9
-    EXP             shift and go to state 6
-    ID              shift and go to state 19
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
 
-    Identifier                     shift and go to state 17
-    Factor                         shift and go to state 56
+    Identifier                     shift and go to state 18
+    Factor                         shift and go to state 59
 
-state 36
+state 38
 
     (15) Expression -> FRAC LBRACE . Expression RBRACE LBRACE Expression RBRACE
     (12) Expression -> . Expression PLUS Term
@@ -1136,31 +1190,33 @@ state 36
     (27) Factor -> . EXP LPAREN Expression RPAREN
     (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
     (29) Factor -> . Identifier LPAREN RPAREN
-    (30) Identifier -> . ID
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
 
-    FRAC            shift and go to state 14
-    NUMBER          shift and go to state 5
-    INFINITY        shift and go to state 8
-    LPAREN          shift and go to state 16
-    SQRT            shift and go to state 20
+    FRAC            shift and go to state 15
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
     LFLOOR          shift and go to state 1
     LCEIL           shift and go to state 4
-    PIPE            shift and go to state 11
-    SIN             shift and go to state 10
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
     COS             shift and go to state 2
-    TAN             shift and go to state 12
-    ATAN            shift and go to state 15
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
     LOG             shift and go to state 3
-    LN              shift and go to state 9
-    EXP             shift and go to state 6
-    ID              shift and go to state 19
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
 
-    Term                           shift and go to state 13
-    Identifier                     shift and go to state 17
-    Expression                     shift and go to state 57
-    Factor                         shift and go to state 7
+    Term                           shift and go to state 14
+    Identifier                     shift and go to state 18
+    Expression                     shift and go to state 60
+    Factor                         shift and go to state 8
 
-state 37
+state 39
 
     (23) Factor -> ATAN LPAREN . Expression COMMA Expression RPAREN
     (24) Factor -> ATAN LPAREN . Expression RPAREN
@@ -1192,47 +1248,49 @@ state 37
     (27) Factor -> . EXP LPAREN Expression RPAREN
     (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
     (29) Factor -> . Identifier LPAREN RPAREN
-    (30) Identifier -> . ID
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
 
-    FRAC            shift and go to state 14
-    NUMBER          shift and go to state 5
-    INFINITY        shift and go to state 8
-    LPAREN          shift and go to state 16
-    SQRT            shift and go to state 20
+    FRAC            shift and go to state 15
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
     LFLOOR          shift and go to state 1
     LCEIL           shift and go to state 4
-    PIPE            shift and go to state 11
-    SIN             shift and go to state 10
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
     COS             shift and go to state 2
-    TAN             shift and go to state 12
-    ATAN            shift and go to state 15
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
     LOG             shift and go to state 3
-    LN              shift and go to state 9
-    EXP             shift and go to state 6
-    ID              shift and go to state 19
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
 
-    Term                           shift and go to state 13
-    Identifier                     shift and go to state 17
-    Expression                     shift and go to state 58
-    Factor                         shift and go to state 7
+    Term                           shift and go to state 14
+    Identifier                     shift and go to state 18
+    Expression                     shift and go to state 61
+    Factor                         shift and go to state 8
 
-state 38
+state 40
 
     (5) Factor -> LPAREN Expression . RPAREN
     (12) Expression -> Expression . PLUS Term
     (13) Expression -> Expression . MINUS Term
 
-    RPAREN          shift and go to state 59
-    PLUS            shift and go to state 40
-    MINUS           shift and go to state 41
+    RPAREN          shift and go to state 62
+    PLUS            shift and go to state 42
+    MINUS           shift and go to state 43
 
 
-state 39
+state 41
 
     (28) Factor -> Identifier LPAREN . ExpressionList RPAREN
     (29) Factor -> Identifier LPAREN . RPAREN
-    (31) ExpressionList -> . ExpressionList COMMA Expression
-    (32) ExpressionList -> . Expression
+    (32) ExpressionList -> . ExpressionList COMMA Expression
+    (33) ExpressionList -> . Expression
     (12) Expression -> . Expression PLUS Term
     (13) Expression -> . Expression MINUS Term
     (14) Expression -> . Term
@@ -1261,33 +1319,35 @@ state 39
     (27) Factor -> . EXP LPAREN Expression RPAREN
     (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
     (29) Factor -> . Identifier LPAREN RPAREN
-    (30) Identifier -> . ID
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
 
-    RPAREN          shift and go to state 60
-    FRAC            shift and go to state 14
-    NUMBER          shift and go to state 5
-    INFINITY        shift and go to state 8
-    LPAREN          shift and go to state 16
-    SQRT            shift and go to state 20
+    RPAREN          shift and go to state 63
+    FRAC            shift and go to state 15
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
     LFLOOR          shift and go to state 1
     LCEIL           shift and go to state 4
-    PIPE            shift and go to state 11
-    SIN             shift and go to state 10
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
     COS             shift and go to state 2
-    TAN             shift and go to state 12
-    ATAN            shift and go to state 15
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
     LOG             shift and go to state 3
-    LN              shift and go to state 9
-    EXP             shift and go to state 6
-    ID              shift and go to state 19
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
 
-    Expression                     shift and go to state 62
-    Term                           shift and go to state 13
-    Identifier                     shift and go to state 17
-    ExpressionList                 shift and go to state 61
-    Factor                         shift and go to state 7
+    Expression                     shift and go to state 65
+    Term                           shift and go to state 14
+    Identifier                     shift and go to state 18
+    ExpressionList                 shift and go to state 64
+    Factor                         shift and go to state 8
 
-state 40
+state 42
 
     (12) Expression -> Expression PLUS . Term
     (6) Term -> . Term TIMES Factor
@@ -1314,29 +1374,31 @@ state 40
     (27) Factor -> . EXP LPAREN Expression RPAREN
     (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
     (29) Factor -> . Identifier LPAREN RPAREN
-    (30) Identifier -> . ID
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
 
-    NUMBER          shift and go to state 5
-    INFINITY        shift and go to state 8
-    LPAREN          shift and go to state 16
-    SQRT            shift and go to state 20
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
     LFLOOR          shift and go to state 1
     LCEIL           shift and go to state 4
-    PIPE            shift and go to state 11
-    SIN             shift and go to state 10
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
     COS             shift and go to state 2
-    TAN             shift and go to state 12
-    ATAN            shift and go to state 15
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
     LOG             shift and go to state 3
-    LN              shift and go to state 9
-    EXP             shift and go to state 6
-    ID              shift and go to state 19
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
 
-    Term                           shift and go to state 63
-    Identifier                     shift and go to state 17
-    Factor                         shift and go to state 7
+    Term                           shift and go to state 66
+    Identifier                     shift and go to state 18
+    Factor                         shift and go to state 8
 
-state 41
+state 43
 
     (13) Expression -> Expression MINUS . Term
     (6) Term -> . Term TIMES Factor
@@ -1363,29 +1425,31 @@ state 41
     (27) Factor -> . EXP LPAREN Expression RPAREN
     (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
     (29) Factor -> . Identifier LPAREN RPAREN
-    (30) Identifier -> . ID
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
 
-    NUMBER          shift and go to state 5
-    INFINITY        shift and go to state 8
-    LPAREN          shift and go to state 16
-    SQRT            shift and go to state 20
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
     LFLOOR          shift and go to state 1
     LCEIL           shift and go to state 4
-    PIPE            shift and go to state 11
-    SIN             shift and go to state 10
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
     COS             shift and go to state 2
-    TAN             shift and go to state 12
-    ATAN            shift and go to state 15
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
     LOG             shift and go to state 3
-    LN              shift and go to state 9
-    EXP             shift and go to state 6
-    ID              shift and go to state 19
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
 
-    Term                           shift and go to state 64
-    Identifier                     shift and go to state 17
-    Factor                         shift and go to state 7
+    Term                           shift and go to state 67
+    Identifier                     shift and go to state 18
+    Factor                         shift and go to state 8
 
-state 42
+state 44
 
     (16) Factor -> SQRT LBRACE . Expression RBRACE
     (12) Expression -> . Expression PLUS Term
@@ -1416,31 +1480,33 @@ state 42
     (27) Factor -> . EXP LPAREN Expression RPAREN
     (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
     (29) Factor -> . Identifier LPAREN RPAREN
-    (30) Identifier -> . ID
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
 
-    FRAC            shift and go to state 14
-    NUMBER          shift and go to state 5
-    INFINITY        shift and go to state 8
-    LPAREN          shift and go to state 16
-    SQRT            shift and go to state 20
+    FRAC            shift and go to state 15
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
     LFLOOR          shift and go to state 1
     LCEIL           shift and go to state 4
-    PIPE            shift and go to state 11
-    SIN             shift and go to state 10
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
     COS             shift and go to state 2
-    TAN             shift and go to state 12
-    ATAN            shift and go to state 15
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
     LOG             shift and go to state 3
-    LN              shift and go to state 9
-    EXP             shift and go to state 6
-    ID              shift and go to state 19
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
 
-    Term                           shift and go to state 13
-    Identifier                     shift and go to state 17
-    Expression                     shift and go to state 65
-    Factor                         shift and go to state 7
+    Term                           shift and go to state 14
+    Identifier                     shift and go to state 18
+    Expression                     shift and go to state 68
+    Factor                         shift and go to state 8
 
-state 43
+state 45
 
     (17) Factor -> LFLOOR Expression RFLOOR .
 
@@ -1449,40 +1515,41 @@ state 43
     MOD             reduce using rule 17 (Factor -> LFLOOR Expression RFLOOR .)
     QUOTIENT        reduce using rule 17 (Factor -> LFLOOR Expression RFLOOR .)
     CARET           reduce using rule 17 (Factor -> LFLOOR Expression RFLOOR .)
-    RPAREN          reduce using rule 17 (Factor -> LFLOOR Expression RFLOOR .)
     PLUS            reduce using rule 17 (Factor -> LFLOOR Expression RFLOOR .)
     MINUS           reduce using rule 17 (Factor -> LFLOOR Expression RFLOOR .)
-    PIPE            reduce using rule 17 (Factor -> LFLOOR Expression RFLOOR .)
     $end            reduce using rule 17 (Factor -> LFLOOR Expression RFLOOR .)
     RFLOOR          reduce using rule 17 (Factor -> LFLOOR Expression RFLOOR .)
     RCEIL           reduce using rule 17 (Factor -> LFLOOR Expression RFLOOR .)
+    PIPE            reduce using rule 17 (Factor -> LFLOOR Expression RFLOOR .)
+    RPAREN          reduce using rule 17 (Factor -> LFLOOR Expression RFLOOR .)
     RBRACE          reduce using rule 17 (Factor -> LFLOOR Expression RFLOOR .)
     COMMA           reduce using rule 17 (Factor -> LFLOOR Expression RFLOOR .)
+    DIFFERENTIAL    reduce using rule 17 (Factor -> LFLOOR Expression RFLOOR .)
 
 
-state 44
+state 46
 
     (21) Factor -> COS LPAREN Expression . RPAREN
     (12) Expression -> Expression . PLUS Term
     (13) Expression -> Expression . MINUS Term
 
-    RPAREN          shift and go to state 66
-    PLUS            shift and go to state 40
-    MINUS           shift and go to state 41
+    RPAREN          shift and go to state 69
+    PLUS            shift and go to state 42
+    MINUS           shift and go to state 43
 
 
-state 45
+state 47
 
     (25) Factor -> LOG LPAREN Expression . RPAREN
     (12) Expression -> Expression . PLUS Term
     (13) Expression -> Expression . MINUS Term
 
-    RPAREN          shift and go to state 67
-    PLUS            shift and go to state 40
-    MINUS           shift and go to state 41
+    RPAREN          shift and go to state 70
+    PLUS            shift and go to state 42
+    MINUS           shift and go to state 43
 
 
-state 46
+state 48
 
     (18) Factor -> LCEIL Expression RCEIL .
 
@@ -1491,51 +1558,109 @@ state 46
     MOD             reduce using rule 18 (Factor -> LCEIL Expression RCEIL .)
     QUOTIENT        reduce using rule 18 (Factor -> LCEIL Expression RCEIL .)
     CARET           reduce using rule 18 (Factor -> LCEIL Expression RCEIL .)
-    RPAREN          reduce using rule 18 (Factor -> LCEIL Expression RCEIL .)
     PLUS            reduce using rule 18 (Factor -> LCEIL Expression RCEIL .)
     MINUS           reduce using rule 18 (Factor -> LCEIL Expression RCEIL .)
-    PIPE            reduce using rule 18 (Factor -> LCEIL Expression RCEIL .)
     $end            reduce using rule 18 (Factor -> LCEIL Expression RCEIL .)
     RFLOOR          reduce using rule 18 (Factor -> LCEIL Expression RCEIL .)
     RCEIL           reduce using rule 18 (Factor -> LCEIL Expression RCEIL .)
+    PIPE            reduce using rule 18 (Factor -> LCEIL Expression RCEIL .)
+    RPAREN          reduce using rule 18 (Factor -> LCEIL Expression RCEIL .)
     RBRACE          reduce using rule 18 (Factor -> LCEIL Expression RCEIL .)
     COMMA           reduce using rule 18 (Factor -> LCEIL Expression RCEIL .)
+    DIFFERENTIAL    reduce using rule 18 (Factor -> LCEIL Expression RCEIL .)
 
 
-state 47
+state 49
+
+    (30) Factor -> INTEGRAL UNDERLINE LBRACE . Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (12) Expression -> . Expression PLUS Term
+    (13) Expression -> . Expression MINUS Term
+    (14) Expression -> . Term
+    (15) Expression -> . FRAC LBRACE Expression RBRACE LBRACE Expression RBRACE
+    (6) Term -> . Term TIMES Factor
+    (7) Term -> . Term DIVIDE Factor
+    (8) Term -> . Term MOD Factor
+    (9) Term -> . Term QUOTIENT Factor
+    (10) Term -> . Term CARET LBRACE Factor RBRACE
+    (11) Term -> . Factor
+    (2) Factor -> . NUMBER
+    (3) Factor -> . Identifier
+    (4) Factor -> . INFINITY
+    (5) Factor -> . LPAREN Expression RPAREN
+    (16) Factor -> . SQRT LBRACE Expression RBRACE
+    (17) Factor -> . LFLOOR Expression RFLOOR
+    (18) Factor -> . LCEIL Expression RCEIL
+    (19) Factor -> . PIPE Expression PIPE
+    (20) Factor -> . SIN LPAREN Expression RPAREN
+    (21) Factor -> . COS LPAREN Expression RPAREN
+    (22) Factor -> . TAN LPAREN Expression RPAREN
+    (23) Factor -> . ATAN LPAREN Expression COMMA Expression RPAREN
+    (24) Factor -> . ATAN LPAREN Expression RPAREN
+    (25) Factor -> . LOG LPAREN Expression RPAREN
+    (26) Factor -> . LN LPAREN Expression RPAREN
+    (27) Factor -> . EXP LPAREN Expression RPAREN
+    (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
+    (29) Factor -> . Identifier LPAREN RPAREN
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
+
+    FRAC            shift and go to state 15
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
+    LFLOOR          shift and go to state 1
+    LCEIL           shift and go to state 4
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
+    COS             shift and go to state 2
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
+    LOG             shift and go to state 3
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
+
+    Term                           shift and go to state 14
+    Identifier                     shift and go to state 18
+    Expression                     shift and go to state 71
+    Factor                         shift and go to state 8
+
+state 50
 
     (27) Factor -> EXP LPAREN Expression . RPAREN
     (12) Expression -> Expression . PLUS Term
     (13) Expression -> Expression . MINUS Term
 
-    RPAREN          shift and go to state 68
-    PLUS            shift and go to state 40
-    MINUS           shift and go to state 41
+    RPAREN          shift and go to state 72
+    PLUS            shift and go to state 42
+    MINUS           shift and go to state 43
 
 
-state 48
+state 51
 
     (26) Factor -> LN LPAREN Expression . RPAREN
     (12) Expression -> Expression . PLUS Term
     (13) Expression -> Expression . MINUS Term
 
-    RPAREN          shift and go to state 69
-    PLUS            shift and go to state 40
-    MINUS           shift and go to state 41
+    RPAREN          shift and go to state 73
+    PLUS            shift and go to state 42
+    MINUS           shift and go to state 43
 
 
-state 49
+state 52
 
     (20) Factor -> SIN LPAREN Expression . RPAREN
     (12) Expression -> Expression . PLUS Term
     (13) Expression -> Expression . MINUS Term
 
-    RPAREN          shift and go to state 70
-    PLUS            shift and go to state 40
-    MINUS           shift and go to state 41
+    RPAREN          shift and go to state 74
+    PLUS            shift and go to state 42
+    MINUS           shift and go to state 43
 
 
-state 50
+state 53
 
     (19) Factor -> PIPE Expression PIPE .
 
@@ -1544,29 +1669,30 @@ state 50
     MOD             reduce using rule 19 (Factor -> PIPE Expression PIPE .)
     QUOTIENT        reduce using rule 19 (Factor -> PIPE Expression PIPE .)
     CARET           reduce using rule 19 (Factor -> PIPE Expression PIPE .)
-    RPAREN          reduce using rule 19 (Factor -> PIPE Expression PIPE .)
     PLUS            reduce using rule 19 (Factor -> PIPE Expression PIPE .)
     MINUS           reduce using rule 19 (Factor -> PIPE Expression PIPE .)
-    PIPE            reduce using rule 19 (Factor -> PIPE Expression PIPE .)
     $end            reduce using rule 19 (Factor -> PIPE Expression PIPE .)
     RFLOOR          reduce using rule 19 (Factor -> PIPE Expression PIPE .)
     RCEIL           reduce using rule 19 (Factor -> PIPE Expression PIPE .)
+    PIPE            reduce using rule 19 (Factor -> PIPE Expression PIPE .)
+    RPAREN          reduce using rule 19 (Factor -> PIPE Expression PIPE .)
     RBRACE          reduce using rule 19 (Factor -> PIPE Expression PIPE .)
     COMMA           reduce using rule 19 (Factor -> PIPE Expression PIPE .)
+    DIFFERENTIAL    reduce using rule 19 (Factor -> PIPE Expression PIPE .)
 
 
-state 51
+state 54
 
     (22) Factor -> TAN LPAREN Expression . RPAREN
     (12) Expression -> Expression . PLUS Term
     (13) Expression -> Expression . MINUS Term
 
-    RPAREN          shift and go to state 71
-    PLUS            shift and go to state 40
-    MINUS           shift and go to state 41
+    RPAREN          shift and go to state 75
+    PLUS            shift and go to state 42
+    MINUS           shift and go to state 43
 
 
-state 52
+state 55
 
     (10) Term -> Term CARET LBRACE . Factor RBRACE
     (2) Factor -> . NUMBER
@@ -1587,28 +1713,30 @@ state 52
     (27) Factor -> . EXP LPAREN Expression RPAREN
     (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
     (29) Factor -> . Identifier LPAREN RPAREN
-    (30) Identifier -> . ID
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
 
-    NUMBER          shift and go to state 5
-    INFINITY        shift and go to state 8
-    LPAREN          shift and go to state 16
-    SQRT            shift and go to state 20
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
     LFLOOR          shift and go to state 1
     LCEIL           shift and go to state 4
-    PIPE            shift and go to state 11
-    SIN             shift and go to state 10
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
     COS             shift and go to state 2
-    TAN             shift and go to state 12
-    ATAN            shift and go to state 15
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
     LOG             shift and go to state 3
-    LN              shift and go to state 9
-    EXP             shift and go to state 6
-    ID              shift and go to state 19
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
 
-    Identifier                     shift and go to state 17
-    Factor                         shift and go to state 72
+    Identifier                     shift and go to state 18
+    Factor                         shift and go to state 76
 
-state 53
+state 56
 
     (7) Term -> Term DIVIDE Factor .
 
@@ -1621,14 +1749,15 @@ state 53
     PLUS            reduce using rule 7 (Term -> Term DIVIDE Factor .)
     MINUS           reduce using rule 7 (Term -> Term DIVIDE Factor .)
     $end            reduce using rule 7 (Term -> Term DIVIDE Factor .)
-    RPAREN          reduce using rule 7 (Term -> Term DIVIDE Factor .)
-    COMMA           reduce using rule 7 (Term -> Term DIVIDE Factor .)
     RFLOOR          reduce using rule 7 (Term -> Term DIVIDE Factor .)
     RCEIL           reduce using rule 7 (Term -> Term DIVIDE Factor .)
     PIPE            reduce using rule 7 (Term -> Term DIVIDE Factor .)
+    RPAREN          reduce using rule 7 (Term -> Term DIVIDE Factor .)
+    COMMA           reduce using rule 7 (Term -> Term DIVIDE Factor .)
+    DIFFERENTIAL    reduce using rule 7 (Term -> Term DIVIDE Factor .)
 
 
-state 54
+state 57
 
     (6) Term -> Term TIMES Factor .
 
@@ -1641,14 +1770,15 @@ state 54
     PLUS            reduce using rule 6 (Term -> Term TIMES Factor .)
     MINUS           reduce using rule 6 (Term -> Term TIMES Factor .)
     $end            reduce using rule 6 (Term -> Term TIMES Factor .)
-    RPAREN          reduce using rule 6 (Term -> Term TIMES Factor .)
-    COMMA           reduce using rule 6 (Term -> Term TIMES Factor .)
     RFLOOR          reduce using rule 6 (Term -> Term TIMES Factor .)
     RCEIL           reduce using rule 6 (Term -> Term TIMES Factor .)
     PIPE            reduce using rule 6 (Term -> Term TIMES Factor .)
+    RPAREN          reduce using rule 6 (Term -> Term TIMES Factor .)
+    COMMA           reduce using rule 6 (Term -> Term TIMES Factor .)
+    DIFFERENTIAL    reduce using rule 6 (Term -> Term TIMES Factor .)
 
 
-state 55
+state 58
 
     (8) Term -> Term MOD Factor .
 
@@ -1661,14 +1791,15 @@ state 55
     PLUS            reduce using rule 8 (Term -> Term MOD Factor .)
     MINUS           reduce using rule 8 (Term -> Term MOD Factor .)
     $end            reduce using rule 8 (Term -> Term MOD Factor .)
-    RPAREN          reduce using rule 8 (Term -> Term MOD Factor .)
-    COMMA           reduce using rule 8 (Term -> Term MOD Factor .)
     RFLOOR          reduce using rule 8 (Term -> Term MOD Factor .)
     RCEIL           reduce using rule 8 (Term -> Term MOD Factor .)
     PIPE            reduce using rule 8 (Term -> Term MOD Factor .)
+    RPAREN          reduce using rule 8 (Term -> Term MOD Factor .)
+    COMMA           reduce using rule 8 (Term -> Term MOD Factor .)
+    DIFFERENTIAL    reduce using rule 8 (Term -> Term MOD Factor .)
 
 
-state 56
+state 59
 
     (9) Term -> Term QUOTIENT Factor .
 
@@ -1681,38 +1812,39 @@ state 56
     PLUS            reduce using rule 9 (Term -> Term QUOTIENT Factor .)
     MINUS           reduce using rule 9 (Term -> Term QUOTIENT Factor .)
     $end            reduce using rule 9 (Term -> Term QUOTIENT Factor .)
-    RPAREN          reduce using rule 9 (Term -> Term QUOTIENT Factor .)
-    COMMA           reduce using rule 9 (Term -> Term QUOTIENT Factor .)
     RFLOOR          reduce using rule 9 (Term -> Term QUOTIENT Factor .)
     RCEIL           reduce using rule 9 (Term -> Term QUOTIENT Factor .)
     PIPE            reduce using rule 9 (Term -> Term QUOTIENT Factor .)
+    RPAREN          reduce using rule 9 (Term -> Term QUOTIENT Factor .)
+    COMMA           reduce using rule 9 (Term -> Term QUOTIENT Factor .)
+    DIFFERENTIAL    reduce using rule 9 (Term -> Term QUOTIENT Factor .)
 
 
-state 57
+state 60
 
     (15) Expression -> FRAC LBRACE Expression . RBRACE LBRACE Expression RBRACE
     (12) Expression -> Expression . PLUS Term
     (13) Expression -> Expression . MINUS Term
 
-    RBRACE          shift and go to state 73
-    PLUS            shift and go to state 40
-    MINUS           shift and go to state 41
+    RBRACE          shift and go to state 77
+    PLUS            shift and go to state 42
+    MINUS           shift and go to state 43
 
 
-state 58
+state 61
 
     (23) Factor -> ATAN LPAREN Expression . COMMA Expression RPAREN
     (24) Factor -> ATAN LPAREN Expression . RPAREN
     (12) Expression -> Expression . PLUS Term
     (13) Expression -> Expression . MINUS Term
 
-    COMMA           shift and go to state 75
-    RPAREN          shift and go to state 74
-    PLUS            shift and go to state 40
-    MINUS           shift and go to state 41
+    COMMA           shift and go to state 79
+    RPAREN          shift and go to state 78
+    PLUS            shift and go to state 42
+    MINUS           shift and go to state 43
 
 
-state 59
+state 62
 
     (5) Factor -> LPAREN Expression RPAREN .
 
@@ -1721,18 +1853,19 @@ state 59
     MOD             reduce using rule 5 (Factor -> LPAREN Expression RPAREN .)
     QUOTIENT        reduce using rule 5 (Factor -> LPAREN Expression RPAREN .)
     CARET           reduce using rule 5 (Factor -> LPAREN Expression RPAREN .)
-    RPAREN          reduce using rule 5 (Factor -> LPAREN Expression RPAREN .)
     PLUS            reduce using rule 5 (Factor -> LPAREN Expression RPAREN .)
     MINUS           reduce using rule 5 (Factor -> LPAREN Expression RPAREN .)
-    PIPE            reduce using rule 5 (Factor -> LPAREN Expression RPAREN .)
     $end            reduce using rule 5 (Factor -> LPAREN Expression RPAREN .)
     RFLOOR          reduce using rule 5 (Factor -> LPAREN Expression RPAREN .)
     RCEIL           reduce using rule 5 (Factor -> LPAREN Expression RPAREN .)
+    PIPE            reduce using rule 5 (Factor -> LPAREN Expression RPAREN .)
+    RPAREN          reduce using rule 5 (Factor -> LPAREN Expression RPAREN .)
     RBRACE          reduce using rule 5 (Factor -> LPAREN Expression RPAREN .)
     COMMA           reduce using rule 5 (Factor -> LPAREN Expression RPAREN .)
+    DIFFERENTIAL    reduce using rule 5 (Factor -> LPAREN Expression RPAREN .)
 
 
-state 60
+state 63
 
     (29) Factor -> Identifier LPAREN RPAREN .
 
@@ -1741,39 +1874,40 @@ state 60
     MOD             reduce using rule 29 (Factor -> Identifier LPAREN RPAREN .)
     QUOTIENT        reduce using rule 29 (Factor -> Identifier LPAREN RPAREN .)
     CARET           reduce using rule 29 (Factor -> Identifier LPAREN RPAREN .)
-    RPAREN          reduce using rule 29 (Factor -> Identifier LPAREN RPAREN .)
     PLUS            reduce using rule 29 (Factor -> Identifier LPAREN RPAREN .)
     MINUS           reduce using rule 29 (Factor -> Identifier LPAREN RPAREN .)
-    PIPE            reduce using rule 29 (Factor -> Identifier LPAREN RPAREN .)
     $end            reduce using rule 29 (Factor -> Identifier LPAREN RPAREN .)
     RFLOOR          reduce using rule 29 (Factor -> Identifier LPAREN RPAREN .)
     RCEIL           reduce using rule 29 (Factor -> Identifier LPAREN RPAREN .)
+    PIPE            reduce using rule 29 (Factor -> Identifier LPAREN RPAREN .)
+    RPAREN          reduce using rule 29 (Factor -> Identifier LPAREN RPAREN .)
     RBRACE          reduce using rule 29 (Factor -> Identifier LPAREN RPAREN .)
     COMMA           reduce using rule 29 (Factor -> Identifier LPAREN RPAREN .)
+    DIFFERENTIAL    reduce using rule 29 (Factor -> Identifier LPAREN RPAREN .)
 
 
-state 61
+state 64
 
     (28) Factor -> Identifier LPAREN ExpressionList . RPAREN
-    (31) ExpressionList -> ExpressionList . COMMA Expression
+    (32) ExpressionList -> ExpressionList . COMMA Expression
 
-    RPAREN          shift and go to state 76
-    COMMA           shift and go to state 77
+    RPAREN          shift and go to state 80
+    COMMA           shift and go to state 81
 
 
-state 62
+state 65
 
-    (32) ExpressionList -> Expression .
+    (33) ExpressionList -> Expression .
     (12) Expression -> Expression . PLUS Term
     (13) Expression -> Expression . MINUS Term
 
-    RPAREN          reduce using rule 32 (ExpressionList -> Expression .)
-    COMMA           reduce using rule 32 (ExpressionList -> Expression .)
-    PLUS            shift and go to state 40
-    MINUS           shift and go to state 41
+    RPAREN          reduce using rule 33 (ExpressionList -> Expression .)
+    COMMA           reduce using rule 33 (ExpressionList -> Expression .)
+    PLUS            shift and go to state 42
+    MINUS           shift and go to state 43
 
 
-state 63
+state 66
 
     (12) Expression -> Expression PLUS Term .
     (6) Term -> Term . TIMES Factor
@@ -1786,19 +1920,20 @@ state 63
     PLUS            reduce using rule 12 (Expression -> Expression PLUS Term .)
     MINUS           reduce using rule 12 (Expression -> Expression PLUS Term .)
     RBRACE          reduce using rule 12 (Expression -> Expression PLUS Term .)
-    PIPE            reduce using rule 12 (Expression -> Expression PLUS Term .)
     RCEIL           reduce using rule 12 (Expression -> Expression PLUS Term .)
-    COMMA           reduce using rule 12 (Expression -> Expression PLUS Term .)
     RFLOOR          reduce using rule 12 (Expression -> Expression PLUS Term .)
     $end            reduce using rule 12 (Expression -> Expression PLUS Term .)
-    TIMES           shift and go to state 33
-    DIVIDE          shift and go to state 32
-    MOD             shift and go to state 34
-    QUOTIENT        shift and go to state 35
-    CARET           shift and go to state 31
+    COMMA           reduce using rule 12 (Expression -> Expression PLUS Term .)
+    DIFFERENTIAL    reduce using rule 12 (Expression -> Expression PLUS Term .)
+    PIPE            reduce using rule 12 (Expression -> Expression PLUS Term .)
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 34
+    MOD             shift and go to state 36
+    QUOTIENT        shift and go to state 37
+    CARET           shift and go to state 33
 
 
-state 64
+state 67
 
     (13) Expression -> Expression MINUS Term .
     (6) Term -> Term . TIMES Factor
@@ -1811,30 +1946,31 @@ state 64
     PLUS            reduce using rule 13 (Expression -> Expression MINUS Term .)
     MINUS           reduce using rule 13 (Expression -> Expression MINUS Term .)
     RBRACE          reduce using rule 13 (Expression -> Expression MINUS Term .)
-    PIPE            reduce using rule 13 (Expression -> Expression MINUS Term .)
     RCEIL           reduce using rule 13 (Expression -> Expression MINUS Term .)
-    COMMA           reduce using rule 13 (Expression -> Expression MINUS Term .)
     RFLOOR          reduce using rule 13 (Expression -> Expression MINUS Term .)
     $end            reduce using rule 13 (Expression -> Expression MINUS Term .)
-    TIMES           shift and go to state 33
-    DIVIDE          shift and go to state 32
-    MOD             shift and go to state 34
-    QUOTIENT        shift and go to state 35
-    CARET           shift and go to state 31
+    COMMA           reduce using rule 13 (Expression -> Expression MINUS Term .)
+    DIFFERENTIAL    reduce using rule 13 (Expression -> Expression MINUS Term .)
+    PIPE            reduce using rule 13 (Expression -> Expression MINUS Term .)
+    TIMES           shift and go to state 35
+    DIVIDE          shift and go to state 34
+    MOD             shift and go to state 36
+    QUOTIENT        shift and go to state 37
+    CARET           shift and go to state 33
 
 
-state 65
+state 68
 
     (16) Factor -> SQRT LBRACE Expression . RBRACE
     (12) Expression -> Expression . PLUS Term
     (13) Expression -> Expression . MINUS Term
 
-    RBRACE          shift and go to state 78
-    PLUS            shift and go to state 40
-    MINUS           shift and go to state 41
+    RBRACE          shift and go to state 82
+    PLUS            shift and go to state 42
+    MINUS           shift and go to state 43
 
 
-state 66
+state 69
 
     (21) Factor -> COS LPAREN Expression RPAREN .
 
@@ -1843,18 +1979,19 @@ state 66
     MOD             reduce using rule 21 (Factor -> COS LPAREN Expression RPAREN .)
     QUOTIENT        reduce using rule 21 (Factor -> COS LPAREN Expression RPAREN .)
     CARET           reduce using rule 21 (Factor -> COS LPAREN Expression RPAREN .)
-    RPAREN          reduce using rule 21 (Factor -> COS LPAREN Expression RPAREN .)
     PLUS            reduce using rule 21 (Factor -> COS LPAREN Expression RPAREN .)
     MINUS           reduce using rule 21 (Factor -> COS LPAREN Expression RPAREN .)
-    PIPE            reduce using rule 21 (Factor -> COS LPAREN Expression RPAREN .)
     $end            reduce using rule 21 (Factor -> COS LPAREN Expression RPAREN .)
     RFLOOR          reduce using rule 21 (Factor -> COS LPAREN Expression RPAREN .)
     RCEIL           reduce using rule 21 (Factor -> COS LPAREN Expression RPAREN .)
+    PIPE            reduce using rule 21 (Factor -> COS LPAREN Expression RPAREN .)
+    RPAREN          reduce using rule 21 (Factor -> COS LPAREN Expression RPAREN .)
     RBRACE          reduce using rule 21 (Factor -> COS LPAREN Expression RPAREN .)
     COMMA           reduce using rule 21 (Factor -> COS LPAREN Expression RPAREN .)
+    DIFFERENTIAL    reduce using rule 21 (Factor -> COS LPAREN Expression RPAREN .)
 
 
-state 67
+state 70
 
     (25) Factor -> LOG LPAREN Expression RPAREN .
 
@@ -1863,18 +2000,30 @@ state 67
     MOD             reduce using rule 25 (Factor -> LOG LPAREN Expression RPAREN .)
     QUOTIENT        reduce using rule 25 (Factor -> LOG LPAREN Expression RPAREN .)
     CARET           reduce using rule 25 (Factor -> LOG LPAREN Expression RPAREN .)
-    RPAREN          reduce using rule 25 (Factor -> LOG LPAREN Expression RPAREN .)
     PLUS            reduce using rule 25 (Factor -> LOG LPAREN Expression RPAREN .)
     MINUS           reduce using rule 25 (Factor -> LOG LPAREN Expression RPAREN .)
-    PIPE            reduce using rule 25 (Factor -> LOG LPAREN Expression RPAREN .)
     $end            reduce using rule 25 (Factor -> LOG LPAREN Expression RPAREN .)
     RFLOOR          reduce using rule 25 (Factor -> LOG LPAREN Expression RPAREN .)
     RCEIL           reduce using rule 25 (Factor -> LOG LPAREN Expression RPAREN .)
+    PIPE            reduce using rule 25 (Factor -> LOG LPAREN Expression RPAREN .)
+    RPAREN          reduce using rule 25 (Factor -> LOG LPAREN Expression RPAREN .)
     RBRACE          reduce using rule 25 (Factor -> LOG LPAREN Expression RPAREN .)
     COMMA           reduce using rule 25 (Factor -> LOG LPAREN Expression RPAREN .)
+    DIFFERENTIAL    reduce using rule 25 (Factor -> LOG LPAREN Expression RPAREN .)
 
 
-state 68
+state 71
+
+    (30) Factor -> INTEGRAL UNDERLINE LBRACE Expression . RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (12) Expression -> Expression . PLUS Term
+    (13) Expression -> Expression . MINUS Term
+
+    RBRACE          shift and go to state 83
+    PLUS            shift and go to state 42
+    MINUS           shift and go to state 43
+
+
+state 72
 
     (27) Factor -> EXP LPAREN Expression RPAREN .
 
@@ -1883,18 +2032,19 @@ state 68
     MOD             reduce using rule 27 (Factor -> EXP LPAREN Expression RPAREN .)
     QUOTIENT        reduce using rule 27 (Factor -> EXP LPAREN Expression RPAREN .)
     CARET           reduce using rule 27 (Factor -> EXP LPAREN Expression RPAREN .)
-    RPAREN          reduce using rule 27 (Factor -> EXP LPAREN Expression RPAREN .)
     PLUS            reduce using rule 27 (Factor -> EXP LPAREN Expression RPAREN .)
     MINUS           reduce using rule 27 (Factor -> EXP LPAREN Expression RPAREN .)
-    PIPE            reduce using rule 27 (Factor -> EXP LPAREN Expression RPAREN .)
     $end            reduce using rule 27 (Factor -> EXP LPAREN Expression RPAREN .)
     RFLOOR          reduce using rule 27 (Factor -> EXP LPAREN Expression RPAREN .)
     RCEIL           reduce using rule 27 (Factor -> EXP LPAREN Expression RPAREN .)
+    PIPE            reduce using rule 27 (Factor -> EXP LPAREN Expression RPAREN .)
+    RPAREN          reduce using rule 27 (Factor -> EXP LPAREN Expression RPAREN .)
     RBRACE          reduce using rule 27 (Factor -> EXP LPAREN Expression RPAREN .)
     COMMA           reduce using rule 27 (Factor -> EXP LPAREN Expression RPAREN .)
+    DIFFERENTIAL    reduce using rule 27 (Factor -> EXP LPAREN Expression RPAREN .)
 
 
-state 69
+state 73
 
     (26) Factor -> LN LPAREN Expression RPAREN .
 
@@ -1903,18 +2053,19 @@ state 69
     MOD             reduce using rule 26 (Factor -> LN LPAREN Expression RPAREN .)
     QUOTIENT        reduce using rule 26 (Factor -> LN LPAREN Expression RPAREN .)
     CARET           reduce using rule 26 (Factor -> LN LPAREN Expression RPAREN .)
-    RPAREN          reduce using rule 26 (Factor -> LN LPAREN Expression RPAREN .)
     PLUS            reduce using rule 26 (Factor -> LN LPAREN Expression RPAREN .)
     MINUS           reduce using rule 26 (Factor -> LN LPAREN Expression RPAREN .)
-    PIPE            reduce using rule 26 (Factor -> LN LPAREN Expression RPAREN .)
     $end            reduce using rule 26 (Factor -> LN LPAREN Expression RPAREN .)
     RFLOOR          reduce using rule 26 (Factor -> LN LPAREN Expression RPAREN .)
     RCEIL           reduce using rule 26 (Factor -> LN LPAREN Expression RPAREN .)
+    PIPE            reduce using rule 26 (Factor -> LN LPAREN Expression RPAREN .)
+    RPAREN          reduce using rule 26 (Factor -> LN LPAREN Expression RPAREN .)
     RBRACE          reduce using rule 26 (Factor -> LN LPAREN Expression RPAREN .)
     COMMA           reduce using rule 26 (Factor -> LN LPAREN Expression RPAREN .)
+    DIFFERENTIAL    reduce using rule 26 (Factor -> LN LPAREN Expression RPAREN .)
 
 
-state 70
+state 74
 
     (20) Factor -> SIN LPAREN Expression RPAREN .
 
@@ -1923,18 +2074,19 @@ state 70
     MOD             reduce using rule 20 (Factor -> SIN LPAREN Expression RPAREN .)
     QUOTIENT        reduce using rule 20 (Factor -> SIN LPAREN Expression RPAREN .)
     CARET           reduce using rule 20 (Factor -> SIN LPAREN Expression RPAREN .)
-    RPAREN          reduce using rule 20 (Factor -> SIN LPAREN Expression RPAREN .)
     PLUS            reduce using rule 20 (Factor -> SIN LPAREN Expression RPAREN .)
     MINUS           reduce using rule 20 (Factor -> SIN LPAREN Expression RPAREN .)
-    PIPE            reduce using rule 20 (Factor -> SIN LPAREN Expression RPAREN .)
     $end            reduce using rule 20 (Factor -> SIN LPAREN Expression RPAREN .)
     RFLOOR          reduce using rule 20 (Factor -> SIN LPAREN Expression RPAREN .)
     RCEIL           reduce using rule 20 (Factor -> SIN LPAREN Expression RPAREN .)
+    PIPE            reduce using rule 20 (Factor -> SIN LPAREN Expression RPAREN .)
+    RPAREN          reduce using rule 20 (Factor -> SIN LPAREN Expression RPAREN .)
     RBRACE          reduce using rule 20 (Factor -> SIN LPAREN Expression RPAREN .)
     COMMA           reduce using rule 20 (Factor -> SIN LPAREN Expression RPAREN .)
+    DIFFERENTIAL    reduce using rule 20 (Factor -> SIN LPAREN Expression RPAREN .)
 
 
-state 71
+state 75
 
     (22) Factor -> TAN LPAREN Expression RPAREN .
 
@@ -1943,32 +2095,33 @@ state 71
     MOD             reduce using rule 22 (Factor -> TAN LPAREN Expression RPAREN .)
     QUOTIENT        reduce using rule 22 (Factor -> TAN LPAREN Expression RPAREN .)
     CARET           reduce using rule 22 (Factor -> TAN LPAREN Expression RPAREN .)
-    RPAREN          reduce using rule 22 (Factor -> TAN LPAREN Expression RPAREN .)
     PLUS            reduce using rule 22 (Factor -> TAN LPAREN Expression RPAREN .)
     MINUS           reduce using rule 22 (Factor -> TAN LPAREN Expression RPAREN .)
-    PIPE            reduce using rule 22 (Factor -> TAN LPAREN Expression RPAREN .)
     $end            reduce using rule 22 (Factor -> TAN LPAREN Expression RPAREN .)
     RFLOOR          reduce using rule 22 (Factor -> TAN LPAREN Expression RPAREN .)
     RCEIL           reduce using rule 22 (Factor -> TAN LPAREN Expression RPAREN .)
+    PIPE            reduce using rule 22 (Factor -> TAN LPAREN Expression RPAREN .)
+    RPAREN          reduce using rule 22 (Factor -> TAN LPAREN Expression RPAREN .)
     RBRACE          reduce using rule 22 (Factor -> TAN LPAREN Expression RPAREN .)
     COMMA           reduce using rule 22 (Factor -> TAN LPAREN Expression RPAREN .)
+    DIFFERENTIAL    reduce using rule 22 (Factor -> TAN LPAREN Expression RPAREN .)
 
 
-state 72
+state 76
 
     (10) Term -> Term CARET LBRACE Factor . RBRACE
 
-    RBRACE          shift and go to state 79
+    RBRACE          shift and go to state 84
 
 
-state 73
+state 77
 
     (15) Expression -> FRAC LBRACE Expression RBRACE . LBRACE Expression RBRACE
 
-    LBRACE          shift and go to state 80
+    LBRACE          shift and go to state 85
 
 
-state 74
+state 78
 
     (24) Factor -> ATAN LPAREN Expression RPAREN .
 
@@ -1977,18 +2130,19 @@ state 74
     MOD             reduce using rule 24 (Factor -> ATAN LPAREN Expression RPAREN .)
     QUOTIENT        reduce using rule 24 (Factor -> ATAN LPAREN Expression RPAREN .)
     CARET           reduce using rule 24 (Factor -> ATAN LPAREN Expression RPAREN .)
-    RPAREN          reduce using rule 24 (Factor -> ATAN LPAREN Expression RPAREN .)
     PLUS            reduce using rule 24 (Factor -> ATAN LPAREN Expression RPAREN .)
     MINUS           reduce using rule 24 (Factor -> ATAN LPAREN Expression RPAREN .)
-    PIPE            reduce using rule 24 (Factor -> ATAN LPAREN Expression RPAREN .)
     $end            reduce using rule 24 (Factor -> ATAN LPAREN Expression RPAREN .)
     RFLOOR          reduce using rule 24 (Factor -> ATAN LPAREN Expression RPAREN .)
     RCEIL           reduce using rule 24 (Factor -> ATAN LPAREN Expression RPAREN .)
+    PIPE            reduce using rule 24 (Factor -> ATAN LPAREN Expression RPAREN .)
+    RPAREN          reduce using rule 24 (Factor -> ATAN LPAREN Expression RPAREN .)
     RBRACE          reduce using rule 24 (Factor -> ATAN LPAREN Expression RPAREN .)
     COMMA           reduce using rule 24 (Factor -> ATAN LPAREN Expression RPAREN .)
+    DIFFERENTIAL    reduce using rule 24 (Factor -> ATAN LPAREN Expression RPAREN .)
 
 
-state 75
+state 79
 
     (23) Factor -> ATAN LPAREN Expression COMMA . Expression RPAREN
     (12) Expression -> . Expression PLUS Term
@@ -2019,31 +2173,33 @@ state 75
     (27) Factor -> . EXP LPAREN Expression RPAREN
     (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
     (29) Factor -> . Identifier LPAREN RPAREN
-    (30) Identifier -> . ID
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
 
-    FRAC            shift and go to state 14
-    NUMBER          shift and go to state 5
-    INFINITY        shift and go to state 8
-    LPAREN          shift and go to state 16
-    SQRT            shift and go to state 20
+    FRAC            shift and go to state 15
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
     LFLOOR          shift and go to state 1
     LCEIL           shift and go to state 4
-    PIPE            shift and go to state 11
-    SIN             shift and go to state 10
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
     COS             shift and go to state 2
-    TAN             shift and go to state 12
-    ATAN            shift and go to state 15
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
     LOG             shift and go to state 3
-    LN              shift and go to state 9
-    EXP             shift and go to state 6
-    ID              shift and go to state 19
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
 
-    Term                           shift and go to state 13
-    Identifier                     shift and go to state 17
-    Expression                     shift and go to state 81
-    Factor                         shift and go to state 7
+    Term                           shift and go to state 14
+    Identifier                     shift and go to state 18
+    Expression                     shift and go to state 86
+    Factor                         shift and go to state 8
 
-state 76
+state 80
 
     (28) Factor -> Identifier LPAREN ExpressionList RPAREN .
 
@@ -2052,20 +2208,21 @@ state 76
     MOD             reduce using rule 28 (Factor -> Identifier LPAREN ExpressionList RPAREN .)
     QUOTIENT        reduce using rule 28 (Factor -> Identifier LPAREN ExpressionList RPAREN .)
     CARET           reduce using rule 28 (Factor -> Identifier LPAREN ExpressionList RPAREN .)
-    RPAREN          reduce using rule 28 (Factor -> Identifier LPAREN ExpressionList RPAREN .)
     PLUS            reduce using rule 28 (Factor -> Identifier LPAREN ExpressionList RPAREN .)
     MINUS           reduce using rule 28 (Factor -> Identifier LPAREN ExpressionList RPAREN .)
-    PIPE            reduce using rule 28 (Factor -> Identifier LPAREN ExpressionList RPAREN .)
     $end            reduce using rule 28 (Factor -> Identifier LPAREN ExpressionList RPAREN .)
     RFLOOR          reduce using rule 28 (Factor -> Identifier LPAREN ExpressionList RPAREN .)
     RCEIL           reduce using rule 28 (Factor -> Identifier LPAREN ExpressionList RPAREN .)
+    PIPE            reduce using rule 28 (Factor -> Identifier LPAREN ExpressionList RPAREN .)
+    RPAREN          reduce using rule 28 (Factor -> Identifier LPAREN ExpressionList RPAREN .)
     RBRACE          reduce using rule 28 (Factor -> Identifier LPAREN ExpressionList RPAREN .)
     COMMA           reduce using rule 28 (Factor -> Identifier LPAREN ExpressionList RPAREN .)
+    DIFFERENTIAL    reduce using rule 28 (Factor -> Identifier LPAREN ExpressionList RPAREN .)
 
 
-state 77
+state 81
 
-    (31) ExpressionList -> ExpressionList COMMA . Expression
+    (32) ExpressionList -> ExpressionList COMMA . Expression
     (12) Expression -> . Expression PLUS Term
     (13) Expression -> . Expression MINUS Term
     (14) Expression -> . Term
@@ -2094,31 +2251,33 @@ state 77
     (27) Factor -> . EXP LPAREN Expression RPAREN
     (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
     (29) Factor -> . Identifier LPAREN RPAREN
-    (30) Identifier -> . ID
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
 
-    FRAC            shift and go to state 14
-    NUMBER          shift and go to state 5
-    INFINITY        shift and go to state 8
-    LPAREN          shift and go to state 16
-    SQRT            shift and go to state 20
+    FRAC            shift and go to state 15
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
     LFLOOR          shift and go to state 1
     LCEIL           shift and go to state 4
-    PIPE            shift and go to state 11
-    SIN             shift and go to state 10
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
     COS             shift and go to state 2
-    TAN             shift and go to state 12
-    ATAN            shift and go to state 15
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
     LOG             shift and go to state 3
-    LN              shift and go to state 9
-    EXP             shift and go to state 6
-    ID              shift and go to state 19
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
 
-    Expression                     shift and go to state 82
-    Term                           shift and go to state 13
-    Identifier                     shift and go to state 17
-    Factor                         shift and go to state 7
+    Expression                     shift and go to state 87
+    Term                           shift and go to state 14
+    Identifier                     shift and go to state 18
+    Factor                         shift and go to state 8
 
-state 78
+state 82
 
     (16) Factor -> SQRT LBRACE Expression RBRACE .
 
@@ -2127,18 +2286,26 @@ state 78
     MOD             reduce using rule 16 (Factor -> SQRT LBRACE Expression RBRACE .)
     QUOTIENT        reduce using rule 16 (Factor -> SQRT LBRACE Expression RBRACE .)
     CARET           reduce using rule 16 (Factor -> SQRT LBRACE Expression RBRACE .)
-    RPAREN          reduce using rule 16 (Factor -> SQRT LBRACE Expression RBRACE .)
     PLUS            reduce using rule 16 (Factor -> SQRT LBRACE Expression RBRACE .)
     MINUS           reduce using rule 16 (Factor -> SQRT LBRACE Expression RBRACE .)
-    PIPE            reduce using rule 16 (Factor -> SQRT LBRACE Expression RBRACE .)
     $end            reduce using rule 16 (Factor -> SQRT LBRACE Expression RBRACE .)
     RFLOOR          reduce using rule 16 (Factor -> SQRT LBRACE Expression RBRACE .)
     RCEIL           reduce using rule 16 (Factor -> SQRT LBRACE Expression RBRACE .)
+    PIPE            reduce using rule 16 (Factor -> SQRT LBRACE Expression RBRACE .)
+    RPAREN          reduce using rule 16 (Factor -> SQRT LBRACE Expression RBRACE .)
     RBRACE          reduce using rule 16 (Factor -> SQRT LBRACE Expression RBRACE .)
     COMMA           reduce using rule 16 (Factor -> SQRT LBRACE Expression RBRACE .)
+    DIFFERENTIAL    reduce using rule 16 (Factor -> SQRT LBRACE Expression RBRACE .)
 
 
-state 79
+state 83
+
+    (30) Factor -> INTEGRAL UNDERLINE LBRACE Expression RBRACE . CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+
+    CARET           shift and go to state 88
+
+
+state 84
 
     (10) Term -> Term CARET LBRACE Factor RBRACE .
 
@@ -2151,14 +2318,15 @@ state 79
     PLUS            reduce using rule 10 (Term -> Term CARET LBRACE Factor RBRACE .)
     MINUS           reduce using rule 10 (Term -> Term CARET LBRACE Factor RBRACE .)
     $end            reduce using rule 10 (Term -> Term CARET LBRACE Factor RBRACE .)
-    RPAREN          reduce using rule 10 (Term -> Term CARET LBRACE Factor RBRACE .)
-    COMMA           reduce using rule 10 (Term -> Term CARET LBRACE Factor RBRACE .)
     RFLOOR          reduce using rule 10 (Term -> Term CARET LBRACE Factor RBRACE .)
     RCEIL           reduce using rule 10 (Term -> Term CARET LBRACE Factor RBRACE .)
     PIPE            reduce using rule 10 (Term -> Term CARET LBRACE Factor RBRACE .)
+    RPAREN          reduce using rule 10 (Term -> Term CARET LBRACE Factor RBRACE .)
+    COMMA           reduce using rule 10 (Term -> Term CARET LBRACE Factor RBRACE .)
+    DIFFERENTIAL    reduce using rule 10 (Term -> Term CARET LBRACE Factor RBRACE .)
 
 
-state 80
+state 85
 
     (15) Expression -> FRAC LBRACE Expression RBRACE LBRACE . Expression RBRACE
     (12) Expression -> . Expression PLUS Term
@@ -2189,65 +2357,74 @@ state 80
     (27) Factor -> . EXP LPAREN Expression RPAREN
     (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
     (29) Factor -> . Identifier LPAREN RPAREN
-    (30) Identifier -> . ID
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
 
-    FRAC            shift and go to state 14
-    NUMBER          shift and go to state 5
-    INFINITY        shift and go to state 8
-    LPAREN          shift and go to state 16
-    SQRT            shift and go to state 20
+    FRAC            shift and go to state 15
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
     LFLOOR          shift and go to state 1
     LCEIL           shift and go to state 4
-    PIPE            shift and go to state 11
-    SIN             shift and go to state 10
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
     COS             shift and go to state 2
-    TAN             shift and go to state 12
-    ATAN            shift and go to state 15
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
     LOG             shift and go to state 3
-    LN              shift and go to state 9
-    EXP             shift and go to state 6
-    ID              shift and go to state 19
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
 
-    Term                           shift and go to state 13
-    Identifier                     shift and go to state 17
-    Expression                     shift and go to state 83
-    Factor                         shift and go to state 7
+    Term                           shift and go to state 14
+    Identifier                     shift and go to state 18
+    Expression                     shift and go to state 89
+    Factor                         shift and go to state 8
 
-state 81
+state 86
 
     (23) Factor -> ATAN LPAREN Expression COMMA Expression . RPAREN
     (12) Expression -> Expression . PLUS Term
     (13) Expression -> Expression . MINUS Term
 
-    RPAREN          shift and go to state 84
-    PLUS            shift and go to state 40
-    MINUS           shift and go to state 41
+    RPAREN          shift and go to state 90
+    PLUS            shift and go to state 42
+    MINUS           shift and go to state 43
 
 
-state 82
+state 87
 
-    (31) ExpressionList -> ExpressionList COMMA Expression .
+    (32) ExpressionList -> ExpressionList COMMA Expression .
     (12) Expression -> Expression . PLUS Term
     (13) Expression -> Expression . MINUS Term
 
-    RPAREN          reduce using rule 31 (ExpressionList -> ExpressionList COMMA Expression .)
-    COMMA           reduce using rule 31 (ExpressionList -> ExpressionList COMMA Expression .)
-    PLUS            shift and go to state 40
-    MINUS           shift and go to state 41
+    RPAREN          reduce using rule 32 (ExpressionList -> ExpressionList COMMA Expression .)
+    COMMA           reduce using rule 32 (ExpressionList -> ExpressionList COMMA Expression .)
+    PLUS            shift and go to state 42
+    MINUS           shift and go to state 43
 
 
-state 83
+state 88
+
+    (30) Factor -> INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET . LBRACE Expression RBRACE Expression DIFFERENTIAL
+
+    LBRACE          shift and go to state 91
+
+
+state 89
 
     (15) Expression -> FRAC LBRACE Expression RBRACE LBRACE Expression . RBRACE
     (12) Expression -> Expression . PLUS Term
     (13) Expression -> Expression . MINUS Term
 
-    RBRACE          shift and go to state 85
-    PLUS            shift and go to state 40
-    MINUS           shift and go to state 41
+    RBRACE          shift and go to state 92
+    PLUS            shift and go to state 42
+    MINUS           shift and go to state 43
 
 
-state 84
+state 90
 
     (23) Factor -> ATAN LPAREN Expression COMMA Expression RPAREN .
 
@@ -2256,18 +2433,76 @@ state 84
     MOD             reduce using rule 23 (Factor -> ATAN LPAREN Expression COMMA Expression RPAREN .)
     QUOTIENT        reduce using rule 23 (Factor -> ATAN LPAREN Expression COMMA Expression RPAREN .)
     CARET           reduce using rule 23 (Factor -> ATAN LPAREN Expression COMMA Expression RPAREN .)
-    RPAREN          reduce using rule 23 (Factor -> ATAN LPAREN Expression COMMA Expression RPAREN .)
     PLUS            reduce using rule 23 (Factor -> ATAN LPAREN Expression COMMA Expression RPAREN .)
     MINUS           reduce using rule 23 (Factor -> ATAN LPAREN Expression COMMA Expression RPAREN .)
-    PIPE            reduce using rule 23 (Factor -> ATAN LPAREN Expression COMMA Expression RPAREN .)
     $end            reduce using rule 23 (Factor -> ATAN LPAREN Expression COMMA Expression RPAREN .)
     RFLOOR          reduce using rule 23 (Factor -> ATAN LPAREN Expression COMMA Expression RPAREN .)
     RCEIL           reduce using rule 23 (Factor -> ATAN LPAREN Expression COMMA Expression RPAREN .)
+    PIPE            reduce using rule 23 (Factor -> ATAN LPAREN Expression COMMA Expression RPAREN .)
+    RPAREN          reduce using rule 23 (Factor -> ATAN LPAREN Expression COMMA Expression RPAREN .)
     RBRACE          reduce using rule 23 (Factor -> ATAN LPAREN Expression COMMA Expression RPAREN .)
     COMMA           reduce using rule 23 (Factor -> ATAN LPAREN Expression COMMA Expression RPAREN .)
+    DIFFERENTIAL    reduce using rule 23 (Factor -> ATAN LPAREN Expression COMMA Expression RPAREN .)
 
 
-state 85
+state 91
+
+    (30) Factor -> INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE . Expression RBRACE Expression DIFFERENTIAL
+    (12) Expression -> . Expression PLUS Term
+    (13) Expression -> . Expression MINUS Term
+    (14) Expression -> . Term
+    (15) Expression -> . FRAC LBRACE Expression RBRACE LBRACE Expression RBRACE
+    (6) Term -> . Term TIMES Factor
+    (7) Term -> . Term DIVIDE Factor
+    (8) Term -> . Term MOD Factor
+    (9) Term -> . Term QUOTIENT Factor
+    (10) Term -> . Term CARET LBRACE Factor RBRACE
+    (11) Term -> . Factor
+    (2) Factor -> . NUMBER
+    (3) Factor -> . Identifier
+    (4) Factor -> . INFINITY
+    (5) Factor -> . LPAREN Expression RPAREN
+    (16) Factor -> . SQRT LBRACE Expression RBRACE
+    (17) Factor -> . LFLOOR Expression RFLOOR
+    (18) Factor -> . LCEIL Expression RCEIL
+    (19) Factor -> . PIPE Expression PIPE
+    (20) Factor -> . SIN LPAREN Expression RPAREN
+    (21) Factor -> . COS LPAREN Expression RPAREN
+    (22) Factor -> . TAN LPAREN Expression RPAREN
+    (23) Factor -> . ATAN LPAREN Expression COMMA Expression RPAREN
+    (24) Factor -> . ATAN LPAREN Expression RPAREN
+    (25) Factor -> . LOG LPAREN Expression RPAREN
+    (26) Factor -> . LN LPAREN Expression RPAREN
+    (27) Factor -> . EXP LPAREN Expression RPAREN
+    (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
+    (29) Factor -> . Identifier LPAREN RPAREN
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
+
+    FRAC            shift and go to state 15
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
+    LFLOOR          shift and go to state 1
+    LCEIL           shift and go to state 4
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
+    COS             shift and go to state 2
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
+    LOG             shift and go to state 3
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
+
+    Term                           shift and go to state 14
+    Identifier                     shift and go to state 18
+    Expression                     shift and go to state 93
+    Factor                         shift and go to state 8
+
+state 92
 
     (15) Expression -> FRAC LBRACE Expression RBRACE LBRACE Expression RBRACE .
 
@@ -2275,9 +2510,110 @@ state 85
     PLUS            reduce using rule 15 (Expression -> FRAC LBRACE Expression RBRACE LBRACE Expression RBRACE .)
     MINUS           reduce using rule 15 (Expression -> FRAC LBRACE Expression RBRACE LBRACE Expression RBRACE .)
     RBRACE          reduce using rule 15 (Expression -> FRAC LBRACE Expression RBRACE LBRACE Expression RBRACE .)
-    PIPE            reduce using rule 15 (Expression -> FRAC LBRACE Expression RBRACE LBRACE Expression RBRACE .)
     RCEIL           reduce using rule 15 (Expression -> FRAC LBRACE Expression RBRACE LBRACE Expression RBRACE .)
-    COMMA           reduce using rule 15 (Expression -> FRAC LBRACE Expression RBRACE LBRACE Expression RBRACE .)
     RFLOOR          reduce using rule 15 (Expression -> FRAC LBRACE Expression RBRACE LBRACE Expression RBRACE .)
     $end            reduce using rule 15 (Expression -> FRAC LBRACE Expression RBRACE LBRACE Expression RBRACE .)
+    COMMA           reduce using rule 15 (Expression -> FRAC LBRACE Expression RBRACE LBRACE Expression RBRACE .)
+    DIFFERENTIAL    reduce using rule 15 (Expression -> FRAC LBRACE Expression RBRACE LBRACE Expression RBRACE .)
+    PIPE            reduce using rule 15 (Expression -> FRAC LBRACE Expression RBRACE LBRACE Expression RBRACE .)
+
+
+state 93
+
+    (30) Factor -> INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression . RBRACE Expression DIFFERENTIAL
+    (12) Expression -> Expression . PLUS Term
+    (13) Expression -> Expression . MINUS Term
+
+    RBRACE          shift and go to state 94
+    PLUS            shift and go to state 42
+    MINUS           shift and go to state 43
+
+
+state 94
+
+    (30) Factor -> INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE . Expression DIFFERENTIAL
+    (12) Expression -> . Expression PLUS Term
+    (13) Expression -> . Expression MINUS Term
+    (14) Expression -> . Term
+    (15) Expression -> . FRAC LBRACE Expression RBRACE LBRACE Expression RBRACE
+    (6) Term -> . Term TIMES Factor
+    (7) Term -> . Term DIVIDE Factor
+    (8) Term -> . Term MOD Factor
+    (9) Term -> . Term QUOTIENT Factor
+    (10) Term -> . Term CARET LBRACE Factor RBRACE
+    (11) Term -> . Factor
+    (2) Factor -> . NUMBER
+    (3) Factor -> . Identifier
+    (4) Factor -> . INFINITY
+    (5) Factor -> . LPAREN Expression RPAREN
+    (16) Factor -> . SQRT LBRACE Expression RBRACE
+    (17) Factor -> . LFLOOR Expression RFLOOR
+    (18) Factor -> . LCEIL Expression RCEIL
+    (19) Factor -> . PIPE Expression PIPE
+    (20) Factor -> . SIN LPAREN Expression RPAREN
+    (21) Factor -> . COS LPAREN Expression RPAREN
+    (22) Factor -> . TAN LPAREN Expression RPAREN
+    (23) Factor -> . ATAN LPAREN Expression COMMA Expression RPAREN
+    (24) Factor -> . ATAN LPAREN Expression RPAREN
+    (25) Factor -> . LOG LPAREN Expression RPAREN
+    (26) Factor -> . LN LPAREN Expression RPAREN
+    (27) Factor -> . EXP LPAREN Expression RPAREN
+    (28) Factor -> . Identifier LPAREN ExpressionList RPAREN
+    (29) Factor -> . Identifier LPAREN RPAREN
+    (30) Factor -> . INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+    (31) Identifier -> . ID
+
+    FRAC            shift and go to state 15
+    NUMBER          shift and go to state 6
+    INFINITY        shift and go to state 9
+    LPAREN          shift and go to state 17
+    SQRT            shift and go to state 21
+    LFLOOR          shift and go to state 1
+    LCEIL           shift and go to state 4
+    PIPE            shift and go to state 12
+    SIN             shift and go to state 11
+    COS             shift and go to state 2
+    TAN             shift and go to state 13
+    ATAN            shift and go to state 16
+    LOG             shift and go to state 3
+    LN              shift and go to state 10
+    EXP             shift and go to state 7
+    INTEGRAL        shift and go to state 5
+    ID              shift and go to state 20
+
+    Term                           shift and go to state 14
+    Identifier                     shift and go to state 18
+    Expression                     shift and go to state 95
+    Factor                         shift and go to state 8
+
+state 95
+
+    (30) Factor -> INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression . DIFFERENTIAL
+    (12) Expression -> Expression . PLUS Term
+    (13) Expression -> Expression . MINUS Term
+
+    DIFFERENTIAL    shift and go to state 96
+    PLUS            shift and go to state 42
+    MINUS           shift and go to state 43
+
+
+state 96
+
+    (30) Factor -> INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL .
+
+    TIMES           reduce using rule 30 (Factor -> INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL .)
+    DIVIDE          reduce using rule 30 (Factor -> INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL .)
+    MOD             reduce using rule 30 (Factor -> INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL .)
+    QUOTIENT        reduce using rule 30 (Factor -> INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL .)
+    CARET           reduce using rule 30 (Factor -> INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL .)
+    PLUS            reduce using rule 30 (Factor -> INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL .)
+    MINUS           reduce using rule 30 (Factor -> INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL .)
+    $end            reduce using rule 30 (Factor -> INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL .)
+    RFLOOR          reduce using rule 30 (Factor -> INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL .)
+    RCEIL           reduce using rule 30 (Factor -> INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL .)
+    PIPE            reduce using rule 30 (Factor -> INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL .)
+    RPAREN          reduce using rule 30 (Factor -> INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL .)
+    RBRACE          reduce using rule 30 (Factor -> INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL .)
+    COMMA           reduce using rule 30 (Factor -> INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL .)
+    DIFFERENTIAL    reduce using rule 30 (Factor -> INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL .)
 

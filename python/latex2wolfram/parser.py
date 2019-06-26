@@ -4,6 +4,7 @@ from lexer import tokens
 
 from Main import *
 from Expression import *
+from Integral import *
 from Identifier import *
 from ID import *
 from SyntaxException import *
@@ -13,6 +14,7 @@ import objects as obj
 precedence = (
     ('left', 'ID'),
     ('left', 'NUMBER', 'INFINITY'),
+    ('left', 'INTEGRAL', 'DIFFERENTIAL'),
     ('right', 'COMMA'),
     ('right', 'PIPE'),
     ('right', 'LPAREN', 'RPAREN'),
@@ -35,8 +37,9 @@ def p_Factor(t):
 
   if len(t) > 2:
     t[0] = ExpressionBetweenParenthesis(t[2])
-
-  t[0] = ValuedExpression(t[1])
+    
+  else:
+    t[0] = ValuedExpression(t[1])
 
 def p_Term(t):
   '''Term : Term TIMES Factor
@@ -171,6 +174,10 @@ def p_FunctionExpression(t):
           t[0] = ExpressionWithFunction(op)
         else:
           t[0] = ExpressionWithFunction(op, t[2])
+
+def p_Integral(t):
+    '''Factor : INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL'''
+    t[0] = Integral(t[4], t[8], t[10], t[11][1:])
 
 def p_Identifier(t):
     '''Identifier : ID'''

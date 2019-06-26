@@ -211,7 +211,7 @@ class ExpressionBetweenParenthesis(Expression):
     Class representing a expression between parenthesis node in the AST
     """
 
-    def __init__(self, Expression):
+    def __init__(self, expression):
         """
         Set the expression
 

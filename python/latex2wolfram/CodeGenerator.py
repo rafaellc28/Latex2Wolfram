@@ -96,6 +96,12 @@ class CodeGenerator:
     def generateCode_ExpressionList(self, node):
         return (COMMA+SPACE).join(map(lambda el: el.generateCode(self), node.values))
 
+    # Integral
+    def generateCode_Integral(self, node):
+        d = node.differential
+        return INTEGRATE + SPACE + node.integrand.generateCode(self) + SPACE + D + d + SPACE + \
+            FROM + SPACE + d + EQUAL + node.lowerBound.generateCode(self) + SPACE + TO + SPACE + node.upperBound.generateCode(self)
+
     # Value
     def generateCode_Value(self, node):
         return node.value.generateCode(self)

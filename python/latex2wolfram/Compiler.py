@@ -32,13 +32,32 @@ class Compiler:
 		msg = None
 		new_comma = []
 
-		result = parser.parse(doc, debug=self.log)
-					
-		if not result:
+		try:
+			result = parser.parse(doc, debug=self.log)
+
+			if not self.DEBUG:
+				try:
+					codeGenerator = CodeGenerator()
+					response = result.generateCode(codeGenerator)
+					res += response
+
+				except:
+					res += "Error while generating MathProg code. Please, check your Latex code!"
+
+			else:
+				if self.DEBUG:
+					res += str(result)
+
+				codeGenerator = CodeGenerator()
+				response = result.generateCode(codeGenerator)
+				res += response
+
+		except SyntaxException as msg:
 
 			if msg[0] == "EOF":
 				res += "Syntax error at EOF."
 			else:
+				
 				lineNum = msg[0]-1
 				line = lines[lineNum]
 
@@ -57,23 +76,5 @@ class Compiler:
 					pos += 1
 
 				res += "Syntax error at line %d, position %d: '%s'.\nContext: %s." % (msg[0], pos, msg[2], line)
-
-		else:
-			if not self.DEBUG:
-				try:
-					codeGenerator = CodeGenerator()
-					response = result.generateCode(codeGenerator)
-					res += response
-
-				except:
-					res += "Error while generating MathProg code. Please, check your Latex code!"
-
-			else:
-				if self.DEBUG:
-					res += str(result)
-
-				codeGenerator = CodeGenerator()
-				response = result.generateCode(codeGenerator)
-				res += response
 
 		return res

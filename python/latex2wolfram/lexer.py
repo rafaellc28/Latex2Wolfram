@@ -40,7 +40,10 @@ tokens = [
    'COMMA',
    'ID',
    'PIPE',
-   'INFINITY'
+   'INFINITY',
+   'UNDERLINE',
+   'INTEGRAL',
+   'DIFFERENTIAL'
 ] + list(reserved.values())
 
 # Define a rule so we can track line numbers
@@ -50,6 +53,8 @@ def t_newline(t):
 
 # A string containing ignored characters (spaces and tabs)
 t_ignore  = ' \t\r'
+
+t_UNDERLINE = r'_'
 
 def t_INFINITY(t):
    r'\\infty'
@@ -108,6 +113,14 @@ t_SQRT = r'\\sqrt'
 t_LOG = r'\\log'
 t_LN = r'\\ln'
 t_EXP = r'\\exp'
+
+def t_INTEGRAL(t):
+   r'\\int'
+   return t
+
+def t_DIFFERENTIAL(t):
+   r'd[a-zA-Z]'
+   return t
 
 def t_PIPE(t):
    r'\\mid|\\vert|\|'
