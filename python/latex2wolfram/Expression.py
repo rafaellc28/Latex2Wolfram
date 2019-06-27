@@ -12,31 +12,11 @@ class ExpressionWithFunction(Expression):
     Class representing a expression with function node in the AST
     """
 
-    ABS       = "abs"
-    CEIL      = "ceil"
-    FLOOR     = "floor"
-    ROUND     = "round"
-    TRUNC     = "trunc"
-    LENGTH    = "length"
-    MIN       = "min"
-    MAX       = "max"
-    EXP       = "exp"
-    LN        = "ln"
-    LOG       = "log"
-    LOG2      = "log2"
-    LOG10     = "log10"
-    SQRT      = "sqrt"
-
-    SIN       = "sin"
-    COS       = "cos"
-    TAN      = "tan"
-    ATAN      = "atan"
-    
     def __init__(self, function, expression1 = None, expression2 = None):
         """
         Set the expression and the function
 
-        :param function           : (abs | tan | atan | card | ceil | cos | floor | exp | length | log | log10 | round | sin | sqrt | trunc )
+        :param function    : FunctionName
         :param expression1 : Expression
         :param expression2 : Expression
         """
@@ -250,19 +230,11 @@ class ExpressionWithArithmeticOperation(Expression):
     Class representing a expression with arithmetic operation node in the AST
     """
     
-    PLUS  = "+"
-    MINUS = "-"
-    TIMES = "*"
-    DIV   = "/"
-    MOD   = "mod"
-    POW   = "^"
-    QUOT  = "div"
-
     def __init__(self, op, expression1, expression2):
         """
         Set the expressions participating in the arithmetic operation
         
-        :param op                 : (PLUS, MINUS, TIMES, MOD, POW)
+        :param op          : BinaryOperator
         :param expression1 : Expression
         :param expression2 : Expression
         """
@@ -277,13 +249,7 @@ class ExpressionWithArithmeticOperation(Expression):
         """
         to string
         """
-        res = "ExpressionWithArithmeticOperation:" + str(self.expression1) + " " + self.op + " "
-        if self.op == ExpressionWithArithmeticOperation.POW and not (isinstance(self.expression2, ValuedExpression) or isinstance(self.expression2, ExpressionBetweenParenthesis)):
-            res += "{" + str(self.expression2) + "}"
-        else:
-            res += str(self.expression2)
-
-        return res
+        return "ExpressionWithArithmeticOperation:" + str(self.expression1) + " " + str(self.op) + " " + str(self.expression2)
 
     def getDependencies(self, codeGenerator):
         return list(set(self.expression1.getDependencies(codeGenerator) + self.expression2.getDependencies(codeGenerator)))

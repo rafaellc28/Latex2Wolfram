@@ -3,6 +3,7 @@
 # List of token names.   This is always required
 
 from Number import *
+from Infinity import *
 
 import sys
 import re
@@ -18,7 +19,6 @@ tokens = [
    'MINUS',
    'TIMES',
    'DIVIDE',
-   'QUOTIENT',
    'LPAREN',
    'RPAREN',
    'LBRACE',
@@ -58,7 +58,7 @@ t_UNDERLINE = r'_'
 
 def t_INFINITY(t):
    r'\\infty'
-   t.value = Number("Infinity")
+   t.value = Infinity()
    return t
 
 def t_COMMENT(t):
@@ -71,10 +71,6 @@ t_MINUS = r'-'
 
 def t_MOD(t):
    r'\\text\{\s*\%\s*\}|\\mod|\\bmod'
-   return t
-
-def t_QUOTIENT(t):
-   r'\\big/|\\text\{\s*div\s*\}|\s*div(?!\\_|[a-zA-Z0-9])'
    return t
 
 def t_TIMES(t):

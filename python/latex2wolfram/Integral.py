@@ -5,22 +5,22 @@ class Integral(BaseExpression):
     Class representing an integral in the AST
     """
 
-    def __init__(self, lowerBound, upperBound, integrand, differential):
+    def __init__(self, integrand, differential, lowerBound = None, upperBound = None):
         """
         Set the expression and the function
 
-        :param lowerBound   : Expression
-        :param upperBound   : Expression
         :param integrand    : Expression
         :param differential : [a-zA-Z]
+        :param lowerBound   : Expression
+        :param upperBound   : Expression
         """
 
         BaseExpression.__init__(self)
 
-        self.lowerBound   = lowerBound
-        self.upperBound   = upperBound
         self.integrand    = integrand
         self.differential = differential
+        self.lowerBound   = lowerBound
+        self.upperBound   = upperBound
 
     def __str__(self):
         """

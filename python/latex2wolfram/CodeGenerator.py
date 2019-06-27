@@ -1,6 +1,10 @@
 from Utils import *
 from Constants import *
 from Expression import *
+from FunctionName import *
+from BinaryOperator import *
+from Identifier import *
+from Infinity import *
 
 class CodeGenerator:
     """ Visitor in the Visitor Pattern """
@@ -64,14 +68,7 @@ class CodeGenerator:
         return BEGIN_ARGUMENT_LIST + node.expression.generateCode(self) + END_ARGUMENT_LIST
 
     def generateCode_ExpressionWithArithmeticOperation(self, node):
-        res = node.expression1.generateCode(self) + SPACE + node.op + SPACE
-
-        if node.op == ExpressionWithArithmeticOperation.POW and not (isinstance(node.expression2, ValuedExpression) or isinstance(node.expression2, ExpressionBetweenParenthesis)):
-            res += BEGIN_ARGUMENT_LIST + node.expression2.generateCode(self) + END_ARGUMENT_LIST
-        else:
-            res += node.expression2.generateCode(self)
-
-        return res
+        return node.expression1.generateCode(self) + SPACE + node.op.generateCode(self) + SPACE + node.expression2.generateCode(self)
 
     def generateCode_MinusExpression(self, node):
         return MINUS + node.expression.generateCode(self)
@@ -98,9 +95,20 @@ class CodeGenerator:
 
     # Integral
     def generateCode_Integral(self, node):
+
         d = node.differential
-        return INTEGRATE + SPACE + node.integrand.generateCode(self) + SPACE + D + d + SPACE + \
-            FROM + SPACE + d + EQUAL + node.lowerBound.generateCode(self) + SPACE + TO + SPACE + node.upperBound.generateCode(self)
+        limits = EMPTY_STRING
+
+        if node.lowerBound and node.upperBound:
+            limits += SPACE + FROM + SPACE + d + EQUAL + node.lowerBound.generateCode(self) + SPACE + TO + SPACE + node.upperBound.generateCode(self)
+
+        elif node.lowerBound and not node.upperBound:
+            limits += SPACE + FROM + SPACE + d + EQUAL + node.lowerBound.generateCode(self) + SPACE + TO + SPACE + Infinity().generateCode(self)
+
+        elif not node.lowerBound and node.upperBound:
+            limits += SPACE + FROM + SPACE + d + EQUAL + MINUS + Infinity().generateCode(self) + SPACE + TO + SPACE + node.upperBound.generateCode(self)
+
+        return INTEGRATE + SPACE + node.integrand.generateCode(self) + SPACE + D + d + limits
 
     # Value
     def generateCode_Value(self, node):
@@ -110,6 +118,74 @@ class CodeGenerator:
     def generateCode_Identifier(self, node):
         return node.identifier.generateCode(self)
 
+    # FunctionName
+    def generateCode_FunctionName(self, node):
+        function = EMPTY_STRING
+
+        if isinstance(node.function, Identifier):
+            function = node.function.generateCode(self)
+
+        else:
+
+            if node.function == FunctionName.SQRT:
+                function = SQRT
+
+            elif node.function == FunctionName.FLOOR:
+                function = FLOOR
+
+            elif node.function == FunctionName.CEIL:
+                function = CEIL
+
+            elif node.function == FunctionName.ABS:
+                function = ABS
+
+            elif node.function == FunctionName.SIN:
+                function = SIN
+
+            elif node.function == FunctionName.COS:
+                function = COS
+
+            elif node.function == FunctionName.LOG:
+                function = LOG
+
+            elif node.function == FunctionName.LN:
+                function = LN
+
+            elif node.function == FunctionName.EXP:
+                function = EXP
+
+            elif node.function == FunctionName.TAN:
+                function = TAN
+
+            elif node.function == FunctionName.ATAN:
+                function = ATAN
+
+        return function
+
+    # BinaryOperator
+    def generateCode_BinaryOperator(self, node):
+        operator = EMPTY_STRING
+
+        if node.operator == BinaryOperator.PLUS:
+            operator = PLUS
+
+        elif node.operator == BinaryOperator.MINUS:
+            operator = MINUS
+
+        elif node.operator == BinaryOperator.TIMES:
+            operator = TIMES
+
+        elif node.operator == BinaryOperator.DIV:
+            operator = DIV
+
+        elif node.operator == BinaryOperator.MOD:
+            operator = MOD
+
+        elif node.operator == BinaryOperator.POW:
+            operator = POW
+
+        return operator
+
     # Number
     def generateCode_Number(self, node):
         return node.number
@@ -117,3 +193,7 @@ class CodeGenerator:
     # ID
     def generateCode_ID(self, node):
         return node.value
+
+    # Infinity
+    def generateCode_Infinity(self, node):
+        return INFINITY

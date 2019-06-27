@@ -6,6 +6,8 @@ from Main import *
 from Expression import *
 from Integral import *
 from Identifier import *
+from FunctionName import *
+from BinaryOperator import *
 from ID import *
 from SyntaxException import *
 
@@ -20,7 +22,7 @@ precedence = (
     ('right', 'LPAREN', 'RPAREN'),
     ('right', 'LBRACE', 'RBRACE', 'FRAC'),
     ('left', 'PLUS', 'MINUS'),
-    ('left', 'TIMES', 'DIVIDE', 'MOD', 'QUOTIENT'),
+    ('left', 'TIMES', 'DIVIDE', 'MOD'),
     ('right', 'CARET'),
     ('left', 'LFLOOR', 'RFLOOR', 'LCEIL', 'RCEIL', 'SIN', 'COS', 'TAN', 'ATAN', 'SQRT', 'LN', 'LOG', 'EXP')
 )
@@ -45,7 +47,6 @@ def p_Term(t):
   '''Term : Term TIMES Factor
           | Term DIVIDE Factor
           | Term MOD Factor
-          | Term QUOTIENT Factor
           | Term CARET LBRACE Factor RBRACE
           | Factor'''
 
@@ -55,19 +56,16 @@ def p_Term(t):
   else:
     _type = t.slice[2].type
     if _type == "TIMES":
-        op = ExpressionWithArithmeticOperation.TIMES
-
-    elif _type == "QUOTIENT":
-        op = ExpressionWithArithmeticOperation.QUOT
+        op = BinaryOperator(BinaryOperator.TIMES)
 
     elif _type == "DIVIDE":
-        op = ExpressionWithArithmeticOperation.DIV
+        op = BinaryOperator(BinaryOperator.DIV)
 
     elif _type == "MOD":
-        op = ExpressionWithArithmeticOperation.MOD
+        op = BinaryOperator(BinaryOperator.MOD)
 
     elif _type == "CARET":
-        op = ExpressionWithArithmeticOperation.POW
+        op = BinaryOperator(BinaryOperator.POW)
 
     if _type == "CARET":
       t[0] = ExpressionWithArithmeticOperation(op, t[1], t[4])
@@ -86,10 +84,10 @@ def p_Expression_binop(t):
     else:
       _type = t.slice[2].type
       if _type == "PLUS":
-          op = ExpressionWithArithmeticOperation.PLUS
+          op = BinaryOperator(BinaryOperator.PLUS)
 
       elif _type == "MINUS":
-          op = ExpressionWithArithmeticOperation.MINUS
+          op = BinaryOperator(BinaryOperator.MINUS)
 
       t[0] = ExpressionWithArithmeticOperation(op, t[1], t[3])
 
@@ -128,56 +126,72 @@ def p_FunctionExpression(t):
 
     _type = t.slice[1].type
     if _type == "SQRT":
-        op = ExpressionWithFunction.SQRT
+        function = FunctionName(FunctionName.SQRT)
 
     elif _type == "LFLOOR":
-        op = ExpressionWithFunction.FLOOR
+        function = FunctionName(FunctionName.FLOOR)
 
     elif _type == "LCEIL":
-        op = ExpressionWithFunction.CEIL
+        function = FunctionName(FunctionName.CEIL)
 
     elif _type == "PIPE":
-        op = ExpressionWithFunction.ABS
+        function = FunctionName(FunctionName.ABS)
 
     elif _type == "SIN":
-        op = ExpressionWithFunction.SIN
+        function = FunctionName(FunctionName.SIN)
 
     elif _type == "COS":
-        op = ExpressionWithFunction.COS
+        function = FunctionName(FunctionName.COS)
 
     elif _type == "LOG":
-        op = ExpressionWithFunction.LOG
+        function = FunctionName(FunctionName.LOG)
 
     elif _type == "LN":
-        op = ExpressionWithFunction.LN
+        function = FunctionName(FunctionName.LN)
 
     elif _type == "EXP":
-        op = ExpressionWithFunction.EXP
+        function = FunctionName(FunctionName.EXP)
 
     elif _type == "TAN":
-        op = ExpressionWithFunction.TAN
+        function = FunctionName(FunctionName.TAN)
 
     elif _type == "ATAN":
-        op = ExpressionWithFunction.ATAN
+        function = FunctionName(FunctionName.ATAN)
 
     else:
-      op = t[1]
+      function = FunctionName(t[1])
 
     if len(t) > 5:
-        t[0] = ExpressionWithFunction(op, t[3], t[5])
+        t[0] = ExpressionWithFunction(function, t[3], t[5])
 
     elif len(t) > 4:
-        t[0] = ExpressionWithFunction(op, t[3])
+        t[0] = ExpressionWithFunction(function, t[3])
         
     else:
         if t.slice[2].type == "LPAREN":
-          t[0] = ExpressionWithFunction(op)
+          t[0] = ExpressionWithFunction(function)
         else:
-          t[0] = ExpressionWithFunction(op, t[2])
+          t[0] = ExpressionWithFunction(function, t[2])
 
 def p_Integral(t):
-    '''Factor : INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL'''
-    t[0] = Integral(t[4], t[8], t[10], t[11][1:])
+    '''Factor : INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+              | INTEGRAL UNDERLINE LBRACE Expression RBRACE Expression DIFFERENTIAL
+              | INTEGRAL CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+              | INTEGRAL Expression DIFFERENTIAL'''
+
+    if len(t) > 8:
+      t[0] = Integral(t[10], t[11][1:], t[4], t[8])
+
+    elif len(t) > 4:
+
+      if t.slice[2].type == "UNDERLINE":
+        t[0] = Integral(t[6], t[7][1:], t[4])
+
+      else:
+        t[0] = Integral(t[6], t[7][1:], None, t[4])
+
+    else:
+      t[0] = Integral(t[2], t[3][1:])
 
 def p_Identifier(t):
     '''Identifier : ID'''

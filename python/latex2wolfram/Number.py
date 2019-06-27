@@ -9,7 +9,7 @@ class Number(Expression):
         """
         Set the number
         
-        :param number: float|Infinity
+        :param number: float
         """
         Expression.__init__(self)
 
