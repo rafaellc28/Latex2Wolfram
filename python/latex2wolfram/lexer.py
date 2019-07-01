@@ -115,7 +115,7 @@ def t_INTEGRAL(t):
    return t
 
 def t_DIFFERENTIAL(t):
-   r'd[a-zA-Z]'
+   r'd[a-zA-Z](?!\\_|[a-zA-Z0-9])'
    return t
 
 def t_PIPE(t):
