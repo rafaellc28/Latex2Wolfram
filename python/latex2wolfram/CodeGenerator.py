@@ -1,6 +1,7 @@
 from Utils import *
 from Constants import *
 from Expression import *
+from Integral import *
 from FunctionName import *
 from BinaryOperator import *
 from Identifier import *
@@ -108,7 +109,11 @@ class CodeGenerator:
         elif not node.lowerBound and node.upperBound:
             limits += SPACE + FROM + SPACE + d + EQUAL + MINUS + Infinity().generateCode(self) + SPACE + TO + SPACE + node.upperBound.generateCode(self)
 
-        return INTEGRATE + SPACE + node.integrand.generateCode(self) + SPACE + D + d + limits
+        integrand = node.integrand.generateCode(self)
+        if isinstance(node.integrand, Integral):
+            integrand = BEGIN_ARGUMENT_LIST + integrand + END_ARGUMENT_LIST
+
+        return INTEGRATE + SPACE + integrand + SPACE + D + d + limits
 
     # Value
     def generateCode_Value(self, node):
