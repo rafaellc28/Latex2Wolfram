@@ -58,3 +58,9 @@ def test6():
 
 def test7():
 	check_test_num(7)
+
+def test8():
+	check_test_num(8)
+
+def test9():
+	check_test_num(9)

@@ -6,10 +6,14 @@ from FunctionName import *
 from BinaryOperator import *
 from Identifier import *
 from Infinity import *
+from Number import *
 
 class CodeGenerator:
     """ Visitor in the Visitor Pattern """
     
+    def __init__(self):
+        self.isIntegralExpression = False
+
     def generateCode(self, node):
         cls = node.__class__
         method_name = 'generateCode_' + cls.__name__
@@ -18,7 +22,23 @@ class CodeGenerator:
         if method:
             return method(node)
 
+    def _getGeneratedExpression(self, expression):
+        generatedExpression = expression.generateCode(self)
+
+        if isinstance(expression, ValuedExpression):
+            expression = expression.value
+
+        if not isinstance(expression, Identifier) and not isinstance(expression, Number) and not isinstance(expression, Infinity) and \
+           not isinstance(expression, ExpressionWithFunction) and not isinstance(expression, ExpressionBetweenParenthesis):
+
+            generatedExpression = BEGIN_ARGUMENT_LIST + generatedExpression + END_ARGUMENT_LIST
+
+        return generatedExpression
+
     def generateCode_Main(self, node):
+        if isinstance(node.problem, Integral) or (isinstance(node.problem, ExpressionBetweenParenthesis) and isinstance(node.problem.expression, Integral)):
+            self.isIntegralExpression = True
+
         return node.problem.generateCode(self)
 
     # Expression
@@ -46,19 +66,13 @@ class CodeGenerator:
         if isinstance(node.numerator, ValuedExpression):
             numerator = numerator.value
             
-        if not isinstance(numerator, Identifier) and not isinstance(numerator, Number) and not isinstance(numerator, ExpressionWithFunction):
-            numerator = BEGIN_ARGUMENT_LIST+numerator.generateCode(self)+END_ARGUMENT_LIST
-        else:
-            numerator = numerator.generateCode(self)
+        numerator = self._getGeneratedExpression(numerator)
             
         denominator = node.denominator
         if isinstance(denominator, ValuedExpression):
             denominator = denominator.value
             
-        if not isinstance(denominator, Identifier) and not isinstance(denominator, Number) and not isinstance(denominator, ExpressionWithFunction):
-            denominator = BEGIN_ARGUMENT_LIST+denominator.generateCode(self)+END_ARGUMENT_LIST
-        else:
-            denominator = denominator.generateCode(self)
+        denominator = self._getGeneratedExpression(denominator)
             
         return numerator+DIV+denominator
 
@@ -66,10 +80,25 @@ class CodeGenerator:
         return node.value.generateCode(self)
 
     def generateCode_ExpressionBetweenParenthesis(self, node):
-        return BEGIN_ARGUMENT_LIST + node.expression.generateCode(self) + END_ARGUMENT_LIST
+        isIntegralExpression = self.isIntegralExpression
+        
+        if isinstance(node.expression, Integral):
+            self.isIntegralExpression = True
+
+        expression = BEGIN_ARGUMENT_LIST + node.expression.generateCode(self) + END_ARGUMENT_LIST
+
+        self.isIntegralExpression = isIntegralExpression
+
+        return expression
 
     def generateCode_ExpressionWithArithmeticOperation(self, node):
-        return node.expression1.generateCode(self) + SPACE + node.op.generateCode(self) + SPACE + node.expression2.generateCode(self)
+        
+        if node.op.operator == BinaryOperator.POW:
+            expression2 = self._getGeneratedExpression(node.expression2)
+        else:
+            expression2 = node.expression2.generateCode(self)
+
+        return node.expression1.generateCode(self) + SPACE + node.op.generateCode(self) + SPACE + expression2
 
     def generateCode_MinusExpression(self, node):
         return MINUS + node.expression.generateCode(self)
@@ -110,10 +139,16 @@ class CodeGenerator:
             limits += SPACE + FROM + SPACE + d + EQUAL + MINUS + Infinity().generateCode(self) + SPACE + TO + SPACE + node.upperBound.generateCode(self)
 
         integrand = node.integrand.generateCode(self)
-        if isinstance(node.integrand, Integral):
+        
+        if isinstance(node.integrand, Integral) and not integrand.startswith(BEGIN_ARGUMENT_LIST):
             integrand = BEGIN_ARGUMENT_LIST + integrand + END_ARGUMENT_LIST
+        
+        integralExpression = INTEGRATE + SPACE + integrand + SPACE + D + d + limits
 
-        return INTEGRATE + SPACE + integrand + SPACE + D + d + limits
+        if not self.isIntegralExpression and (node.lowerBound or node.upperBound):
+            integralExpression = BEGIN_ARGUMENT_LIST + integralExpression + END_ARGUMENT_LIST
+
+        return integralExpression
 
     # Value
     def generateCode_Value(self, node):
