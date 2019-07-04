@@ -150,6 +150,24 @@ class CodeGenerator:
 
         return integralExpression
 
+    # Derivative
+    def generateCode_Derivative(self, node):
+
+        if node.order:
+            order = node.order.generateCode(self)
+            differential = D + POW + order + DIV + D + node.differential + POW + order
+        else:
+            differential = D + DIV + D + node.differential
+
+        expression = node.expression.generateCode(self)
+
+        if not isinstance(node.expression, ExpressionBetweenParenthesis) or \
+            (isinstance(node.expression, Integral) and not expression.startswith(BEGIN_ARGUMENT_LIST)):
+
+            expression = BEGIN_ARGUMENT_LIST + expression + END_ARGUMENT_LIST
+
+        return differential + SPACE + expression
+
     # Value
     def generateCode_Value(self, node):
         return node.value.generateCode(self)

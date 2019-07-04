@@ -29,7 +29,14 @@ class Integral(BaseExpression):
         return "Integral["+str(self.lowerBound)+","+str(self.upperBound)+"]("+str(self.integrand)+")d"+str(self.differential)
 
     def getDependencies(self, codeGenerator):
-        dep = self.lowerBound.getDependencies(codeGenerator) + self.upperBound.getDependencies(codeGenerator) + self.differential.getDependencies(codeGenerator)
+        dep = self.differential.getDependencies(codeGenerator)
+
+        if self.lowerBound:
+            dep += self.lowerBound.getDependencies(codeGenerator)
+
+        if self.upperBound:
+            dep += self.upperBound.getDependencies(codeGenerator)
+        
         return list(set(dep))
 
     def setupEnvironment(self, codeSetup):

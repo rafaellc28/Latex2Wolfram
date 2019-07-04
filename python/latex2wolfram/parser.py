@@ -5,6 +5,7 @@ from lexer import tokens
 from Main import *
 from Expression import *
 from Integral import *
+from Derivative import *
 from Identifier import *
 from FunctionName import *
 from BinaryOperator import *
@@ -192,6 +193,16 @@ def p_Integral(t):
 
     else:
       t[0] = Integral(t[2], t[3][1:])
+
+def p_Derivative(t):
+    '''Expression : FRAC LBRACE D RBRACE LBRACE DIFFERENTIAL RBRACE Expression
+                  | FRAC LBRACE D CARET LBRACE NUMBER RBRACE RBRACE LBRACE DIFFERENTIAL CARET LBRACE NUMBER RBRACE RBRACE Expression'''
+
+    if len(t) > 9:
+      t[0] = Derivative(t[10][1:], t[16], t[6])
+
+    else:
+      t[0] = Derivative(t[6][1:], t[8])
 
 def p_Identifier(t):
     '''Identifier : ID'''

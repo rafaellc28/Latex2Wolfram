@@ -43,7 +43,8 @@ tokens = [
    'INFINITY',
    'UNDERLINE',
    'INTEGRAL',
-   'DIFFERENTIAL'
+   'DIFFERENTIAL',
+   'D'
 ] + list(reserved.values())
 
 # Define a rule so we can track line numbers
@@ -112,6 +113,10 @@ t_EXP = r'\\exp'
 
 def t_INTEGRAL(t):
    r'\\int'
+   return t
+
+def t_D(t):
+   r'd(?!\\_|[a-zA-Z0-9])'
    return t
 
 def t_DIFFERENTIAL(t):
