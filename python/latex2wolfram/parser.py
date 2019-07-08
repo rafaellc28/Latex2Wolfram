@@ -93,7 +93,7 @@ def p_Expression_binop(t):
       t[0] = ExpressionWithArithmeticOperation(op, t[1], t[3])
 
 def p_FractionalExpression(t):
-    '''Expression : FRAC LBRACE Expression RBRACE LBRACE Expression RBRACE'''
+    '''Factor : FRAC LBRACE Expression RBRACE LBRACE Expression RBRACE'''
 
     t[0] = FractionalExpression(t[3], t[6])
 
@@ -195,8 +195,8 @@ def p_Integral(t):
       t[0] = Integral(t[2], t[3][1:])
 
 def p_Derivative(t):
-    '''Expression : FRAC LBRACE D RBRACE LBRACE DIFFERENTIAL RBRACE Expression
-                  | FRAC LBRACE D CARET LBRACE NUMBER RBRACE RBRACE LBRACE DIFFERENTIAL CARET LBRACE NUMBER RBRACE RBRACE Expression'''
+    '''Factor : FRAC LBRACE D RBRACE LBRACE DIFFERENTIAL RBRACE Expression
+              | FRAC LBRACE D CARET LBRACE NUMBER RBRACE RBRACE LBRACE DIFFERENTIAL CARET LBRACE NUMBER RBRACE RBRACE Expression'''
 
     if len(t) > 9:
       t[0] = Derivative(t[10][1:], t[16], t[6])
