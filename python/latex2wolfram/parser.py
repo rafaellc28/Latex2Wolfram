@@ -36,13 +36,15 @@ def p_Factor(t):
   '''Factor : NUMBER
             | Identifier
             | INFINITY
+            | Derivative
+            | Integral
             | LPAREN Expression RPAREN'''
 
   if len(t) > 2:
     t[0] = ExpressionBetweenParenthesis(t[2])
     
   else:
-    t[0] = ValuedExpression(t[1])
+    t[0] = t[1]
 
 def p_Term(t):
   '''Term : Term TIMES Factor
@@ -175,10 +177,10 @@ def p_FunctionExpression(t):
           t[0] = ExpressionWithFunction(function, t[2])
 
 def p_Integral(t):
-    '''Factor : INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
-              | INTEGRAL UNDERLINE LBRACE Expression RBRACE Expression DIFFERENTIAL
-              | INTEGRAL CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
-              | INTEGRAL Expression DIFFERENTIAL'''
+    '''Integral : INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+                | INTEGRAL UNDERLINE LBRACE Expression RBRACE Expression DIFFERENTIAL
+                | INTEGRAL CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
+                | INTEGRAL Expression DIFFERENTIAL'''
 
     if len(t) > 8:
       t[0] = Integral(t[10], t[11][1:], t[4], t[8])
@@ -195,8 +197,18 @@ def p_Integral(t):
       t[0] = Integral(t[2], t[3][1:])
 
 def p_Derivative(t):
-    '''Factor : FRAC LBRACE D RBRACE LBRACE DIFFERENTIAL RBRACE Expression
-              | FRAC LBRACE D CARET LBRACE NUMBER RBRACE RBRACE LBRACE DIFFERENTIAL CARET LBRACE NUMBER RBRACE RBRACE Expression'''
+    '''Derivative : FRAC LBRACE D Expression RBRACE LBRACE DIFFERENTIAL RBRACE
+                  | FRAC LBRACE D CARET LBRACE NUMBER RBRACE Expression RBRACE LBRACE DIFFERENTIAL CARET LBRACE NUMBER RBRACE RBRACE'''
+
+    if len(t) > 9:
+      t[0] = Derivative(t[11][1:], t[8], t[6])
+
+    else:
+      t[0] = Derivative(t[7][1:], t[4])
+
+def p_Derivative(t):
+    '''Derivative : FRAC LBRACE D RBRACE LBRACE DIFFERENTIAL RBRACE Expression
+                  | FRAC LBRACE D CARET LBRACE NUMBER RBRACE RBRACE LBRACE DIFFERENTIAL CARET LBRACE NUMBER RBRACE RBRACE Expression'''
 
     if len(t) > 9:
       t[0] = Derivative(t[10][1:], t[16], t[6])
