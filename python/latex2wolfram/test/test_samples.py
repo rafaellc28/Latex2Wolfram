@@ -70,3 +70,12 @@ def test10():
 
 def test11():
 	check_test_num(11)
+
+def test12():
+	check_test_num(12)
+
+def test13():
+	check_test_num(13)
+
+def test14():
+	check_test_num(14)

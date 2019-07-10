@@ -126,65 +126,6 @@ class FractionalExpression(Expression):
         Generate the AMPL code for this fractional expression
         """
         return codeGenerator.generateCode(self)
-    
-
-class ValuedExpression(Expression):
-    """
-    Class representing a valued expression node in the AST
-    """
-
-    def __init__(self, value):
-        """
-        Set the single value of this expression
-
-        :param value : Identifier | Number
-        """
-
-        Expression.__init__(self)
-
-        self.value = value
-
-    def __str__(self):
-        """
-        to string
-        """
-        
-        return "ValuedExpression:" + str(self.value)
-
-    def __len__(self):
-        """
-        length method
-        """
-
-        return 1
-
-    def __iter__(self):
-        """
-        Get the iterator of the class
-        """
-        return [self]
-        
-    def getValue(self):
-        return self.value
-
-    def getSymbol(self):
-        return self.value
-
-    def getDependencies(self, codeGenerator):
-        return self.value.getDependencies(codeGenerator)
-
-    def setupEnvironment(self, codeSetup):
-        """
-        Generate the Wolfram code for the identifiers and sets used in this expression
-        """
-        codeSetup.setupEnvironment(self)
-
-    def generateCode(self, codeGenerator):
-        """
-        Generate the Wolfram code for this valued linear expression
-        """
-        return codeGenerator.generateCode(self)
-
 
 class ExpressionBetweenParenthesis(Expression):
     """

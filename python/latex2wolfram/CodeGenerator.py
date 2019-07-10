@@ -25,9 +25,6 @@ class CodeGenerator:
     def _getGeneratedExpression(self, expression):
         generatedExpression = expression.generateCode(self)
 
-        if isinstance(expression, ValuedExpression):
-            expression = expression.value
-
         if not isinstance(expression, Identifier) and not isinstance(expression, Number) and not isinstance(expression, Infinity) and \
            not isinstance(expression, ExpressionWithFunction) and not isinstance(expression, ExpressionBetweenParenthesis):
 
@@ -62,22 +59,10 @@ class CodeGenerator:
 
     def generateCode_FractionalExpression(self, node):
         
-        numerator = node.numerator
-        if isinstance(node.numerator, ValuedExpression):
-            numerator = numerator.value
-            
-        numerator = self._getGeneratedExpression(numerator)
-            
-        denominator = node.denominator
-        if isinstance(denominator, ValuedExpression):
-            denominator = denominator.value
-            
-        denominator = self._getGeneratedExpression(denominator)
+        numerator = self._getGeneratedExpression(node.numerator)
+        denominator = self._getGeneratedExpression(node.denominator)
             
         return numerator+DIV+denominator
-
-    def generateCode_ValuedExpression(self, node):
-        return node.value.generateCode(self)
 
     def generateCode_ExpressionBetweenParenthesis(self, node):
         isIntegralExpression = self.isIntegralExpression

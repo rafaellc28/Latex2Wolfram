@@ -17,7 +17,7 @@ import objects as obj
 precedence = (
     ('left', 'ID'),
     ('left', 'NUMBER', 'INFINITY'),
-    ('left', 'INTEGRAL', 'DIFFERENTIAL'),
+    ('left', 'INTEGRAL', 'DIFFERENTIAL', 'D', 'PARTIALDIFFERENTIAL', 'PARTIAL'),
     ('right', 'COMMA'),
     ('right', 'PIPE'),
     ('right', 'LPAREN', 'RPAREN'),
@@ -34,7 +34,7 @@ def p_Main(t):
 
 def p_Factor(t):
   '''Factor : NUMBER
-            | Identifier
+            | ID
             | INFINITY
             | Derivative
             | Integral
@@ -44,6 +44,9 @@ def p_Factor(t):
     t[0] = ExpressionBetweenParenthesis(t[2])
     
   else:
+    if t.slice[1].type == "ID":
+      t[1] = Identifier(ID(t[1]))
+
     t[0] = t[1]
 
 def p_Term(t):
@@ -123,9 +126,9 @@ def p_FunctionExpression(t):
                          
               | EXP LPAREN Expression RPAREN
 
-              | Identifier LPAREN ExpressionList RPAREN
+              | ID LPAREN ExpressionList RPAREN
 
-              | Identifier LPAREN RPAREN'''
+              | ID LPAREN RPAREN'''
 
     _type = t.slice[1].type
     if _type == "SQRT":
@@ -162,7 +165,7 @@ def p_FunctionExpression(t):
         function = FunctionName(FunctionName.ATAN)
 
     else:
-      function = FunctionName(t[1])
+      function = FunctionName(Identifier(ID(t[1])))
 
     if len(t) > 5:
         t[0] = ExpressionWithFunction(function, t[3], t[5])
@@ -196,17 +199,7 @@ def p_Integral(t):
     else:
       t[0] = Integral(t[2], t[3][1:])
 
-def p_Derivative(t):
-    '''Derivative : FRAC LBRACE D Expression RBRACE LBRACE DIFFERENTIAL RBRACE
-                  | FRAC LBRACE D CARET LBRACE NUMBER RBRACE Expression RBRACE LBRACE DIFFERENTIAL CARET LBRACE NUMBER RBRACE RBRACE'''
-
-    if len(t) > 9:
-      t[0] = Derivative(t[11][1:], t[8], t[6])
-
-    else:
-      t[0] = Derivative(t[7][1:], t[4])
-
-def p_Derivative(t):
+def p_Derivative1(t):
     '''Derivative : FRAC LBRACE D RBRACE LBRACE DIFFERENTIAL RBRACE Expression
                   | FRAC LBRACE D CARET LBRACE NUMBER RBRACE RBRACE LBRACE DIFFERENTIAL CARET LBRACE NUMBER RBRACE RBRACE Expression'''
 
@@ -216,9 +209,36 @@ def p_Derivative(t):
     else:
       t[0] = Derivative(t[6][1:], t[8])
 
-def p_Identifier(t):
-    '''Identifier : ID'''
-    t[0] = Identifier(ID(t[1]))
+def p_Derivative2(t):
+    '''Derivative : FRAC LBRACE D Expression RBRACE LBRACE DIFFERENTIAL RBRACE
+                  | FRAC LBRACE D CARET LBRACE NUMBER RBRACE Expression RBRACE LBRACE DIFFERENTIAL CARET LBRACE NUMBER RBRACE RBRACE'''
+
+    if len(t) > 9:
+      t[0] = Derivative(t[11][1:], t[8], t[6])
+
+    else:
+      t[0] = Derivative(t[7][1:], t[4])
+
+def p_Derivative3(t):
+    '''Derivative : FRAC LBRACE PARTIAL RBRACE LBRACE PARTIALDIFFERENTIAL RBRACE Expression
+                  | FRAC LBRACE PARTIAL CARET LBRACE NUMBER RBRACE RBRACE LBRACE PARTIALDIFFERENTIAL CARET LBRACE NUMBER RBRACE RBRACE Expression'''
+
+    if len(t) > 9:
+      t[0] = Derivative(t[10][9:], t[16], t[6])
+
+    else:
+      t[0] = Derivative(t[6][9:], t[8])
+
+def p_Derivative4(t):
+    '''Derivative : FRAC LBRACE PARTIAL Expression RBRACE LBRACE PARTIALDIFFERENTIAL RBRACE
+                  | FRAC LBRACE PARTIAL CARET LBRACE NUMBER RBRACE Expression RBRACE LBRACE PARTIALDIFFERENTIAL CARET LBRACE NUMBER RBRACE RBRACE'''
+
+    if len(t) > 9:
+      t[0] = Derivative(t[11][9:], t[8], t[6])
+
+    else:
+      t[0] = Derivative(t[7][9:], t[4])
+
 
 def p_ExpessionList(t):
   '''ExpressionList : ExpressionList COMMA Expression
