@@ -45,8 +45,7 @@ tokens = [
    'INTEGRAL',
    'DIFFERENTIAL',
    'D', 
-   'PARTIAL',
-   'PARTIALDIFFERENTIAL'
+   'PARTIAL'
 ] + list(reserved.values())
 
 # Define a rule so we can track line numbers
@@ -123,10 +122,6 @@ def t_D(t):
 
 def t_DIFFERENTIAL(t):
    r'd[a-zA-Z](?!\\_|[a-zA-Z0-9])'
-   return t
-
-def t_PARTIALDIFFERENTIAL(t):
-   r'\\partial\s[a-zA-Z](?!\\_|[a-zA-Z0-9])'
    return t
 
 def t_PARTIAL(t):

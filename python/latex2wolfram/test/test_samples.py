@@ -79,3 +79,15 @@ def test13():
 
 def test14():
 	check_test_num(14)
+
+def test15():
+	check_test_num(15)
+
+def test16():
+	check_test_num(16)
+
+def test17():
+	check_test_num(17)
+
+def test18():
+	check_test_num(18)

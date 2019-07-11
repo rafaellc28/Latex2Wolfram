@@ -17,7 +17,7 @@ import objects as obj
 precedence = (
     ('left', 'ID'),
     ('left', 'NUMBER', 'INFINITY'),
-    ('left', 'INTEGRAL', 'DIFFERENTIAL', 'D', 'PARTIALDIFFERENTIAL', 'PARTIAL'),
+    ('left', 'INTEGRAL', 'DIFFERENTIAL', 'D', 'PARTIAL'),
     ('right', 'COMMA'),
     ('right', 'PIPE'),
     ('right', 'LPAREN', 'RPAREN'),
@@ -220,24 +220,24 @@ def p_Derivative2(t):
       t[0] = Derivative(t[7][1:], t[4])
 
 def p_Derivative3(t):
-    '''Derivative : FRAC LBRACE PARTIAL RBRACE LBRACE PARTIALDIFFERENTIAL RBRACE Expression
-                  | FRAC LBRACE PARTIAL CARET LBRACE NUMBER RBRACE RBRACE LBRACE PARTIALDIFFERENTIAL CARET LBRACE NUMBER RBRACE RBRACE Expression'''
+    '''Derivative : FRAC LBRACE PARTIAL RBRACE LBRACE PARTIAL ID RBRACE Expression
+                  | FRAC LBRACE PARTIAL CARET LBRACE NUMBER RBRACE RBRACE LBRACE PARTIAL ID CARET LBRACE NUMBER RBRACE RBRACE Expression'''
 
-    if len(t) > 9:
-      t[0] = Derivative(t[10][9:], t[16], t[6])
+    if len(t) > 10:
+      t[0] = Derivative(t[11][:1], t[17], t[6])
 
     else:
-      t[0] = Derivative(t[6][9:], t[8])
+      t[0] = Derivative(t[7][:1], t[9])
 
 def p_Derivative4(t):
-    '''Derivative : FRAC LBRACE PARTIAL Expression RBRACE LBRACE PARTIALDIFFERENTIAL RBRACE
-                  | FRAC LBRACE PARTIAL CARET LBRACE NUMBER RBRACE Expression RBRACE LBRACE PARTIALDIFFERENTIAL CARET LBRACE NUMBER RBRACE RBRACE'''
+    '''Derivative : FRAC LBRACE PARTIAL Expression RBRACE LBRACE PARTIAL ID RBRACE
+                  | FRAC LBRACE PARTIAL CARET LBRACE NUMBER RBRACE Expression RBRACE LBRACE PARTIAL ID CARET LBRACE NUMBER RBRACE RBRACE'''
 
-    if len(t) > 9:
-      t[0] = Derivative(t[11][9:], t[8], t[6])
+    if len(t) > 10:
+      t[0] = Derivative(t[12][:1], t[8], t[6])
 
     else:
-      t[0] = Derivative(t[7][9:], t[4])
+      t[0] = Derivative(t[8][:1], t[4])
 
 
 def p_ExpessionList(t):
