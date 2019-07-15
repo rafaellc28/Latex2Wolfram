@@ -53,7 +53,7 @@ def p_Term(t):
   '''Term : Term TIMES Factor
           | Term DIVIDE Factor
           | Term MOD Factor
-          | Term CARET LBRACE Factor RBRACE
+          | Term CARET LBRACE Expression RBRACE
           | Factor'''
 
   if len(t) == 2:
