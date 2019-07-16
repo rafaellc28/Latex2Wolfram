@@ -97,3 +97,12 @@ def test19():
 
 def test20():
 	check_test_num(20)
+
+def test21():
+	check_test_num(21)
+
+def test22():
+	check_test_num(22)
+
+def test23():
+	check_test_num(23)

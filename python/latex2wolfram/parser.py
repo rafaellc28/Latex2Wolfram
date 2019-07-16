@@ -104,6 +104,8 @@ def p_FractionalExpression(t):
 
 def p_FunctionExpression(t):
     '''Factor : SQRT LBRACE Expression RBRACE
+
+              | SQRT LBRACKET NUMBER RBRACKET LBRACE Expression RBRACE
                          
               | LFLOOR Expression RFLOOR
                          
@@ -168,16 +170,20 @@ def p_FunctionExpression(t):
       function = FunctionName(Identifier(ID(t[1])))
 
     if len(t) > 5:
+
+      if _type == "SQRT":
+        t[0] = ExpressionWithFunction(function, t[6], t[3])
+      else:
         t[0] = ExpressionWithFunction(function, t[3], t[5])
 
     elif len(t) > 4:
-        t[0] = ExpressionWithFunction(function, t[3])
+      t[0] = ExpressionWithFunction(function, t[3])
         
     else:
-        if t.slice[2].type == "LPAREN":
-          t[0] = ExpressionWithFunction(function)
-        else:
-          t[0] = ExpressionWithFunction(function, t[2])
+      if t.slice[2].type == "LPAREN":
+        t[0] = ExpressionWithFunction(function)
+      else:
+        t[0] = ExpressionWithFunction(function, t[2])
 
 def p_Integral(t):
     '''Integral : INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL

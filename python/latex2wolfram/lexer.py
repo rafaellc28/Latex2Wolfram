@@ -21,6 +21,8 @@ tokens = [
    'DIVIDE',
    'LPAREN',
    'RPAREN',
+   'LBRACKET',
+   'RBRACKET',
    'LBRACE',
    'RBRACE',
    'LFLOOR',
@@ -89,6 +91,14 @@ def t_FRAC(t):
 
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
+
+def t_LBRACKET(t):
+   r'\['
+   return t
+
+def t_RBRACKET(t):
+   r'\]'
+   return t
 
 def t_LBRACE(t):
    r'\{'

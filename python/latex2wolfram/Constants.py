@@ -37,6 +37,8 @@ LOG    = "log"
 LOG2   = "log2"
 LOG10  = "log10"
 SQRT   = "sqrt"
+ROOTOF = "root of"
+TH     = "th"
 
 SIN    = "sin"
 COS    = "cos"

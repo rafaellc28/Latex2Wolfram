@@ -45,15 +45,23 @@ class CodeGenerator:
         else:
             function = node.function
 
-        res = function + BEGIN_ARGUMENT_LIST
+        if function == FunctionName.SQRT and node.expression2 != None:
+            res = BEGIN_ARGUMENT_LIST + node.expression2.generateCode(self) + TH + SPACE + ROOTOF
+        else:
+            res = function
+
+        res += BEGIN_ARGUMENT_LIST
 
         if node.expression1 != None:
             res += node.expression1.generateCode(self)
 
-        if node.expression2 != None:
+        if node.expression2 != None and function != FunctionName.SQRT:
             res += COMMA+SPACE + node.expression2.generateCode(self)
 
         res += END_ARGUMENT_LIST
+
+        if function == FunctionName.SQRT and node.expression2 != None:
+            res += END_ARGUMENT_LIST
 
         return res
 

@@ -1,4 +1,5 @@
 from BaseExpression import *
+from FunctionName import *
 
 class Expression(BaseExpression):
     """
@@ -31,12 +32,17 @@ class ExpressionWithFunction(Expression):
         """
         to string
         """
-        res = str(self.function) + "("
+        res = str(self.function)
+
+        if self.function == FunctionName.SQRT and self.expression2 != None:
+            res += "["+str(self.expression2)+"]"
+
+        res += "("
 
         if self.expression1 != None:
             res += str(self.expression1)
 
-        if self.expression2 != None:
+        if self.expression2 != None and self.function != FunctionName.SQRT:
             res += ", " + str(self.expression2)
 
         res += ")"
