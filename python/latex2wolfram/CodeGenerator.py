@@ -4,6 +4,7 @@ from Expression import *
 from Integral import *
 from FunctionName import *
 from BinaryOperator import *
+from IteratedOperator import *
 from Identifier import *
 from Infinity import *
 from Number import *
@@ -97,19 +98,10 @@ class CodeGenerator:
         return MINUS + node.expression.generateCode(self)
 
     def generateCode_IteratedExpression(self, node):
-        if node.supExpression:
-            supExpression = self._getValueFromNumericExpression(node.supExpression)
-
-            if isinstance(supExpression, Identifier) or isinstance(supExpression, Number):
-                supExpression = supExpression.generateCode(self)
-            else:
-                supExpression = BEGIN_ARGUMENT_LIST + supExpression.generateCode(self) + END_ARGUMENT_LIST
-
-            res = str(node.op) + BEGIN_SET + node.indexingExpression.generateCode(self) + FROM_TO + supExpression + END_SET
-        else:
-            res = str(node.op) + BEGIN_SET + node.indexingExpression.generateCode(self) + END_SET
-
-        res += node.expression.generateCode(self)
+        res = BEGIN_ARGUMENT_LIST + node.op.generateCode(self) + BEGIN_ARGUMENT_LIST + node.expression.generateCode(self) + \
+            END_ARGUMENT_LIST + COMMA + SPACE + FROM + SPACE + node.indexingExpression.identifier.generateCode(self) + EQUAL +\
+            node.indexingExpression.range.lowerBound.generateCode(self) + SPACE + TO + SPACE + \
+            node.indexingExpression.range.upperBound.generateCode(self) + END_ARGUMENT_LIST
 
         return res
 
@@ -234,6 +226,24 @@ class CodeGenerator:
 
         elif node.operator == BinaryOperator.POW:
             operator = POW
+
+        return operator
+
+    # IteratedOperator
+    def generateCode_IteratedOperator(self, node):
+        operator = EMPTY_STRING
+
+        if node.operator == IteratedOperator.SUM:
+            operator = SUM
+
+        elif node.operator == IteratedOperator.PROD:
+            operator = PROD
+
+        elif node.operator == IteratedOperator.MAX:
+            operator = MAX
+
+        elif node.operator == IteratedOperator.MIN:
+            operator = MIN
 
         return operator
 

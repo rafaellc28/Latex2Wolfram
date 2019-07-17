@@ -51,3 +51,8 @@ TIMES = "*"
 DIV   = "/"
 MOD   = "%"
 POW   = "^"
+
+SUM   = "SUM"
+PROD  = "product"
+MAX   = "max"
+MIN   = "min"

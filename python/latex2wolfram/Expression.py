@@ -258,11 +258,6 @@ class IteratedExpression(Expression):
     Class representing a iterated expression node in the AST
     """
 
-    SUM  = "sum"
-    PROD = "prod"
-    MAX  = "max"
-    MIN  = "min"
-
     def __init__(self, op, expression, indexingExpression, supExpression = None):
         """
         Set the components of the iterated linear expression

@@ -47,7 +47,10 @@ tokens = [
    'INTEGRAL',
    'DIFFERENTIAL',
    'D', 
-   'PARTIAL'
+   'PARTIAL',
+   'SUM',
+   'IN', 
+   'DOTS'
 ] + list(reserved.values())
 
 # Define a rule so we can track line numbers
@@ -59,6 +62,13 @@ def t_newline(t):
 t_ignore  = ' \t\r'
 
 t_UNDERLINE = r'_'
+
+t_SUM = r'\\sum'
+t_IN = r'\\in'
+
+def t_DOTS(t):
+   r'\\cdots|\\ldots|\\dots|\.\.\.'
+   return t
 
 def t_INFINITY(t):
    r'\\infty'

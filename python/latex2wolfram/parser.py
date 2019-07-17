@@ -3,12 +3,14 @@
 from lexer import tokens
 
 from Main import *
+from IndexingExpression import *
 from Expression import *
 from Integral import *
 from Derivative import *
 from Identifier import *
 from FunctionName import *
 from BinaryOperator import *
+from IteratedOperator import *
 from ID import *
 from SyntaxException import *
 
@@ -21,7 +23,9 @@ precedence = (
     ('right', 'COMMA'),
     ('right', 'PIPE'),
     ('right', 'LPAREN', 'RPAREN'),
-    ('right', 'LBRACE', 'RBRACE', 'FRAC'),
+    ('right', 'LBRACE', 'RBRACE', 'LBRACKET', 'RBRACKET', 'FRAC'),
+    ('right', 'DOTS'),
+    ('left', 'SUM'),
     ('left', 'PLUS', 'MINUS'),
     ('left', 'TIMES', 'DIVIDE', 'MOD'),
     ('right', 'CARET'),
@@ -36,6 +40,7 @@ def p_Factor(t):
   '''Factor : NUMBER
             | ID
             | INFINITY
+            | IteratedExpression
             | Derivative
             | Integral
             | LPAREN Expression RPAREN'''
@@ -184,6 +189,18 @@ def p_FunctionExpression(t):
         t[0] = ExpressionWithFunction(function)
       else:
         t[0] = ExpressionWithFunction(function, t[2])
+
+def p_Range(t):
+    '''Range : Expression DOTS Expression'''
+    t[0] = Range(t[1], t[3])
+
+def p_IndexingExpression(t):
+    '''IndexingExpression : ID IN Range'''
+    t[0] = IndexingExpression(Identifier(ID(t[1])), t[3])
+
+def p_IteratedExpression(t):
+    '''IteratedExpression : SUM UNDERLINE LBRACE IndexingExpression RBRACE Expression'''
+    t[0] = IteratedExpression(IteratedOperator(IteratedOperator.SUM), t[6], t[4])
 
 def p_Integral(t):
     '''Integral : INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL
