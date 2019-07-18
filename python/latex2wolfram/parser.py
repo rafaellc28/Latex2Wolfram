@@ -199,8 +199,16 @@ def p_IndexingExpression(t):
     t[0] = IndexingExpression(Identifier(ID(t[1])), t[3])
 
 def p_IteratedExpression(t):
-    '''IteratedExpression : SUM UNDERLINE LBRACE IndexingExpression RBRACE Expression'''
-    t[0] = IteratedExpression(IteratedOperator(IteratedOperator.SUM), t[6], t[4])
+    '''IteratedExpression : SUM UNDERLINE LBRACE IndexingExpression RBRACE Expression
+                          | SUM UNDERLINE LBRACE ID EQ Expression RBRACE CARET LBRACE Expression RBRACE Expression'''
+
+    if len(t) > 7:
+      _range = Range(t[6], t[10])
+      indexingExpression = IndexingExpression(Identifier(ID(t[4])), _range)
+
+      t[0] = IteratedExpression(IteratedOperator(IteratedOperator.SUM), t[12], indexingExpression)
+    else:
+      t[0] = IteratedExpression(IteratedOperator(IteratedOperator.SUM), t[6], t[4])
 
 def p_Integral(t):
     '''Integral : INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL

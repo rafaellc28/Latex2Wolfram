@@ -50,7 +50,8 @@ tokens = [
    'PARTIAL',
    'SUM',
    'IN', 
-   'DOTS'
+   'DOTS',
+   'EQ'
 ] + list(reserved.values())
 
 # Define a rule so we can track line numbers
@@ -63,6 +64,7 @@ t_ignore  = ' \t\r'
 
 t_UNDERLINE = r'_'
 
+t_EQ = r'='
 t_SUM = r'\\sum'
 t_IN = r'\\in'
 
