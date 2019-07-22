@@ -9,8 +9,6 @@ END_ARGUMENT_LIST = ")"
 BEGIN_ARRAY = "["
 END_ARRAY = "]"
 
-SUM = "sum"
-
 END_STATEMENT = ";"
 BREAKLINE = "\n"
 TAB = "\t"
@@ -52,7 +50,7 @@ DIV   = "/"
 MOD   = "%"
 POW   = "^"
 
-SUM   = "SUM"
+SUM   = "sum"
 PROD  = "product"
 MAX   = "max"
 MIN   = "min"

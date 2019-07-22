@@ -25,7 +25,7 @@ precedence = (
     ('right', 'LPAREN', 'RPAREN'),
     ('right', 'LBRACE', 'RBRACE', 'LBRACKET', 'RBRACKET', 'FRAC'),
     ('right', 'DOTS'),
-    ('left', 'SUM'),
+    ('left', 'SUM', 'PROD'),
     ('left', 'PLUS', 'MINUS'),
     ('left', 'TIMES', 'DIVIDE', 'MOD'),
     ('right', 'CARET'),
@@ -200,15 +200,23 @@ def p_IndexingExpression(t):
 
 def p_IteratedExpression(t):
     '''IteratedExpression : SUM UNDERLINE LBRACE IndexingExpression RBRACE Expression
-                          | SUM UNDERLINE LBRACE ID EQ Expression RBRACE CARET LBRACE Expression RBRACE Expression'''
+                          | SUM UNDERLINE LBRACE ID EQ Expression RBRACE CARET LBRACE Expression RBRACE Expression
+                          | PROD UNDERLINE LBRACE IndexingExpression RBRACE Expression
+                          | PROD UNDERLINE LBRACE ID EQ Expression RBRACE CARET LBRACE Expression RBRACE Expression'''
+
+    _type = t.slice[1].type
+    if _type == "SUM":
+      op = IteratedOperator(IteratedOperator.SUM)
+    else:
+      op = IteratedOperator(IteratedOperator.PROD)
 
     if len(t) > 7:
       _range = Range(t[6], t[10])
       indexingExpression = IndexingExpression(Identifier(ID(t[4])), _range)
 
-      t[0] = IteratedExpression(IteratedOperator(IteratedOperator.SUM), t[12], indexingExpression)
+      t[0] = IteratedExpression(op, t[12], indexingExpression)
     else:
-      t[0] = IteratedExpression(IteratedOperator(IteratedOperator.SUM), t[6], t[4])
+      t[0] = IteratedExpression(op, t[6], t[4])
 
 def p_Integral(t):
     '''Integral : INTEGRAL UNDERLINE LBRACE Expression RBRACE CARET LBRACE Expression RBRACE Expression DIFFERENTIAL

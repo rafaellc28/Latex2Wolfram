@@ -49,6 +49,7 @@ tokens = [
    'D', 
    'PARTIAL',
    'SUM',
+   'PROD', 
    'IN', 
    'DOTS',
    'EQ'
@@ -66,6 +67,7 @@ t_UNDERLINE = r'_'
 
 t_EQ = r'='
 t_SUM = r'\\sum'
+t_PROD = r'\\prod'
 t_IN = r'\\in'
 
 def t_DOTS(t):
