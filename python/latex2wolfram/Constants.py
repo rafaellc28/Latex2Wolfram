@@ -43,6 +43,7 @@ COS    = "cos"
 TAN    = "tan"
 ATAN   = "atan"
 
+FACTORIAL = "!"
 PLUS  = "+"
 MINUS = "-"
 TIMES = "*"

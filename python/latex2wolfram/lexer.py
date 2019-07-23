@@ -52,7 +52,8 @@ tokens = [
    'PROD', 
    'IN', 
    'DOTS',
-   'EQ'
+   'EQ',
+   'FACTORIAL'
 ] + list(reserved.values())
 
 # Define a rule so we can track line numbers
@@ -69,6 +70,7 @@ t_EQ = r'='
 t_SUM = r'\\sum'
 t_PROD = r'\\prod'
 t_IN = r'\\in'
+t_FACTORIAL = r'!'
 
 def t_DOTS(t):
    r'\\cdots|\\ldots|\\dots|\.\.\.'

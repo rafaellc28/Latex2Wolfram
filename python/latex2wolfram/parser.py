@@ -9,6 +9,7 @@ from Integral import *
 from Derivative import *
 from Identifier import *
 from FunctionName import *
+from UnaryOperator import *
 from BinaryOperator import *
 from IteratedOperator import *
 from ID import *
@@ -26,6 +27,7 @@ precedence = (
     ('right', 'LBRACE', 'RBRACE', 'LBRACKET', 'RBRACKET', 'FRAC'),
     ('right', 'DOTS'),
     ('left', 'SUM', 'PROD'),
+    ('left', 'FACTORIAL'),
     ('left', 'PLUS', 'MINUS'),
     ('left', 'TIMES', 'DIVIDE', 'MOD'),
     ('right', 'CARET'),
@@ -101,6 +103,16 @@ def p_Expression_binop(t):
           op = BinaryOperator(BinaryOperator.MINUS)
 
       t[0] = ExpressionWithArithmeticOperation(op, t[1], t[3])
+
+def p_Factorial(t):
+    '''Factor : NUMBER FACTORIAL
+              | ID FACTORIAL
+              | LPAREN Expression RPAREN FACTORIAL'''
+
+    if len(t) > 3:
+      t[0] = ExpressionWithUnaryOperation(UnaryOperator(UnaryOperator.FACTORIAL), ExpressionBetweenParenthesis(t[2]), True)
+    else:
+      t[0] = ExpressionWithUnaryOperation(UnaryOperator(UnaryOperator.FACTORIAL), t[1], True)
 
 def p_FractionalExpression(t):
     '''Factor : FRAC LBRACE Expression RBRACE LBRACE Expression RBRACE'''

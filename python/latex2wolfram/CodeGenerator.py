@@ -3,6 +3,7 @@ from Constants import *
 from Expression import *
 from Integral import *
 from FunctionName import *
+from UnaryOperator import *
 from BinaryOperator import *
 from IteratedOperator import *
 from Identifier import *
@@ -93,6 +94,15 @@ class CodeGenerator:
             expression2 = node.expression2.generateCode(self)
 
         return node.expression1.generateCode(self) + SPACE + node.op.generateCode(self) + SPACE + expression2
+
+    def generateCode_ExpressionWithUnaryOperation(self, node):
+        
+        if node.afterExpression:
+            expression = node.expression.generateCode(self) + node.op.generateCode(self)
+        else:
+            expression = node.op.generateCode(self) + node.expression.generateCode(self)
+
+        return expression
 
     def generateCode_MinusExpression(self, node):
         return MINUS + node.expression.generateCode(self)
@@ -204,6 +214,21 @@ class CodeGenerator:
                 function = ATAN
 
         return function
+
+    # UnaryOperator
+    def generateCode_UnaryOperator(self, node):
+        operator = EMPTY_STRING
+
+        if node.operator == UnaryOperator.PLUS:
+            operator = PLUS
+
+        elif node.operator == UnaryOperator.MINUS:
+            operator = MINUS
+
+        elif node.operator == UnaryOperator.FACTORIAL:
+            operator = FACTORIAL
+
+        return operator
 
     # BinaryOperator
     def generateCode_BinaryOperator(self, node):

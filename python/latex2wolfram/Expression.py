@@ -213,6 +213,52 @@ class ExpressionWithArithmeticOperation(Expression):
         """
         return codeGenerator.generateCode(self)
 
+class ExpressionWithUnaryOperation(Expression):
+    """
+    Class representing a expression with unary operation node in the AST
+    """
+    
+    def __init__(self, op, expression, afterExpression = False):
+        """
+        Set the expressions participating in the arithmetic operation
+        
+        :param op         : UnaryOperator
+        :param expression : Expression
+        :param afterExpression : Bool
+        """
+
+        Expression.__init__(self)
+        
+        self.op          = op
+        self.expression = expression
+        self.afterExpression = afterExpression
+    
+    def __str__(self):
+        """
+        to string
+        """
+        if self.afterExpression:
+            code = str(self.expression) + str(self.op)
+        else:
+            code = str(self.op)+str(self.expression)
+
+        return "ExpressionWithUnaryOperation: " + code
+
+    def getDependencies(self, codeGenerator):
+        return self.expression.getDependencies(codeGenerator)
+
+    def setupEnvironment(self, codeSetup):
+        """
+        Generate the Wolfram code for the identifiers and sets used in this expression
+        """
+        codeSetup.setupEnvironment(self)
+
+    def generateCode(self, codeGenerator):
+        """
+        Generate the Wolfram code for this expression with unary operation
+        """
+        return codeGenerator.generateCode(self)
+
 
 class MinusExpression(Expression):
     """
