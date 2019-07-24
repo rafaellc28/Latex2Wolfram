@@ -124,3 +124,18 @@ def test28():
 
 def test29():
 	check_test_num(29)
+
+def test30():
+	check_test_num(30)
+
+def test31():
+	check_test_num(31)
+
+def test32():
+	check_test_num(32)
+
+def test33():
+	check_test_num(33)
+
+def test34():
+	check_test_num(34)

@@ -30,6 +30,7 @@ precedence = (
     ('left', 'FACTORIAL'),
     ('left', 'PLUS', 'MINUS'),
     ('left', 'TIMES', 'DIVIDE', 'MOD'),
+    ('left', 'UPLUS', 'UMINUS'),
     ('right', 'CARET'),
     ('left', 'LFLOOR', 'RFLOOR', 'LCEIL', 'RCEIL', 'SIN', 'COS', 'TAN', 'ATAN', 'SQRT', 'LN', 'LOG', 'EXP')
 )
@@ -104,10 +105,35 @@ def p_Expression_binop(t):
 
       t[0] = ExpressionWithArithmeticOperation(op, t[1], t[3])
 
+def p_UnaryExpression(t):
+    '''Factor : PLUS ID %prec UPLUS
+              | PLUS NUMBER %prec UPLUS
+              | PLUS LPAREN Expression RPAREN %prec UPLUS
+              | MINUS ID %prec UMINUS
+              | MINUS NUMBER %prec UMINUS
+              | MINUS LPAREN Expression RPAREN %prec UMINUS'''
+
+    if t.slice[1].type == "PLUS":
+      op = UnaryOperator.PLUS
+    else:
+      op = UnaryOperator.MINUS
+
+    if len(t) > 3:
+      t[0] = ExpressionWithUnaryOperation(UnaryOperator(op), ExpressionBetweenParenthesis(t[3]))
+
+    else:
+      if t.slice[2].type == "ID":
+        t[2] = Identifier(ID(t[2]))
+
+      t[0] = ExpressionWithUnaryOperation(UnaryOperator(op), t[2])
+
 def p_Factorial(t):
     '''Factor : NUMBER FACTORIAL
               | ID FACTORIAL
               | LPAREN Expression RPAREN FACTORIAL'''
+
+    if t.slice[1].type == "ID":
+      t[1] = Identifier(ID(t[1]))
 
     if len(t) > 3:
       t[0] = ExpressionWithUnaryOperation(UnaryOperator(UnaryOperator.FACTORIAL), ExpressionBetweenParenthesis(t[2]), True)
