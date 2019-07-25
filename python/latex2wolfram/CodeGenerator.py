@@ -228,6 +228,9 @@ class CodeGenerator:
         elif node.operator == UnaryOperator.FACTORIAL:
             operator = FACTORIAL
 
+        elif node.operator == UnaryOperator.PERCENT:
+            operator = PERCENT
+
         return operator
 
     # BinaryOperator

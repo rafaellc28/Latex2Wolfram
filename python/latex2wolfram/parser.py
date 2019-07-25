@@ -105,7 +105,7 @@ def p_Expression_binop(t):
 
       t[0] = ExpressionWithArithmeticOperation(op, t[1], t[3])
 
-def p_UnaryExpression(t):
+def p_UnaryExpressionOperatorBefore(t):
     '''Factor : PLUS ID %prec UPLUS
               | PLUS NUMBER %prec UPLUS
               | PLUS LPAREN Expression RPAREN %prec UPLUS
@@ -127,18 +127,31 @@ def p_UnaryExpression(t):
 
       t[0] = ExpressionWithUnaryOperation(UnaryOperator(op), t[2])
 
-def p_Factorial(t):
+def p_UnaryExpressionOperatorAfter(t):
     '''Factor : NUMBER FACTORIAL
               | ID FACTORIAL
-              | LPAREN Expression RPAREN FACTORIAL'''
+              | LPAREN Expression RPAREN FACTORIAL
+              | NUMBER PERCENT
+              | ID PERCENT
+              | LPAREN Expression RPAREN PERCENT'''
 
     if t.slice[1].type == "ID":
       t[1] = Identifier(ID(t[1]))
 
     if len(t) > 3:
-      t[0] = ExpressionWithUnaryOperation(UnaryOperator(UnaryOperator.FACTORIAL), ExpressionBetweenParenthesis(t[2]), True)
+      if t.slice[4].type == "FACTORIAL":
+        op = UnaryOperator.FACTORIAL
+      else:
+        op = UnaryOperator.PERCENT
+
+      t[0] = ExpressionWithUnaryOperation(UnaryOperator(op), ExpressionBetweenParenthesis(t[2]), True)
     else:
-      t[0] = ExpressionWithUnaryOperation(UnaryOperator(UnaryOperator.FACTORIAL), t[1], True)
+      if t.slice[2].type == "FACTORIAL":
+        op = UnaryOperator.FACTORIAL
+      else:
+        op = UnaryOperator.PERCENT
+
+      t[0] = ExpressionWithUnaryOperation(UnaryOperator(op), t[1], True)
 
 def p_FractionalExpression(t):
     '''Factor : FRAC LBRACE Expression RBRACE LBRACE Expression RBRACE'''

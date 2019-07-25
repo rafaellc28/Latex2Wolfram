@@ -53,7 +53,8 @@ tokens = [
    'IN', 
    'DOTS',
    'EQ',
-   'FACTORIAL'
+   'FACTORIAL',
+   'PERCENT'
 ] + list(reserved.values())
 
 # Define a rule so we can track line numbers
@@ -71,6 +72,10 @@ t_SUM = r'\\sum'
 t_PROD = r'\\prod'
 t_IN = r'\\in'
 t_FACTORIAL = r'!'
+
+def t_PERCENT(t):
+   r'\\text\{\s*\%\s*\}'
+   return t
 
 def t_DOTS(t):
    r'\\cdots|\\ldots|\\dots|\.\.\.'

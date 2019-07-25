@@ -8,6 +8,7 @@ class UnaryOperator(BaseExpression):
     PLUS  = "+"
     MINUS = "-"
     FACTORIAL = "!"
+    PERCENT = "%"
 
     def __init__(self, operator):
         """

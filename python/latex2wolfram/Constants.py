@@ -43,6 +43,7 @@ COS    = "cos"
 TAN    = "tan"
 ATAN   = "atan"
 
+PERCENT = "%"
 FACTORIAL = "!"
 PLUS  = "+"
 MINUS = "-"

@@ -139,3 +139,12 @@ def test33():
 
 def test34():
 	check_test_num(34)
+
+def test35():
+	check_test_num(35)
+
+def test36():
+	check_test_num(36)
+
+def test37():
+	check_test_num(37)
