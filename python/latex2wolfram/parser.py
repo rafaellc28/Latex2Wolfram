@@ -82,9 +82,9 @@ def p_Term(t):
         op = BinaryOperator(BinaryOperator.POW)
 
     if _type == "CARET":
-      t[0] = ExpressionWithArithmeticOperation(op, t[1], t[4])
+      t[0] = ExpressionWithBinaryOperation(op, t[1], t[4])
     else:
-      t[0] = ExpressionWithArithmeticOperation(op, t[1], t[3])
+      t[0] = ExpressionWithBinaryOperation(op, t[1], t[3])
 
 
 def p_Expression_binop(t):
@@ -103,7 +103,7 @@ def p_Expression_binop(t):
       elif _type == "MINUS":
           op = BinaryOperator(BinaryOperator.MINUS)
 
-      t[0] = ExpressionWithArithmeticOperation(op, t[1], t[3])
+      t[0] = ExpressionWithBinaryOperation(op, t[1], t[3])
 
 def p_UnaryExpressionOperatorBefore(t):
     '''Factor : PLUS ID %prec UPLUS

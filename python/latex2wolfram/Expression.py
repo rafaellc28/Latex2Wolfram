@@ -172,7 +172,7 @@ class ExpressionBetweenParenthesis(Expression):
         return codeGenerator.generateCode(self)
 
 
-class ExpressionWithArithmeticOperation(Expression):
+class ExpressionWithBinaryOperation(Expression):
     """
     Class representing a expression with arithmetic operation node in the AST
     """
@@ -196,7 +196,7 @@ class ExpressionWithArithmeticOperation(Expression):
         """
         to string
         """
-        return "ExpressionWithArithmeticOperation:" + str(self.expression1) + " " + str(self.op) + " " + str(self.expression2)
+        return "ExpressionWithBinaryOperation:" + str(self.expression1) + " " + str(self.op) + " " + str(self.expression2)
 
     def getDependencies(self, codeGenerator):
         return list(set(self.expression1.getDependencies(codeGenerator) + self.expression2.getDependencies(codeGenerator)))

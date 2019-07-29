@@ -86,7 +86,7 @@ class CodeGenerator:
 
         return expression
 
-    def generateCode_ExpressionWithArithmeticOperation(self, node):
+    def generateCode_ExpressionWithBinaryOperation(self, node):
         
         if node.op.operator == BinaryOperator.POW:
             expression2 = self._getGeneratedExpression(node.expression2)
@@ -103,9 +103,6 @@ class CodeGenerator:
             expression = node.op.generateCode(self) + node.expression.generateCode(self)
 
         return expression
-
-    def generateCode_MinusExpression(self, node):
-        return MINUS + node.expression.generateCode(self)
 
     def generateCode_IteratedExpression(self, node):
         res = BEGIN_ARGUMENT_LIST + node.op.generateCode(self) + BEGIN_ARGUMENT_LIST + node.expression.generateCode(self) + \
