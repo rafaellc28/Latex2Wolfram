@@ -49,7 +49,7 @@ PLUS  = "+"
 MINUS = "-"
 TIMES = "*"
 DIV   = "/"
-MOD   = "%"
+MOD   = "mod"
 POW   = "^"
 
 SUM   = "sum"

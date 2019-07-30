@@ -77,6 +77,10 @@ def t_PERCENT(t):
    r'\\text\{\s*\%\s*\}'
    return t
 
+def t_MOD(t):
+   r'\\mod|\\bmod'
+   return t
+
 def t_DOTS(t):
    r'\\cdots|\\ldots|\\dots|\.\.\.'
    return t
@@ -93,10 +97,6 @@ def t_COMMENT(t):
 # Regular expression rules for simple tokens
 t_PLUS = r'\+'
 t_MINUS = r'-'
-
-def t_MOD(t):
-   r'\\text\{\s*\%\s*\}|\\mod|\\bmod'
-   return t
 
 def t_TIMES(t):
    r'\*|\\cdot|\\ast'

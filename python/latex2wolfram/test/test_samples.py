@@ -148,3 +148,9 @@ def test36():
 
 def test37():
 	check_test_num(37)
+
+def test38():
+	check_test_num(38)
+
+def test39():
+	check_test_num(39)
