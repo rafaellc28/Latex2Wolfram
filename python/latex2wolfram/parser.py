@@ -12,6 +12,8 @@ from FunctionName import *
 from UnaryOperator import *
 from BinaryOperator import *
 from IteratedOperator import *
+from Constraint import *
+from ConstraintOperator import *
 from ID import *
 from SyntaxException import *
 
@@ -25,6 +27,8 @@ precedence = (
     ('right', 'PIPE'),
     ('right', 'LPAREN', 'RPAREN'),
     ('right', 'LBRACE', 'RBRACE', 'LBRACKET', 'RBRACKET', 'FRAC'),
+    ('right', 'LE', 'GE', 'LT', 'GT', 'EQ', 'NEQ'),
+    ('left', 'IN'),
     ('right', 'DOTS'),
     ('left', 'SUM', 'PROD'),
     ('left', 'FACTORIAL'),
@@ -340,6 +344,36 @@ def p_ExpessionList(t):
   else:
     t[1].add(t[3])
     t[0] = t[1]
+
+def p_Constraint(t):
+  '''Expression : Expression EQ Expression
+                | Expression NEQ Expression
+                | Expression LT Expression
+                | Expression LE Expression
+                | Expression GT Expression
+                | Expression GE Expression'''
+
+  _type = t.slice[2].type
+
+  if _type == "EQ":
+    op = ConstraintOperator(ConstraintOperator.EQ)
+
+  elif _type == "NEQ":
+    op = ConstraintOperator(ConstraintOperator.NEQ)
+
+  elif _type == "LT":
+    op = ConstraintOperator(ConstraintOperator.LT)
+
+  elif _type == "LE":
+    op = ConstraintOperator(ConstraintOperator.LE)
+
+  elif _type == "GT":
+    op = ConstraintOperator(ConstraintOperator.GT)
+
+  elif _type == "GE":
+    op = ConstraintOperator(ConstraintOperator.GE)
+  
+  t[0] = Constraint(op, t[1], t[3])
 
 def p_error(t):
   if t:

@@ -154,3 +154,6 @@ def test38():
 
 def test39():
 	check_test_num(39)
+
+def test40():
+	check_test_num(40)

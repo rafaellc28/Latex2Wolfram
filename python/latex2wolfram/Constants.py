@@ -16,8 +16,14 @@ TAB = "\t"
 INTEGRATE="integrate"
 D="d"
 FROM="from"
-EQUAL="="
 TO="to"
+
+EQUAL="="
+UNEQUAL="!="
+LT="<"
+LE="<="
+GT=">"
+GE=">="
 
 INFINITY="infinity"
 

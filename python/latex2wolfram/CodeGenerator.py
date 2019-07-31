@@ -6,6 +6,7 @@ from FunctionName import *
 from UnaryOperator import *
 from BinaryOperator import *
 from IteratedOperator import *
+from ConstraintOperator import *
 from Identifier import *
 from Infinity import *
 from Number import *
@@ -114,6 +115,10 @@ class CodeGenerator:
 
     def generateCode_ExpressionList(self, node):
         return (COMMA+SPACE).join(map(lambda el: el.generateCode(self), node.values))
+
+    # Constraint
+    def generateCode_Constraint(self, node):
+        return node.expression1.generateCode(self) + SPACE + node.op.generateCode(self) + SPACE + node.expression2.generateCode(self)
 
     # Integral
     def generateCode_Integral(self, node):
@@ -269,6 +274,30 @@ class CodeGenerator:
 
         elif node.operator == IteratedOperator.MIN:
             operator = MIN
+
+        return operator
+
+    # IteratedOperator
+    def generateCode_ConstraintOperator(self, node):
+        operator = EMPTY_STRING
+
+        if node.operator == ConstraintOperator.EQ:
+            operator = EQUAL
+
+        elif node.operator == ConstraintOperator.NEQ:
+            operator = UNEQUAL
+
+        elif node.operator == ConstraintOperator.LT:
+            operator = LT
+
+        elif node.operator == ConstraintOperator.LE:
+            operator = LE
+
+        elif node.operator == ConstraintOperator.GT:
+            operator = GT
+
+        elif node.operator == ConstraintOperator.GE:
+            operator = GE
 
         return operator
 

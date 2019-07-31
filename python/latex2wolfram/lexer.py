@@ -53,6 +53,11 @@ tokens = [
    'IN', 
    'DOTS',
    'EQ',
+   'NEQ',
+   'LT',
+   'LE',
+   'GT',
+   'GE',
    'FACTORIAL',
    'PERCENT'
 ] + list(reserved.values())
@@ -68,6 +73,12 @@ t_ignore  = ' \t\r'
 t_UNDERLINE = r'_'
 
 t_EQ = r'='
+t_NEQ = r'\\neq'
+t_LE = r'\\leq'
+t_LT = r'<'
+t_GE = r'\\geq'
+t_GT = r'>'
+
 t_SUM = r'\\sum'
 t_PROD = r'\\prod'
 t_IN = r'\\in'
