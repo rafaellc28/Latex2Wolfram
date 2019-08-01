@@ -10,6 +10,7 @@ from ConstraintOperator import *
 from Identifier import *
 from Infinity import *
 from Number import *
+from Symbol import *
 
 class CodeGenerator:
     """ Visitor in the Visitor Pattern """
@@ -277,7 +278,7 @@ class CodeGenerator:
 
         return operator
 
-    # IteratedOperator
+    # ConstraintOperator
     def generateCode_ConstraintOperator(self, node):
         operator = EMPTY_STRING
 
@@ -300,6 +301,15 @@ class CodeGenerator:
             operator = GE
 
         return operator
+
+    # Symbol
+    def generateCode_Symbol(self, node):
+        symbol = EMPTY_STRING
+
+        if node.symbol == Symbol.PI:
+            symbol = PI
+            
+        return symbol
 
     # Number
     def generateCode_Number(self, node):

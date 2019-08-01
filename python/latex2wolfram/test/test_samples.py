@@ -157,3 +157,18 @@ def test39():
 
 def test40():
 	check_test_num(40)
+
+def test41():
+	check_test_num(41)
+
+def test42():
+	check_test_num(42)
+
+def test43():
+	check_test_num(43)
+
+def test44():
+	check_test_num(44)
+
+def test45():
+	check_test_num(45)

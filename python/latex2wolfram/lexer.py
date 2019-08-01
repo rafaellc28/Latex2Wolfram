@@ -59,7 +59,8 @@ tokens = [
    'GT',
    'GE',
    'FACTORIAL',
-   'PERCENT'
+   'PERCENT',
+   'PI'
 ] + list(reserved.values())
 
 # Define a rule so we can track line numbers
@@ -71,6 +72,8 @@ def t_newline(t):
 t_ignore  = ' \t\r'
 
 t_UNDERLINE = r'_'
+
+t_PI = r'\\pi'
 
 t_EQ = r'='
 t_NEQ = r'\\neq'

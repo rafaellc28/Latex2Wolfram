@@ -1,34 +1,29 @@
 from BaseExpression import *
 
-class BinaryOperator(BaseExpression):
+class Symbol(BaseExpression):
     """
-    Class representing the Binary Operator in the AST
+    Class representing the Symbol in the AST
     """
 
-    PLUS  = "+"
-    MINUS = "-"
-    TIMES = "*"
-    DIV   = "/"
-    MOD   = "%"
-    POW   = "^"
+    PI = "pi"
 
-    def __init__(self, operator):
+    def __init__(self, symbol):
         """
-        BinaryOperator
+        Symbol
 
-        :param operator: str
+        :param symbol: str
         """
 
         BaseExpression.__init__(self)
 
-        self.operator = operator
+        self.symbol = symbol
 
     def __str__(self):
         """
         to string
         """
 
-        return "BinaryOperator:"+str(self.operator)
+        return "Symbol:"+str(self.symbol)
 
     def getDependencies(self, codeGenerator):
         return []

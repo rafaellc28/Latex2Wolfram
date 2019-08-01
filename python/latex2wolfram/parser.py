@@ -14,6 +14,7 @@ from BinaryOperator import *
 from IteratedOperator import *
 from Constraint import *
 from ConstraintOperator import *
+from Symbol import *
 from ID import *
 from SyntaxException import *
 
@@ -27,6 +28,7 @@ precedence = (
     ('right', 'PIPE'),
     ('right', 'LPAREN', 'RPAREN'),
     ('right', 'LBRACE', 'RBRACE', 'LBRACKET', 'RBRACKET', 'FRAC'),
+    ('left', 'PI'),
     ('right', 'LE', 'GE', 'LT', 'GT', 'EQ', 'NEQ'),
     ('left', 'IN'),
     ('right', 'DOTS'),
@@ -374,6 +376,10 @@ def p_Constraint(t):
     op = ConstraintOperator(ConstraintOperator.GE)
   
   t[0] = Constraint(op, t[1], t[3])
+
+def p_Symbol(t):
+  '''Factor : PI'''
+  t[0] = Symbol(Symbol.PI)
 
 def p_error(t):
   if t:

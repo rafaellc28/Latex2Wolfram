@@ -62,3 +62,5 @@ SUM   = "sum"
 PROD  = "product"
 MAX   = "max"
 MIN   = "min"
+
+PI = "pi"
