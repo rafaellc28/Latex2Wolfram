@@ -174,9 +174,13 @@ def p_FunctionExpression(t):
               | LCEIL Expression RCEIL
                          
               | PIPE Expression PIPE
-                         
+              
+              | ASIN LPAREN Expression RPAREN
+
               | SIN LPAREN Expression RPAREN
-                         
+              
+              | ACOS LPAREN Expression RPAREN
+
               | COS LPAREN Expression RPAREN
 
               | TAN LPAREN Expression RPAREN
@@ -185,6 +189,8 @@ def p_FunctionExpression(t):
               | ATAN LPAREN Expression RPAREN
                          
               | LOG LPAREN Expression RPAREN
+
+              | LOG UNDERLINE LBRACE NUMBER RBRACE LPAREN Expression RPAREN
                          
               | LN LPAREN Expression RPAREN
                          
@@ -207,8 +213,14 @@ def p_FunctionExpression(t):
     elif _type == "PIPE":
         function = FunctionName(FunctionName.ABS)
 
+    elif _type == "ASIN":
+        function = FunctionName(FunctionName.ASIN)
+
     elif _type == "SIN":
         function = FunctionName(FunctionName.SIN)
+
+    elif _type == "ACOS":
+        function = FunctionName(FunctionName.ACOS)
 
     elif _type == "COS":
         function = FunctionName(FunctionName.COS)
@@ -233,8 +245,12 @@ def p_FunctionExpression(t):
 
     if len(t) > 5:
 
-      if _type == "SQRT":
+      if _type == "LOG":
+        t[0] = ExpressionWithFunction(function, t[7], t[4])
+
+      elif _type == "SQRT":
         t[0] = ExpressionWithFunction(function, t[6], t[3])
+        
       else:
         t[0] = ExpressionWithFunction(function, t[3], t[5])
 
@@ -242,8 +258,10 @@ def p_FunctionExpression(t):
       t[0] = ExpressionWithFunction(function, t[3])
         
     else:
+
       if t.slice[2].type == "LPAREN":
         t[0] = ExpressionWithFunction(function)
+
       else:
         t[0] = ExpressionWithFunction(function, t[2])
 

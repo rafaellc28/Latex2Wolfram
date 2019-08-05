@@ -20,7 +20,9 @@ class FunctionName(BaseExpression):
     LOG10  = "log10"
     SQRT   = "sqrt"
 
+    ASIN   = "asin"
     SIN    = "sin"
+    ACOS   = "acos"
     COS    = "cos"
     TAN    = "tan"
     ATAN   = "atan"

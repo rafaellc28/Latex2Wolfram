@@ -172,3 +172,42 @@ def test44():
 
 def test45():
 	check_test_num(45)
+
+def test46():
+	check_test_num(46)
+
+def test47():
+	check_test_num(47)
+
+def test48():
+	check_test_num(48)
+
+def test49():
+	check_test_num(49)
+
+def test50():
+	check_test_num(50)
+
+def test51():
+	check_test_num(51)
+
+def test52():
+	check_test_num(52)
+
+def test53():
+	check_test_num(53)
+
+def test54():
+	check_test_num(54)
+
+def test55():
+	check_test_num(55)
+
+def test56():
+	check_test_num(56)
+
+def test57():
+	check_test_num(57)
+
+def test58():
+	check_test_num(58)

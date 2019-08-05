@@ -54,12 +54,15 @@ class CodeGenerator:
         else:
             res = function
 
+        if function == FunctionName.LOG and node.expression2 != None:
+            res += node.expression2.generateCode(self)
+
         res += BEGIN_ARGUMENT_LIST
 
         if node.expression1 != None:
             res += node.expression1.generateCode(self)
 
-        if node.expression2 != None and function != FunctionName.SQRT:
+        if node.expression2 != None and function != FunctionName.SQRT and function != FunctionName.LOG:
             res += COMMA+SPACE + node.expression2.generateCode(self)
 
         res += END_ARGUMENT_LIST
@@ -195,8 +198,14 @@ class CodeGenerator:
             elif node.function == FunctionName.ABS:
                 function = ABS
 
+            elif node.function == FunctionName.ASIN:
+                function = ASIN
+
             elif node.function == FunctionName.SIN:
                 function = SIN
+
+            elif node.function == FunctionName.ACOS:
+                function = ACOS
 
             elif node.function == FunctionName.COS:
                 function = COS

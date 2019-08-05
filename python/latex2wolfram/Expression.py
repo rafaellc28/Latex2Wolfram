@@ -34,7 +34,7 @@ class ExpressionWithFunction(Expression):
         """
         res = str(self.function)
 
-        if self.function == FunctionName.SQRT and self.expression2 != None:
+        if (self.function == FunctionName.SQRT or self.function == FunctionName.LOG) and self.expression2 != None:
             res += "["+str(self.expression2)+"]"
 
         res += "("

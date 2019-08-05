@@ -29,7 +29,9 @@ tokens = [
    'RFLOOR',
    'LCEIL',
    'RCEIL',
+   'ASIN',
    'SIN',
+   'ACOS',
    'COS',
    'TAN',
    'ATAN',
@@ -148,8 +150,10 @@ t_LFLOOR = r'\\lfloor'
 t_RFLOOR = r'\\rfloor'
 t_LCEIL = r'\\lceil'
 t_RCEIL = r'\\rceil'
-t_SIN = r'\\sin'
-t_COS = r'\\cos'
+t_ASIN = r'\\sin\^\{-1\}|\\arcsin'
+t_SIN  = r'\\sin'
+t_ACOS = r'\\cos\^\{-1\}|\\arccos'
+t_COS  = r'\\cos'
 t_ATAN = r'\\tan\^\{-1\}|\\arctan'
 t_TAN = r'\\tan'
 t_SQRT = r'\\sqrt'
