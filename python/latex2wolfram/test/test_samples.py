@@ -211,3 +211,9 @@ def test57():
 
 def test58():
 	check_test_num(58)
+
+def test59():
+	check_test_num(59)
+
+def test60():
+	check_test_num(60)

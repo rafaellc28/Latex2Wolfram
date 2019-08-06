@@ -177,24 +177,60 @@ def p_FunctionExpression(t):
               
               | ASIN LPAREN Expression RPAREN
 
+              | ASIN ID
+
+              | ASIN NUMBER
+
               | SIN LPAREN Expression RPAREN
               
+              | SIN ID
+
+              | SIN NUMBER
+
               | ACOS LPAREN Expression RPAREN
+
+              | ACOS ID
+
+              | ACOS NUMBER
 
               | COS LPAREN Expression RPAREN
 
+              | COS ID
+
+              | COS NUMBER
+
               | TAN LPAREN Expression RPAREN
+
+              | TAN ID
+
+              | TAN NUMBER
                          
               | ATAN LPAREN Expression COMMA Expression RPAREN
               | ATAN LPAREN Expression RPAREN
+
+              | ATAN ID
+
+              | ATAN NUMBER
                          
               | LOG LPAREN Expression RPAREN
+
+              | LOG ID
+
+              | LOG NUMBER
 
               | LOG UNDERLINE LBRACE NUMBER RBRACE LPAREN Expression RPAREN
                          
               | LN LPAREN Expression RPAREN
+
+              | LN ID
+
+              | LN NUMBER
                          
               | EXP LPAREN Expression RPAREN
+
+              | EXP ID
+
+              | EXP NUMBER
 
               | ID LPAREN ExpressionList RPAREN
 
@@ -263,6 +299,9 @@ def p_FunctionExpression(t):
         t[0] = ExpressionWithFunction(function)
 
       else:
+        if t.slice[2].type == "ID":
+          t[2] = Identifier(ID(t[2]))
+
         t[0] = ExpressionWithFunction(function, t[2])
 
 def p_Range(t):
