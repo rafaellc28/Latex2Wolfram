@@ -217,3 +217,24 @@ def test59():
 
 def test60():
 	check_test_num(60)
+
+def test61():
+	check_test_num(61)
+
+def test62():
+	check_test_num(62)
+
+def test63():
+	check_test_num(63)
+
+def test64():
+	check_test_num(64)
+
+def test65():
+	check_test_num(65)
+
+def test66():
+	check_test_num(66)
+
+def test67():
+	check_test_num(67)

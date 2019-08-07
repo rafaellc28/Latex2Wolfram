@@ -33,8 +33,14 @@ tokens = [
    'SIN',
    'ACOS',
    'COS',
-   'TAN',
    'ATAN',
+   'TAN',
+   'ASEC',
+   'SEC',
+   'ACSC',
+   'CSC',
+   'ACOT',
+   'COT',
    'SQRT',
    'LOG',
    'LN',
@@ -156,6 +162,12 @@ t_ACOS = r'\\cos\^\{-1\}|\\arccos'
 t_COS  = r'\\cos'
 t_ATAN = r'\\tan\^\{-1\}|\\arctan'
 t_TAN = r'\\tan'
+t_ASEC = r'\\sec\^\{-1\}'
+t_SEC  = r'\\sec'
+t_ACSC = r'\\csc\^\{-1\}'
+t_CSC  = r'\\csc'
+t_ACOT = r'\\cot\^\{-1\}'
+t_COT  = r'\\cot'
 t_SQRT = r'\\sqrt'
 t_LOG = r'\\log'
 t_LN = r'\\ln'

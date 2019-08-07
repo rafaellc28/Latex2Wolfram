@@ -210,6 +210,30 @@ class CodeGenerator:
             elif node.function == FunctionName.COS:
                 function = COS
 
+            elif node.function == FunctionName.ATAN:
+                function = ATAN
+
+            elif node.function == FunctionName.TAN:
+                function = TAN
+
+            elif node.function == FunctionName.ASEC:
+                function = ASEC
+
+            elif node.function == FunctionName.SEC:
+                function = SEC
+
+            elif node.function == FunctionName.ACSC:
+                function = ACSC
+
+            elif node.function == FunctionName.CSC:
+                function = CSC
+
+            elif node.function == FunctionName.ACOT:
+                function = ACOT
+
+            elif node.function == FunctionName.COT:
+                function = COT
+
             elif node.function == FunctionName.LOG:
                 function = LOG
 
@@ -218,12 +242,6 @@ class CodeGenerator:
 
             elif node.function == FunctionName.EXP:
                 function = EXP
-
-            elif node.function == FunctionName.TAN:
-                function = TAN
-
-            elif node.function == FunctionName.ATAN:
-                function = ATAN
 
         return function
 

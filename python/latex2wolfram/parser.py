@@ -38,7 +38,8 @@ precedence = (
     ('left', 'TIMES', 'DIVIDE', 'MOD'),
     ('left', 'UPLUS', 'UMINUS'),
     ('right', 'CARET'),
-    ('left', 'LFLOOR', 'RFLOOR', 'LCEIL', 'RCEIL', 'SIN', 'COS', 'TAN', 'ATAN', 'SQRT', 'LN', 'LOG', 'EXP')
+    ('left', 'LFLOOR', 'RFLOOR', 'LCEIL', 'RCEIL', 'SIN', 'ASIN', 'COS', 'ACOS', 'TAN', 'ATAN'
+      , 'SEC', 'ASEC', 'CSC', 'ACSC', 'COT', 'ACOT', 'SQRT', 'LN', 'LOG', 'EXP')
 )
 
 def p_Main(t):
@@ -211,6 +212,42 @@ def p_FunctionExpression(t):
               | ATAN ID
 
               | ATAN NUMBER
+
+              | ASEC LPAREN Expression RPAREN
+
+              | ASEC ID
+
+              | ASEC NUMBER
+
+              | SEC LPAREN Expression RPAREN
+              
+              | SEC ID
+
+              | SEC NUMBER
+
+              | ACSC LPAREN Expression RPAREN
+
+              | ACSC ID
+
+              | ACSC NUMBER
+
+              | CSC LPAREN Expression RPAREN
+
+              | CSC ID
+
+              | CSC NUMBER
+
+              | COT LPAREN Expression RPAREN
+
+              | COT ID
+
+              | COT NUMBER
+                         
+              | ACOT LPAREN Expression RPAREN
+
+              | ACOT ID
+
+              | ACOT NUMBER
                          
               | LOG LPAREN Expression RPAREN
 
@@ -261,6 +298,30 @@ def p_FunctionExpression(t):
     elif _type == "COS":
         function = FunctionName(FunctionName.COS)
 
+    elif _type == "ATAN":
+        function = FunctionName(FunctionName.ATAN)
+
+    elif _type == "TAN":
+        function = FunctionName(FunctionName.TAN)
+
+    elif _type == "ASEC":
+        function = FunctionName(FunctionName.ASEC)
+
+    elif _type == "SEC":
+        function = FunctionName(FunctionName.SEC)
+
+    elif _type == "ACSC":
+        function = FunctionName(FunctionName.ACSC)
+
+    elif _type == "CSC":
+        function = FunctionName(FunctionName.CSC)
+
+    elif _type == "ACOT":
+        function = FunctionName(FunctionName.ACOT)
+
+    elif _type == "COT":
+        function = FunctionName(FunctionName.COT)
+
     elif _type == "LOG":
         function = FunctionName(FunctionName.LOG)
 
@@ -269,12 +330,6 @@ def p_FunctionExpression(t):
 
     elif _type == "EXP":
         function = FunctionName(FunctionName.EXP)
-
-    elif _type == "TAN":
-        function = FunctionName(FunctionName.TAN)
-
-    elif _type == "ATAN":
-        function = FunctionName(FunctionName.ATAN)
 
     else:
       function = FunctionName(Identifier(ID(t[1])))

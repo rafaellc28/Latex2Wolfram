@@ -24,8 +24,15 @@ class FunctionName(BaseExpression):
     SIN    = "sin"
     ACOS   = "acos"
     COS    = "cos"
-    TAN    = "tan"
     ATAN   = "atan"
+    TAN    = "tan"
+
+    ASEC   = "asec"
+    SEC    = "sec"
+    ACSC   = "acsc"
+    CSC    = "csc"
+    ACOT   = "acot"
+    COT    = "cot"
 
     def __init__(self, function):
         """
