@@ -27,6 +27,15 @@ class FunctionName(BaseExpression):
     ATAN   = "atan"
     TAN    = "tan"
 
+    ASINH   = "asinh"
+    SINH    = "sinh"
+    ACOSH   = "acosh"
+    COSH    = "cosh"
+    ATANH   = "atanh"
+    TANH    = "tanh"
+    ACOTH   = "acoth"
+    COTH    = "coth"
+
     ASEC   = "asec"
     SEC    = "sec"
     ACSC   = "acsc"

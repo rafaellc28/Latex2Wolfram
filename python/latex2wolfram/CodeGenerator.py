@@ -198,17 +198,35 @@ class CodeGenerator:
             elif node.function == FunctionName.ABS:
                 function = ABS
 
+            elif node.function == FunctionName.ASINH:
+                function = ASINH
+
+            elif node.function == FunctionName.SINH:
+                function = SINH
+
             elif node.function == FunctionName.ASIN:
                 function = ASIN
 
             elif node.function == FunctionName.SIN:
                 function = SIN
 
+            elif node.function == FunctionName.ACOSH:
+                function = ACOSH
+
+            elif node.function == FunctionName.COSH:
+                function = COSH
+
             elif node.function == FunctionName.ACOS:
                 function = ACOS
 
             elif node.function == FunctionName.COS:
                 function = COS
+
+            elif node.function == FunctionName.ATANH:
+                function = ATANH
+
+            elif node.function == FunctionName.TANH:
+                function = TANH
 
             elif node.function == FunctionName.ATAN:
                 function = ATAN
@@ -227,6 +245,12 @@ class CodeGenerator:
 
             elif node.function == FunctionName.CSC:
                 function = CSC
+
+            elif node.function == FunctionName.ACOTH:
+                function = ACOTH
+
+            elif node.function == FunctionName.COTH:
+                function = COTH
 
             elif node.function == FunctionName.ACOT:
                 function = ACOT

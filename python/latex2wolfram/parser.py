@@ -38,8 +38,8 @@ precedence = (
     ('left', 'TIMES', 'DIVIDE', 'MOD'),
     ('left', 'UPLUS', 'UMINUS'),
     ('right', 'CARET'),
-    ('left', 'LFLOOR', 'RFLOOR', 'LCEIL', 'RCEIL', 'SIN', 'ASIN', 'COS', 'ACOS', 'TAN', 'ATAN'
-      , 'SEC', 'ASEC', 'CSC', 'ACSC', 'COT', 'ACOT', 'SQRT', 'LN', 'LOG', 'EXP')
+    ('left', 'LFLOOR', 'RFLOOR', 'LCEIL', 'RCEIL', 'SINH', 'ASINH', 'SIN', 'ASIN', 'COSH', 'ACOSH', 'COS', 'ACOS', 'TANH', 'ATANH', 'TAN', 'ATAN'
+      , 'SEC', 'ASEC', 'CSC', 'ACSC', 'COTH', 'ACOTH', 'COT', 'ACOT', 'SQRT', 'LN', 'LOG', 'EXP')
 )
 
 def p_Main(t):
@@ -175,6 +175,18 @@ def p_FunctionExpression(t):
               | LCEIL Expression RCEIL
                          
               | PIPE Expression PIPE
+
+              | ASINH LPAREN Expression RPAREN
+              
+              | ASINH ID
+
+              | ASINH NUMBER
+
+              | SINH LPAREN Expression RPAREN
+              
+              | SINH ID
+
+              | SINH NUMBER
               
               | ASIN LPAREN Expression RPAREN
 
@@ -188,6 +200,18 @@ def p_FunctionExpression(t):
 
               | SIN NUMBER
 
+              | ACOSH LPAREN Expression RPAREN
+
+              | ACOSH ID
+
+              | ACOSH NUMBER
+
+              | COSH LPAREN Expression RPAREN
+
+              | COSH ID
+
+              | COSH NUMBER
+
               | ACOS LPAREN Expression RPAREN
 
               | ACOS ID
@@ -200,18 +224,30 @@ def p_FunctionExpression(t):
 
               | COS NUMBER
 
+              | ATANH LPAREN Expression RPAREN
+
+              | ATANH ID
+
+              | ATANH NUMBER
+
+              | TANH LPAREN Expression RPAREN
+
+              | TANH ID
+
+              | TANH NUMBER
+
+              | ATAN LPAREN Expression COMMA Expression RPAREN
+              | ATAN LPAREN Expression RPAREN
+  
+              | ATAN ID
+
+              | ATAN NUMBER
+
               | TAN LPAREN Expression RPAREN
 
               | TAN ID
 
               | TAN NUMBER
-                         
-              | ATAN LPAREN Expression COMMA Expression RPAREN
-              | ATAN LPAREN Expression RPAREN
-
-              | ATAN ID
-
-              | ATAN NUMBER
 
               | ASEC LPAREN Expression RPAREN
 
@@ -237,17 +273,29 @@ def p_FunctionExpression(t):
 
               | CSC NUMBER
 
-              | COT LPAREN Expression RPAREN
+              | ACOTH LPAREN Expression RPAREN
 
-              | COT ID
+              | ACOTH ID
 
-              | COT NUMBER
-                         
+              | ACOTH NUMBER
+
+              | COTH LPAREN Expression RPAREN
+
+              | COTH ID
+
+              | COTH NUMBER
+
               | ACOT LPAREN Expression RPAREN
 
               | ACOT ID
 
               | ACOT NUMBER
+
+              | COT LPAREN Expression RPAREN
+
+              | COT ID
+
+              | COT NUMBER
                          
               | LOG LPAREN Expression RPAREN
 
@@ -286,17 +334,35 @@ def p_FunctionExpression(t):
     elif _type == "PIPE":
         function = FunctionName(FunctionName.ABS)
 
+    elif _type == "ASINH":
+        function = FunctionName(FunctionName.ASINH)
+
+    elif _type == "SINH":
+        function = FunctionName(FunctionName.SINH)
+
     elif _type == "ASIN":
         function = FunctionName(FunctionName.ASIN)
 
     elif _type == "SIN":
         function = FunctionName(FunctionName.SIN)
 
+    elif _type == "ACOSH":
+        function = FunctionName(FunctionName.ACOSH)
+
+    elif _type == "COSH":
+        function = FunctionName(FunctionName.COSH)
+
     elif _type == "ACOS":
         function = FunctionName(FunctionName.ACOS)
 
     elif _type == "COS":
         function = FunctionName(FunctionName.COS)
+
+    elif _type == "ATANH":
+        function = FunctionName(FunctionName.ATANH)
+
+    elif _type == "TANH":
+        function = FunctionName(FunctionName.TANH)
 
     elif _type == "ATAN":
         function = FunctionName(FunctionName.ATAN)
@@ -315,6 +381,12 @@ def p_FunctionExpression(t):
 
     elif _type == "CSC":
         function = FunctionName(FunctionName.CSC)
+
+    elif _type == "ACOTH":
+        function = FunctionName(FunctionName.ACOTH)
+
+    elif _type == "COTH":
+        function = FunctionName(FunctionName.COTH)
 
     elif _type == "ACOT":
         function = FunctionName(FunctionName.ACOT)
