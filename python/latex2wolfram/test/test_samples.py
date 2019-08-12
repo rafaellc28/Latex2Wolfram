@@ -262,3 +262,6 @@ def test74():
 
 def test75():
 	check_test_num(75)
+
+def test76():
+	check_test_num(76)

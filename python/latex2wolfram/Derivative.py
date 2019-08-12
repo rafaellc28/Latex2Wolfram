@@ -2,12 +2,12 @@ from BaseExpression import *
 
 class Derivative(BaseExpression):
     """
-    Class representing an integral in the AST
+    Class representing an derivative in the AST
     """
 
     def __init__(self, differential, expression, order = None):
         """
-        Set the expression and the function
+        Set the expression
 
         :param differential : [a-zA-Z]
         :param expression   : Expression
@@ -43,6 +43,6 @@ class Derivative(BaseExpression):
 
     def generateCode(self, codeGenerator):
         """
-        Generate the Wolfram code for this expression with function
+        Generate the Wolfram code for this expression
         """
         return codeGenerator.generateCode(self)

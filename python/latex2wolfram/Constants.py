@@ -81,3 +81,7 @@ MAX   = "max"
 MIN   = "min"
 
 PI = "pi"
+
+LIMIT = "lim"
+APPROACHES = "->"
+AS = "as"

@@ -7,6 +7,7 @@ from IndexingExpression import *
 from Expression import *
 from Integral import *
 from Derivative import *
+from Limit import *
 from Identifier import *
 from FunctionName import *
 from UnaryOperator import *
@@ -23,7 +24,7 @@ import objects as obj
 precedence = (
     ('left', 'ID'),
     ('left', 'NUMBER', 'INFINITY'),
-    ('left', 'INTEGRAL', 'DIFFERENTIAL', 'D', 'PARTIAL'),
+    ('left', 'INTEGRAL', 'DIFFERENTIAL', 'D', 'PARTIAL', 'LIMIT', 'TO'),
     ('right', 'COMMA'),
     ('right', 'PIPE'),
     ('right', 'LPAREN', 'RPAREN'),
@@ -43,7 +44,8 @@ precedence = (
 )
 
 def p_Main(t):
-  '''MAIN : Expression'''
+  '''MAIN : Expression
+          | Constraint'''
   t[0] = Main(t[1])
 
 def p_Factor(t):
@@ -53,6 +55,7 @@ def p_Factor(t):
             | IteratedExpression
             | Derivative
             | Integral
+            | Limit
             | LPAREN Expression RPAREN'''
 
   if len(t) > 2:
@@ -519,6 +522,9 @@ def p_Derivative4(t):
     else:
       t[0] = Derivative(t[8][:1], t[4])
 
+def p_LIMIT(t):
+    '''Limit : LIMIT UNDERLINE LBRACE ID TO Expression RBRACE Expression'''
+    t[0] = Limit(Identifier(ID(t[4])), t[6], t[8])
 
 def p_ExpessionList(t):
   '''ExpressionList : ExpressionList COMMA Expression
@@ -532,7 +538,7 @@ def p_ExpessionList(t):
     t[0] = t[1]
 
 def p_Constraint(t):
-  '''Expression : Expression EQ Expression
+  '''Constraint : Expression EQ Expression
                 | Expression NEQ Expression
                 | Expression LT Expression
                 | Expression LE Expression

@@ -76,7 +76,9 @@ tokens = [
    'GE',
    'FACTORIAL',
    'PERCENT',
-   'PI'
+   'PI',
+   'LIMIT',
+   'TO'
 ] + list(reserved.values())
 
 # Define a rule so we can track line numbers
@@ -88,6 +90,14 @@ def t_newline(t):
 t_ignore  = ' \t\r'
 
 t_UNDERLINE = r'_'
+
+def t_LIMIT(t):
+   r'\\lim'
+   return t
+
+def t_TO(t):
+   r'\\to'
+   return t
 
 t_PI = r'\\pi'
 

@@ -169,6 +169,12 @@ class CodeGenerator:
 
         return differential + SPACE + expression
 
+    # Limit
+    def generateCode_Limit(self, node):
+
+        return LIMIT + SPACE + node.expression.generateCode(self) + SPACE + AS + SPACE + node.variable.generateCode(self) + SPACE + \
+                APPROACHES + SPACE + node.to.generateCode(self)
+
     # Value
     def generateCode_Value(self, node):
         return node.value.generateCode(self)
