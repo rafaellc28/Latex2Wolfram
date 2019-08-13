@@ -523,8 +523,22 @@ def p_Derivative4(t):
       t[0] = Derivative(t[8][:1], t[4])
 
 def p_LIMIT(t):
-    '''Limit : LIMIT UNDERLINE LBRACE ID TO Expression RBRACE Expression'''
-    t[0] = Limit(Identifier(ID(t[4])), t[6], t[8])
+    '''Limit : LIMIT UNDERLINE LBRACE ID TO Expression RBRACE Expression
+             | LIMIT UNDERLINE LBRACE ID TO Expression RBRACE Expression PLUS
+             | LIMIT UNDERLINE LBRACE ID TO Expression RBRACE Expression MINUS'''
+
+    if len(t) > 9:
+
+      if t.slice[9].type == "PLUS":
+        approachesFrom = Limit.FROM_RIGHT
+
+      else:
+        approachesFrom = Limit.FROM_LEFT
+
+      t[0] = Limit(Identifier(ID(t[4])), t[6], t[8], approachesFrom)
+
+    else:
+      t[0] = Limit(Identifier(ID(t[4])), t[6], t[8])
 
 def p_ExpessionList(t):
   '''ExpressionList : ExpressionList COMMA Expression

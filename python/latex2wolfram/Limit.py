@@ -5,26 +5,39 @@ class Limit(BaseExpression):
     Class representing an limit in the AST
     """
 
-    def __init__(self, variable, to, expression):
+    FROM_LEFT  = "fromLeft"
+    FROM_RIGHT = "fromRight"
+
+    def __init__(self, variable, to, expression, approachesFrom = None):
         """
         Set the expression
 
-        :param variable   : Identifier
-        :param to         : Expression
-        :param expression : Expression
+        :param variable       : Identifier
+        :param to             : Expression
+        :param expression     : Expression
+        :param approachesFrom : FROM_LEFT | FROM_RIGHT
         """
 
         BaseExpression.__init__(self)
 
-        self.variable   = variable
-        self.to         = to
-        self.expression = expression
+        self.variable       = variable
+        self.to             = to
+        self.expression     = expression
+        self.approachesFrom = approachesFrom
 
     def __str__(self):
         """
         to string
         """
-        return "Limit: " + str(self.expression) + " as " + str(self.variable) + " -> " + str(self.to)
+        res = "Limit: " + str(self.expression) + " as " + str(self.variable) + " -> " + str(self.to)
+
+        if self.approachesFrom == Limit.FROM_LEFT:
+            res += "-"
+
+        elif self.approachesFrom == Limit.FROM_RIGHT:
+            res += "+"
+
+        return res
 
     def getDependencies(self, codeGenerator):
         dep = self.variable.getDependencies(codeGenerator) + self.to.getDependencies(codeGenerator) + self.expression.getDependencies(codeGenerator)

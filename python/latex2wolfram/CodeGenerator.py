@@ -2,6 +2,7 @@ from Utils import *
 from Constants import *
 from Expression import *
 from Integral import *
+from Limit import *
 from FunctionName import *
 from UnaryOperator import *
 from BinaryOperator import *
@@ -172,8 +173,16 @@ class CodeGenerator:
     # Limit
     def generateCode_Limit(self, node):
 
-        return LIMIT + SPACE + node.expression.generateCode(self) + SPACE + AS + SPACE + node.variable.generateCode(self) + SPACE + \
+        res = LIMIT + SPACE + node.expression.generateCode(self) + SPACE + AS + SPACE + node.variable.generateCode(self) + SPACE + \
                 APPROACHES + SPACE + node.to.generateCode(self)
+
+        if node.approachesFrom == Limit.FROM_LEFT:
+            res += MINUS
+
+        elif node.approachesFrom == Limit.FROM_RIGHT:
+            res += PLUS
+
+        return res
 
     # Value
     def generateCode_Value(self, node):
