@@ -78,7 +78,8 @@ tokens = [
    'PERCENT',
    'PI',
    'LIMIT',
-   'TO'
+   'TO',
+   'PRIME'
 ] + list(reserved.values())
 
 # Define a rule so we can track line numbers
@@ -90,6 +91,10 @@ def t_newline(t):
 t_ignore  = ' \t\r'
 
 t_UNDERLINE = r'_'
+
+def t_PRIME(t):
+   r'\\prime|\''
+   return t
 
 def t_LIMIT(t):
    r'\\lim'
