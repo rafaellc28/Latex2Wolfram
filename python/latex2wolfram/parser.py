@@ -7,6 +7,7 @@ from IndexingExpression import *
 from Expression import *
 from Integral import *
 from Derivative import *
+from DifferentialVariable import *
 from Limit import *
 from Identifier import *
 from FunctionName import *
@@ -29,7 +30,7 @@ precedence = (
     ('right', 'PIPE'),
     ('right', 'LPAREN', 'RPAREN'),
     ('right', 'LBRACE', 'RBRACE', 'LBRACKET', 'RBRACKET', 'FRAC'),
-    ('left', 'PI'),
+    ('left', 'PI', 'PRIME'),
     ('right', 'LE', 'GE', 'LT', 'GT', 'EQ', 'NEQ'),
     ('left', 'IN'),
     ('right', 'DOTS'),
@@ -56,6 +57,7 @@ def p_Factor(t):
             | Derivative
             | Integral
             | Limit
+            | DifferentialVariable
             | LPAREN Expression RPAREN'''
 
   if len(t) > 2:
@@ -522,6 +524,16 @@ def p_Derivative4(t):
     else:
       t[0] = Derivative(t[8][:1], t[4])
 
+def p_DifferentialVariable(t):
+  '''DifferentialVariable : ID PrimeList LPAREN ExpressionList RPAREN
+                          | ID PrimeList'''
+
+  if len(t) > 3:
+    t[0] = DifferentialVariable(Identifier(ID(t[1])), t[2], t[4])
+
+  else:
+    t[0] = DifferentialVariable(Identifier(ID(t[1])), t[2])
+
 def p_LIMIT(t):
     '''Limit : LIMIT UNDERLINE LBRACE ID TO Expression RBRACE Expression
              | LIMIT UNDERLINE LBRACE ID TO Expression PLUS RBRACE Expression
@@ -564,6 +576,16 @@ def p_ExpessionList(t):
   else:
     t[1].add(t[3])
     t[0] = t[1]
+
+def p_PrimeList(t):
+  '''PrimeList : PrimeList PRIME
+               | PRIME'''
+
+  if len(t) == 2:
+    t[0] = [Symbol(Symbol.PRIME)]
+
+  else:
+    t[0] = t[1] + [Symbol(Symbol.PRIME)]
 
 def p_Constraint(t):
   '''Constraint : Expression EQ Expression

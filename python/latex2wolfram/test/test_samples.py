@@ -277,3 +277,18 @@ def test79():
 
 def test80():
 	check_test_num(80)
+
+def test81():
+	check_test_num(81)
+
+def test82():
+	check_test_num(82)
+
+def test83():
+	check_test_num(83)
+
+def test84():
+	check_test_num(84)
+
+def test85():
+	check_test_num(85)

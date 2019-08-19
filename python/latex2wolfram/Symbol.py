@@ -6,6 +6,7 @@ class Symbol(BaseExpression):
     """
 
     PI = "pi"
+    PRIME = "prime"
 
     def __init__(self, symbol):
         """

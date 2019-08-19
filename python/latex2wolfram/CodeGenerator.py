@@ -184,6 +184,16 @@ class CodeGenerator:
 
         return res
 
+    # Differential Variable
+    def generateCode_DifferentialVariable(self, node):
+
+        res = node.identifier.generateCode(self) + EMPTY_STRING.join(map(lambda el: el.generateCode(self), node.primeList))
+
+        if node.argumentList:
+            res += BEGIN_ARGUMENT_LIST + node.argumentList.generateCode(self) + END_ARGUMENT_LIST
+
+        return res
+
     # Value
     def generateCode_Value(self, node):
         return node.value.generateCode(self)
@@ -374,6 +384,9 @@ class CodeGenerator:
 
         if node.symbol == Symbol.PI:
             symbol = PI
+
+        elif node.symbol == Symbol.PRIME:
+            symbol = PRIME
             
         return symbol
 
