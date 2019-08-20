@@ -20,6 +20,7 @@ from Symbol import *
 from ID import *
 from SyntaxException import *
 
+import math
 import objects as obj
 
 precedence = (
@@ -58,9 +59,14 @@ def p_Factor(t):
             | Integral
             | Limit
             | DifferentialVariable
+            | ID CARET LBRACE Expression RBRACE
             | LPAREN Expression RPAREN'''
 
-  if len(t) > 2:
+  if len(t) > 4:
+    t[1] = Identifier(ID(t[1]))
+    t[0] = ExpressionWithBinaryOperation(BinaryOperator(BinaryOperator.POW), t[1], t[4])
+
+  elif len(t) > 2:
     t[0] = ExpressionBetweenParenthesis(t[2])
     
   else:
@@ -524,7 +530,7 @@ def p_Derivative4(t):
     else:
       t[0] = Derivative(t[8][:1], t[4])
 
-def p_DifferentialVariable(t):
+def p_DifferentialVariable1(t):
   '''DifferentialVariable : ID PrimeList LPAREN ExpressionList RPAREN
                           | ID PrimeList'''
 
@@ -533,6 +539,26 @@ def p_DifferentialVariable(t):
 
   else:
     t[0] = DifferentialVariable(Identifier(ID(t[1])), t[2])
+
+def p_DifferentialVariable2(t):
+  '''DifferentialVariable : ID CARET LBRACE LPAREN NUMBER RPAREN RBRACE LPAREN ExpressionList RPAREN
+                          | ID CARET LBRACE LPAREN NUMBER RPAREN RBRACE'''
+
+  try:
+    order = math.floor(float(t[5].getNumber()))
+  except Exception as msg:
+    order = 0
+
+  if order > 0:
+    primeList = [Symbol(Symbol.PRIME)]*int(order)
+  else:
+    primeList = []
+
+  if len(t) > 8:
+    t[0] = DifferentialVariable(Identifier(ID(t[1])), primeList, t[9])
+
+  else:
+    t[0] = DifferentialVariable(Identifier(ID(t[1])), primeList)
 
 def p_LIMIT(t):
     '''Limit : LIMIT UNDERLINE LBRACE ID TO Expression RBRACE Expression
