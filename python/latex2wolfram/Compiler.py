@@ -3,11 +3,14 @@
 import re
 import logging
 
+import ply.lex as lex
+import ply.yacc as yacc
+import lexer as lexer_mod
+import parser as parser_mod
+
 from SyntaxException import *
 from CodeGenerator import *
 from Identifier import *
-
-from objects import *
 
 class Compiler:
 
@@ -23,6 +26,10 @@ class Compiler:
 		)
 		self.log = logging.getLogger()
 
+		self.lexer = lex.lex(module=lexer_mod, debug=False, optimize=False)
+		self.parser = yacc.yacc(module=parser_mod, debug=True, optimize=False)
+		self.parser.defaulted_states = {}
+
 	def compile(self, doc):
 
 		res = ""
@@ -33,7 +40,7 @@ class Compiler:
 		new_comma = []
 
 		try:
-			result = parser.parse(doc, debug=self.log)
+			result = self.parser.parse(doc, debug=self.log)
 
 			if not self.DEBUG:
 				try:
@@ -59,6 +66,7 @@ class Compiler:
 			else:
 				
 				lineNum = msg[0]-1
+				print("lineNum", lineNum, msg)
 				line = lines[lineNum]
 
 				totalCharLinesAbove = 0

@@ -15,7 +15,7 @@ def check_test(name1, name2):
 	expected = expected[:-1] # remove last \n
 
 	doc = f1.read()
-	#compiler = Compiler()
+	compiler = Compiler()
 	actual = compiler.compile(doc)
 
 	expected=expected.splitlines(True)
@@ -307,3 +307,9 @@ def test89():
 
 def test90():
 	check_test_num(90)
+
+def test91():
+	check_test_num(91)
+
+def test92():
+	check_test_num(92)

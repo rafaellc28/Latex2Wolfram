@@ -20,9 +20,6 @@ from Symbol import *
 from ID import *
 from SyntaxException import *
 
-import math
-import objects as obj
-
 precedence = (
     ('left', 'ID'),
     ('left', 'NUMBER', 'INFINITY'),
@@ -544,21 +541,34 @@ def p_DifferentialVariable2(t):
   '''DifferentialVariable : ID CARET LBRACE LPAREN NUMBER RPAREN RBRACE LPAREN ExpressionList RPAREN
                           | ID CARET LBRACE LPAREN NUMBER RPAREN RBRACE'''
 
+  isOrder = False
+
   try:
-    order = math.floor(float(t[5].getNumber()))
+    order = int(t[5].getNumber())
+    isOrder = True
   except Exception as msg:
-    order = 0
+    order = t[5]
 
-  if order > 0:
-    primeList = [Symbol(Symbol.PRIME)]*int(order)
+  if isOrder:
+
+    if order > 0:
+      primeList = [Symbol(Symbol.PRIME)]*int(order)
+    else:
+      primeList = []
+
+    if len(t) > 8:
+      t[0] = DifferentialVariable(Identifier(ID(t[1])), primeList, t[9])
+
+    else:
+      t[0] = DifferentialVariable(Identifier(ID(t[1])), primeList)
+
   else:
-    primeList = []
+    if len(t) > 8:
+      raise SyntaxException(t.slice[5].lineno, t.slice[5].lexpos, t.slice[5].value, t.slice[5])
 
-  if len(t) > 8:
-    t[0] = DifferentialVariable(Identifier(ID(t[1])), primeList, t[9])
+    else:
+      t[0] = ExpressionWithBinaryOperation(BinaryOperator(BinaryOperator.POW), Identifier(ID(t[1])), t[5])
 
-  else:
-    t[0] = DifferentialVariable(Identifier(ID(t[1])), primeList)
 
 def p_LIMIT(t):
     '''Limit : LIMIT UNDERLINE LBRACE ID TO Expression RBRACE Expression
