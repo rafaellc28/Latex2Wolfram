@@ -512,10 +512,10 @@ def p_Derivative3(t):
                   | FRAC LBRACE PARTIAL CARET LBRACE NUMBER RBRACE RBRACE LBRACE PARTIAL ID CARET LBRACE NUMBER RBRACE RBRACE Expression'''
 
     if len(t) > 10:
-      t[0] = Derivative(t[11][:1], t[17], t[6])
+      t[0] = Derivative(t[11], t[17], t[6])
 
     else:
-      t[0] = Derivative(t[7][:1], t[9])
+      t[0] = Derivative(t[7], t[9])
 
 def p_Derivative4(t):
     '''Derivative : FRAC LBRACE PARTIAL Expression RBRACE LBRACE PARTIAL ID RBRACE

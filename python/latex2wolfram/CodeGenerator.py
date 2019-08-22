@@ -157,9 +157,9 @@ class CodeGenerator:
 
         if node.order:
             order = node.order.generateCode(self)
-            differential = D + POW + order + DIV + D + node.differential + POW + order
+            differential = D + POW + order + DIV + D + node.differential[:1] + POW + order
         else:
-            differential = D + DIV + D + node.differential
+            differential = D + DIV + D + node.differential[:1]
 
         expression = node.expression.generateCode(self)
 

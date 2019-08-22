@@ -9,7 +9,7 @@ class Derivative(BaseExpression):
         """
         Set the expression
 
-        :param differential : [a-zA-Z]
+        :param differential : [a-zA-Z]+
         :param expression   : Expression
         :param order        : Number
         """
