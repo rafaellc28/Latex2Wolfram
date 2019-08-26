@@ -39,7 +39,7 @@ precedence = (
     ('left', 'UPLUS', 'UMINUS'),
     ('right', 'CARET'),
     ('left', 'LFLOOR', 'RFLOOR', 'LCEIL', 'RCEIL', 'SINH', 'ASINH', 'SIN', 'ASIN', 'COSH', 'ACOSH', 'COS', 'ACOS', 'TANH', 'ATANH', 'TAN', 'ATAN'
-      , 'SEC', 'ASEC', 'CSC', 'ACSC', 'COTH', 'ACOTH', 'COT', 'ACOT', 'SQRT', 'LN', 'LOG', 'EXP')
+      , 'SEC', 'ASEC', 'CSC', 'ACSC', 'COTH', 'ACOTH', 'COT', 'ACOT', 'SQRT', 'LN', 'LOG', 'EXP', 'GCD')
 )
 
 def p_Main(t):
@@ -325,6 +325,12 @@ def p_FunctionExpression(t):
 
               | EXP NUMBER
 
+              | GCD LPAREN ExpressionList RPAREN
+
+              | GCD ID
+
+              | GCD NUMBER
+
               | ID LPAREN ExpressionList RPAREN
 
               | ID LPAREN RPAREN'''
@@ -410,6 +416,9 @@ def p_FunctionExpression(t):
 
     elif _type == "EXP":
         function = FunctionName(FunctionName.EXP)
+
+    elif _type == "GCD":
+        function = FunctionName(FunctionName.GCD)
 
     else:
       function = FunctionName(Identifier(ID(t[1])))

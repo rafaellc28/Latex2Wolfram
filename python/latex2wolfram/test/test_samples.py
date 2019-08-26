@@ -313,3 +313,6 @@ def test91():
 
 def test92():
 	check_test_num(92)
+
+def test93():
+	check_test_num(93)

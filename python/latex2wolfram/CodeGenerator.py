@@ -292,6 +292,9 @@ class CodeGenerator:
             elif node.function == FunctionName.EXP:
                 function = EXP
 
+            elif node.function == FunctionName.GCD:
+                function = GCD
+
         return function
 
     # UnaryOperator
