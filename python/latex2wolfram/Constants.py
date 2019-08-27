@@ -28,6 +28,7 @@ GE=">="
 INFINITY="infinity"
 
 GCD    = "gcd"
+DEG    = "deg"
 ABS    = "abs"
 CEIL   = "ceil"
 FLOOR  = "floor"

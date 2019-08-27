@@ -80,7 +80,8 @@ tokens = [
    'LIMIT',
    'TO',
    'PRIME',
-   'GCD'
+   'GCD',
+   'DEG'
 ] + list(reserved.values())
 
 # Define a rule so we can track line numbers
@@ -205,6 +206,7 @@ t_LOG   = r'\\log'
 t_LN    = r'\\ln'
 t_EXP   = r'\\exp'
 t_GCD   = r'\\gcd'
+t_DEG   = r'\\deg'
 
 def t_INTEGRAL(t):
    r'\\int'

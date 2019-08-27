@@ -20,6 +20,7 @@ class FunctionName(BaseExpression):
     LOG10  = "log10"
     SQRT   = "sqrt"
     GCD    = "gcd"
+    DEG    = "deg"
 
     ASIN   = "asin"
     SIN    = "sin"

@@ -331,6 +331,12 @@ def p_FunctionExpression(t):
 
               | GCD NUMBER
 
+              | DEG LPAREN ExpressionList RPAREN
+
+              | DEG ID
+
+              | DEG NUMBER
+
               | ID LPAREN ExpressionList RPAREN
 
               | ID LPAREN RPAREN'''
@@ -419,6 +425,9 @@ def p_FunctionExpression(t):
 
     elif _type == "GCD":
         function = FunctionName(FunctionName.GCD)
+
+    elif _type == "DEG":
+        function = FunctionName(FunctionName.DEG)
 
     else:
       function = FunctionName(Identifier(ID(t[1])))
