@@ -8,6 +8,7 @@ from Expression import *
 from Integral import *
 from Derivative import *
 from DifferentialVariable import *
+from ChooseExpression import *
 from Limit import *
 from Identifier import *
 from FunctionName import *
@@ -56,6 +57,7 @@ def p_Factor(t):
             | Integral
             | Limit
             | DifferentialVariable
+            | ChooseExpression
             | ID CARET LBRACE Expression RBRACE
             | LPAREN Expression RPAREN'''
 
@@ -587,6 +589,9 @@ def p_DifferentialVariable2(t):
     else:
       t[0] = ExpressionWithBinaryOperation(BinaryOperator(BinaryOperator.POW), Identifier(ID(t[1])), t[5])
 
+def p_Choose(t):
+  '''ChooseExpression : LBRACE Expression CHOOSE Expression RBRACE'''
+  t[0] = ChooseExpression(t[2], t[4])
 
 def p_LIMIT(t):
     '''Limit : LIMIT UNDERLINE LBRACE ID TO Expression RBRACE Expression

@@ -194,6 +194,12 @@ class CodeGenerator:
 
         return res
 
+    # Choose Expression
+    def generateCode_ChooseExpression(self, node):
+
+        return BEGIN_ARGUMENT_LIST + self._getGeneratedExpression(node.expression1) + SPACE + CHOOSE + SPACE + \
+            node.expression2.generateCode(self) + END_ARGUMENT_LIST
+
     # Value
     def generateCode_Value(self, node):
         return node.value.generateCode(self)

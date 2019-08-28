@@ -27,6 +27,7 @@ GE=">="
 
 INFINITY="infinity"
 
+CHOOSE = "choose"
 GCD    = "gcd"
 DEG    = "deg"
 ABS    = "abs"
