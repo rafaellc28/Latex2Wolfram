@@ -82,7 +82,8 @@ tokens = [
    'PRIME',
    'GCD',
    'DEG',
-   'CHOOSE'
+   'CHOOSE',
+   'GRADIENT'
 ] + list(reserved.values())
 
 # Define a rule so we can track line numbers
@@ -209,6 +210,7 @@ t_EXP    = r'\\exp'
 t_GCD    = r'\\gcd'
 t_DEG    = r'\\deg'
 t_CHOOSE = r'\\choose'
+t_GRADIENT = r'\\nabla'
 
 def t_INTEGRAL(t):
    r'\\int'

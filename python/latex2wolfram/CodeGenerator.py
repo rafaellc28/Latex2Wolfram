@@ -304,6 +304,9 @@ class CodeGenerator:
             elif node.function == FunctionName.DEG:
                 function = DEG
 
+            elif node.function == FunctionName.GRAD:
+                function = GRAD
+
         return function
 
     # UnaryOperator

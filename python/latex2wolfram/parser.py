@@ -36,11 +36,11 @@ precedence = (
     ('left', 'SUM', 'PROD'),
     ('left', 'FACTORIAL'),
     ('left', 'PLUS', 'MINUS'),
-    ('left', 'TIMES', 'DIVIDE', 'MOD'),
+    ('left', 'TIMES', 'DIVIDE', 'MOD', 'CHOOSE'),
     ('left', 'UPLUS', 'UMINUS'),
     ('right', 'CARET'),
     ('left', 'LFLOOR', 'RFLOOR', 'LCEIL', 'RCEIL', 'SINH', 'ASINH', 'SIN', 'ASIN', 'COSH', 'ACOSH', 'COS', 'ACOS', 'TANH', 'ATANH', 'TAN', 'ATAN'
-      , 'SEC', 'ASEC', 'CSC', 'ACSC', 'COTH', 'ACOTH', 'COT', 'ACOT', 'SQRT', 'LN', 'LOG', 'EXP', 'GCD')
+      , 'SEC', 'ASEC', 'CSC', 'ACSC', 'COTH', 'ACOTH', 'COT', 'ACOT', 'SQRT', 'LN', 'LOG', 'EXP', 'GCD', 'DEG', 'GRADIENT')
 )
 
 def p_Main(t):
@@ -339,6 +339,12 @@ def p_FunctionExpression(t):
 
               | DEG NUMBER
 
+              | GRADIENT LPAREN ExpressionList RPAREN
+
+              | GRADIENT ID
+
+              | GRADIENT NUMBER
+
               | ID LPAREN ExpressionList RPAREN
 
               | ID LPAREN RPAREN'''
@@ -430,6 +436,9 @@ def p_FunctionExpression(t):
 
     elif _type == "DEG":
         function = FunctionName(FunctionName.DEG)
+
+    elif _type == "GRADIENT":
+        function = FunctionName(FunctionName.GRAD)
 
     else:
       function = FunctionName(Identifier(ID(t[1])))

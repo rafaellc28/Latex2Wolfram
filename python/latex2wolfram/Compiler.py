@@ -66,7 +66,6 @@ class Compiler:
 			else:
 				
 				lineNum = msg[0]-1
-				print("lineNum", lineNum, msg)
 				line = lines[lineNum]
 
 				totalCharLinesAbove = 0
