@@ -24,6 +24,7 @@ from SyntaxException import *
 precedence = (
     ('left', 'ID'),
     ('left', 'NUMBER', 'INFINITY'),
+    ('left', 'BEGIN_CASE', 'END_CASE', 'BACKSLASHES'),
     ('left', 'INTEGRAL', 'DIFFERENTIAL', 'D', 'PARTIAL', 'LIMIT', 'TO'),
     ('right', 'COMMA'),
     ('right', 'PIPE'),
@@ -45,7 +46,8 @@ precedence = (
 
 def p_Main(t):
   '''MAIN : Expression
-          | Constraint'''
+          | Constraint
+          | ConstraintSystem'''
   t[0] = Main(t[1])
 
 def p_Factor(t):
@@ -633,6 +635,22 @@ def p_LIMIT(t):
 
     else:
       t[0] = Limit(Identifier(ID(t[4])), t[6], t[8])
+
+def p_ConstraintSystem(t):
+  '''ConstraintSystem : BEGIN_CASE Constraints END_CASE
+                      | BEGIN_CASE Constraints BACKSLASHES END_CASE'''
+  t[0] = t[2]
+
+def p_Constraints(t):
+  '''Constraints : Constraints BACKSLASHES Constraint
+                 | Constraint'''
+
+  if len(t) == 2:
+    t[0] = Constraints([t[1]])
+
+  else:
+    t[1].add(t[3])
+    t[0] = t[1]
 
 def p_ExpessionList(t):
   '''ExpressionList : ExpressionList COMMA Expression

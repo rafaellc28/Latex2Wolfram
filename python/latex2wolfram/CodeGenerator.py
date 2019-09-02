@@ -125,6 +125,9 @@ class CodeGenerator:
     def generateCode_Constraint(self, node):
         return node.expression1.generateCode(self) + SPACE + node.op.generateCode(self) + SPACE + node.expression2.generateCode(self)
 
+    def generateCode_Constraints(self, node):
+        return (COMMA+SPACE).join(map(lambda el: el.generateCode(self), node.values))
+
     # Integral
     def generateCode_Integral(self, node):
 

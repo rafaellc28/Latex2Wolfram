@@ -83,7 +83,10 @@ tokens = [
    'GCD',
    'DEG',
    'CHOOSE',
-   'GRADIENT'
+   'GRADIENT',
+   'BEGIN_CASE',
+   'END_CASE',
+   'BACKSLASHES'
 ] + list(reserved.values())
 
 # Define a rule so we can track line numbers
@@ -212,6 +215,18 @@ t_DEG    = r'\\deg'
 t_CHOOSE = r'\\choose'
 t_GRADIENT = r'\\nabla'
 
+def t_BEGIN_CASE(t):
+   r'\\begin\{cases\}'
+   return t
+
+def t_END_CASE(t):
+   r'\\end\{cases\}'
+   return t
+
+def t_BACKSLASHES(t):
+   r'\\\\'
+   return t
+
 def t_INTEGRAL(t):
    r'\\int'
    return t
@@ -234,14 +249,6 @@ def t_PIPE(t):
 
 def t_ignore_LIMITS(t):
    r'\\limits'
-   pass
-
-def t_ignore_BEGIN(t):
-   r'\\begin\{[a-zA-Z][a-zA-Z0-9]*[\*]?\}[\{\[][a-zA-Z0-9][a-zA-Z0-9]*[\*]?[\}\]]|\\begin\{[a-zA-Z][a-zA-Z0-9]*[\*]?\}'
-   pass
-
-def t_ignore_END(t):
-   r'\\end\{[a-zA-Z][a-zA-Z0-9]*[\*]?\}[\{\[][a-zA-Z0-9][a-zA-Z0-9]*[\*]?[\}\]]|\\end\{[a-zA-Z][a-zA-Z0-9]*[\*]?\}'
    pass
 
 def t_ignore_BEGIN_EQUATION(t):
@@ -281,10 +288,6 @@ def t_ignored_RIGHT(t):
    pass
 
 t_COMMA = r','
-
-def t_ignore_BACKSLASHES(t):
-   r'\\\\'
-   pass
 
 def t_ID(t):
    r'\\text\{\s*(\\_)*[a-zA-Z]((\\_)*[a-zA-Z0-9]*)*\s*\}|(\\_)*[a-zA-Z]((\\_)*[a-zA-Z0-9]*)*'

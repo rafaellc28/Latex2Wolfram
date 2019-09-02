@@ -432,19 +432,19 @@ class ExpressionList(Expression):
         return "ExpressionList: " + "("+", ".join(map(lambda el: str(el), self.values))+")"
 
     def getDependencies(self, codeGenerator):
-        return self.values.getDependencies(codeGenerator)
+        return list(set(map(lambda el: el.getDependencies(codeGenerator), self.values)))
 
     def add(self, value):
         self.values.append(value)
 
     def setupEnvironment(self, codeSetup):
         """
-        Generate the Wolfram code for the identifiers and sets used in this conditional expression
+        Generate the Wolfram code for the identifiers and sets used in this expression
         """
         codeSetup.setupEnvironment(self)
 
     def generateCode(self, codeGenerator):
         """
-        Generate the Wolfram code for this conditional expression
+        Generate the Wolfram code for this expression
         """
         return codeGenerator.generateCode(self)

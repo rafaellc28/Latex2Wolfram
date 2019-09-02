@@ -325,3 +325,6 @@ def test95():
 
 def test96():
 	check_test_num(96)
+
+def test97():
+	check_test_num(97)
