@@ -128,6 +128,13 @@ class CodeGenerator:
     def generateCode_Constraints(self, node):
         return (COMMA+SPACE).join(map(lambda el: el.generateCode(self), node.values))
 
+    # Matrix
+    def generateCode_ExpressionsRows(self, node):
+        return BEGIN_MATRIX + (COMMA+SPACE).join(map(lambda el: el.generateCode(self), node.values)) + END_MATRIX
+
+    def generateCode_ExpressionsRow(self, node):
+        return BEGIN_VECTOR + (COMMA+SPACE).join(map(lambda el: el.generateCode(self), node.values)) + END_VECTOR
+
     # Integral
     def generateCode_Integral(self, node):
 

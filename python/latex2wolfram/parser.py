@@ -24,7 +24,7 @@ from SyntaxException import *
 precedence = (
     ('left', 'ID'),
     ('left', 'NUMBER', 'INFINITY'),
-    ('left', 'BEGIN_CASE', 'END_CASE', 'BACKSLASHES'),
+    ('left', 'BEGIN_CASE', 'END_CASE', 'BEGIN_BMATRIX', 'END_BMATRIX', 'BEGIN_PMATRIX', 'END_PMATRIX', 'BACKSLASHES'),
     ('left', 'INTEGRAL', 'DIFFERENTIAL', 'D', 'PARTIAL', 'LIMIT', 'TO'),
     ('right', 'COMMA'),
     ('right', 'PIPE'),
@@ -60,6 +60,7 @@ def p_Factor(t):
             | Limit
             | DifferentialVariable
             | ChooseExpression
+            | Matrix
             | ID CARET LBRACE Expression RBRACE
             | LPAREN Expression RPAREN'''
 
@@ -647,6 +648,37 @@ def p_Constraints(t):
 
   if len(t) == 2:
     t[0] = Constraints([t[1]])
+
+  else:
+    t[1].add(t[3])
+    t[0] = t[1]
+
+def p_Matrix(t):
+  '''Matrix : BEGIN_BMATRIX ExpressionsRows END_BMATRIX
+            | BEGIN_BMATRIX ExpressionsRows BACKSLASHES END_BMATRIX
+
+            | BEGIN_PMATRIX ExpressionsRows END_PMATRIX
+            | BEGIN_PMATRIX ExpressionsRows BACKSLASHES END_PMATRIX'''
+
+  t[0] = t[2]
+
+def p_ExpressionsRow(t):
+  '''ExpressionsRow : ExpressionsRow AMPERSAND Expression
+                    | Expression'''
+
+  if len(t) == 2:
+    t[0] = ExpressionsRow([t[1]])
+
+  else:
+    t[1].add(t[3])
+    t[0] = t[1]
+
+def p_ExpressionsRows(t):
+  '''ExpressionsRows : ExpressionsRows BACKSLASHES ExpressionsRow
+                     | ExpressionsRow'''
+
+  if len(t) == 2:
+    t[0] = ExpressionsRow([t[1]])
 
   else:
     t[1].add(t[3])

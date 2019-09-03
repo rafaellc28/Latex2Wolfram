@@ -86,7 +86,12 @@ tokens = [
    'GRADIENT',
    'BEGIN_CASE',
    'END_CASE',
-   'BACKSLASHES'
+   'BACKSLASHES',
+   'BEGIN_BMATRIX',
+   'END_BMATRIX',
+   'BEGIN_PMATRIX',
+   'END_PMATRIX',
+   'AMPERSAND'
 ] + list(reserved.values())
 
 # Define a rule so we can track line numbers
@@ -214,6 +219,7 @@ t_GCD    = r'\\gcd'
 t_DEG    = r'\\deg'
 t_CHOOSE = r'\\choose'
 t_GRADIENT = r'\\nabla'
+t_AMPERSAND = r'&'
 
 def t_BEGIN_CASE(t):
    r'\\begin\{cases\}'
@@ -221,6 +227,22 @@ def t_BEGIN_CASE(t):
 
 def t_END_CASE(t):
    r'\\end\{cases\}'
+   return t
+
+def t_BEGIN_BMATRIX(t):
+   r'\\begin\{bmatrix\}'
+   return t
+
+def t_END_BMATRIX(t):
+   r'\\end\{bmatrix\}'
+   return t
+
+def t_BEGIN_PMATRIX(t):
+   r'\\begin\{pmatrix\}'
+   return t
+
+def t_END_PMATRIX(t):
+   r'\\end\{pmatrix\}'
    return t
 
 def t_BACKSLASHES(t):
