@@ -312,10 +312,13 @@ class CodeGenerator:
                 function = GCD
 
             elif node.function == FunctionName.DEG:
-                function = DEG
+                function = DEGREE
 
             elif node.function == FunctionName.GRAD:
-                function = GRAD
+                function = GRADIENT
+
+            elif node.function == FunctionName.DET:
+                function = DETERMINANT
 
         return function
 

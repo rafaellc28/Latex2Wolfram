@@ -41,7 +41,7 @@ precedence = (
     ('left', 'UPLUS', 'UMINUS'),
     ('right', 'CARET'),
     ('left', 'LFLOOR', 'RFLOOR', 'LCEIL', 'RCEIL', 'SINH', 'ASINH', 'SIN', 'ASIN', 'COSH', 'ACOSH', 'COS', 'ACOS', 'TANH', 'ATANH', 'TAN', 'ATAN'
-      , 'SEC', 'ASEC', 'CSC', 'ACSC', 'COTH', 'ACOTH', 'COT', 'ACOT', 'SQRT', 'LN', 'LOG', 'EXP', 'GCD', 'DEG', 'GRADIENT')
+      , 'SEC', 'ASEC', 'CSC', 'ACSC', 'COTH', 'ACOTH', 'COT', 'ACOT', 'SQRT', 'LN', 'LOG', 'EXP', 'GCD', 'DEG', 'GRADIENT', 'DETERMINANT')
 )
 
 def p_Main(t):
@@ -61,6 +61,7 @@ def p_Factor(t):
             | DifferentialVariable
             | ChooseExpression
             | Matrix
+            | Determinant
             | ID CARET LBRACE Expression RBRACE
             | LPAREN Expression RPAREN'''
 
@@ -348,6 +349,10 @@ def p_FunctionExpression(t):
 
               | GRADIENT NUMBER
 
+              | DETERMINANT LPAREN Matrix RPAREN
+
+              | DETERMINANT Matrix
+
               | ID LPAREN ExpressionList RPAREN
 
               | ID LPAREN RPAREN'''
@@ -442,6 +447,9 @@ def p_FunctionExpression(t):
 
     elif _type == "GRADIENT":
         function = FunctionName(FunctionName.GRAD)
+
+    elif _type == "DETERMINANT":
+        function = FunctionName(FunctionName.DET)
 
     else:
       function = FunctionName(Identifier(ID(t[1])))
@@ -652,6 +660,12 @@ def p_Constraints(t):
   else:
     t[1].add(t[3])
     t[0] = t[1]
+
+def p_Determinant(t):
+  '''Determinant : BEGIN_VMATRIX ExpressionsRows END_VMATRIX
+                 | BEGIN_VMATRIX ExpressionsRows BACKSLASHES END_VMATRIX'''
+
+  t[0] = ExpressionWithFunction(FunctionName.DET, t[2])
 
 def p_Matrix(t):
   '''Matrix : BEGIN_BMATRIX ExpressionsRows END_BMATRIX

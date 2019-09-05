@@ -340,3 +340,12 @@ def test100():
 
 def test101():
 	check_test_num(101)
+
+def test102():
+	check_test_num(102)
+
+def test103():
+	check_test_num(103)
+
+def test104():
+	check_test_num(104)
