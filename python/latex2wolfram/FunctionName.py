@@ -23,6 +23,7 @@ class FunctionName(BaseExpression):
     DEG    = "deg"
     GRAD   = "grad"
     DET    = "det"
+    NORM   = "norm"
 
     ASIN   = "asin"
     SIN    = "sin"

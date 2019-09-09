@@ -62,6 +62,7 @@ def p_Factor(t):
             | ChooseExpression
             | Matrix
             | Determinant
+            | Norm
             | ID CARET LBRACE Expression RBRACE
             | LPAREN Expression RPAREN'''
 
@@ -666,6 +667,12 @@ def p_Determinant(t):
                  | BEGIN_VMATRIX ExpressionsRows BACKSLASHES END_VMATRIX'''
 
   t[0] = ExpressionWithFunction(FunctionName.DET, t[2])
+
+def p_Norm(t):
+  '''Norm : BEGIN_NMATRIX ExpressionsRows END_NMATRIX
+          | BEGIN_NMATRIX ExpressionsRows BACKSLASHES END_NMATRIX'''
+
+  t[0] = ExpressionWithFunction(FunctionName.NORM, t[2])
 
 def p_Matrix(t):
   '''Matrix : BEGIN_BMATRIX ExpressionsRows END_BMATRIX

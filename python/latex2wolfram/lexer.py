@@ -93,6 +93,8 @@ tokens = [
    'END_PMATRIX',
    'BEGIN_VMATRIX',
    'END_VMATRIX',
+   'BEGIN_NMATRIX',
+   'END_NMATRIX',
    'AMPERSAND',
    'DETERMINANT',
 ] + list(reserved.values())
@@ -255,6 +257,14 @@ def t_BEGIN_VMATRIX(t):
 
 def t_END_VMATRIX(t):
    r'\\end\{vmatrix\}'
+   return t
+
+def t_BEGIN_NMATRIX(t):
+   r'\\begin\{Vmatrix\}'
+   return t
+
+def t_END_NMATRIX(t):
+   r'\\end\{Vmatrix\}'
    return t
 
 def t_BACKSLASHES(t):

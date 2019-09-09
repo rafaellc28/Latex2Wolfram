@@ -320,6 +320,9 @@ class CodeGenerator:
             elif node.function == FunctionName.DET:
                 function = DETERMINANT
 
+            elif node.function == FunctionName.NORM:
+                function = NORM
+
         return function
 
     # UnaryOperator
