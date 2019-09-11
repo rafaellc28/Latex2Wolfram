@@ -40,8 +40,9 @@ precedence = (
     ('left', 'TIMES', 'DIVIDE', 'MOD', 'CHOOSE'),
     ('left', 'UPLUS', 'UMINUS'),
     ('right', 'CARET'),
-    ('left', 'LFLOOR', 'RFLOOR', 'LCEIL', 'RCEIL', 'SINH', 'ASINH', 'SIN', 'ASIN', 'COSH', 'ACOSH', 'COS', 'ACOS', 'TANH', 'ATANH', 'TAN', 'ATAN'
-      , 'SEC', 'ASEC', 'CSC', 'ACSC', 'COTH', 'ACOTH', 'COT', 'ACOT', 'SQRT', 'LN', 'LOG', 'EXP', 'GCD', 'DEG', 'GRADIENT', 'DETERMINANT')
+    ('left', 'LFLOOR', 'RFLOOR', 'LCEIL', 'RCEIL', 'SINH', 'ASINH', 'SIN', 'ASIN', 'COSH', 'ACOSH', 'COS', 'ACOS', 'TANH', 'ATANH', 'TAN', 'ATAN',
+      'SEC', 'ASEC', 'CSC', 'ACSC', 'COTH', 'ACOTH', 'COT', 'ACOT', 'SQRT', 'LN', 'LOG', 'EXP', 'GCD', 'DEG', 'GRADIENT', 'DETERMINANT', 
+      'CROSS')
 )
 
 def p_Main(t):
@@ -63,6 +64,7 @@ def p_Factor(t):
             | Matrix
             | Determinant
             | Norm
+            | FractionalExpression
             | ID CARET LBRACE Expression RBRACE
             | LPAREN Expression RPAREN'''
 
@@ -81,6 +83,7 @@ def p_Factor(t):
 
 def p_Term(t):
   '''Term : Term TIMES Factor
+          | Term CROSS Factor
           | Term DIVIDE Factor
           | Term MOD Factor
           | Term CARET LBRACE Expression RBRACE
@@ -93,6 +96,9 @@ def p_Term(t):
     _type = t.slice[2].type
     if _type == "TIMES":
         op = BinaryOperator(BinaryOperator.TIMES)
+
+    elif _type == "CROSS":
+        op = BinaryOperator(BinaryOperator.CROSS)
 
     elif _type == "DIVIDE":
         op = BinaryOperator(BinaryOperator.DIV)
@@ -128,26 +134,15 @@ def p_Expression_binop(t):
       t[0] = ExpressionWithBinaryOperation(op, t[1], t[3])
 
 def p_UnaryExpressionOperatorBefore(t):
-    '''Factor : PLUS ID %prec UPLUS
-              | PLUS NUMBER %prec UPLUS
-              | PLUS LPAREN Expression RPAREN %prec UPLUS
-              | MINUS ID %prec UMINUS
-              | MINUS NUMBER %prec UMINUS
-              | MINUS LPAREN Expression RPAREN %prec UMINUS'''
+    '''Factor : PLUS Expression %prec UPLUS
+              | MINUS Expression %prec UMINUS'''
 
     if t.slice[1].type == "PLUS":
       op = UnaryOperator.PLUS
     else:
       op = UnaryOperator.MINUS
 
-    if len(t) > 3:
-      t[0] = ExpressionWithUnaryOperation(UnaryOperator(op), ExpressionBetweenParenthesis(t[3]))
-
-    else:
-      if t.slice[2].type == "ID":
-        t[2] = Identifier(ID(t[2]))
-
-      t[0] = ExpressionWithUnaryOperation(UnaryOperator(op), t[2])
+    t[0] = ExpressionWithUnaryOperation(UnaryOperator(op), t[2])
 
 def p_UnaryExpressionOperatorAfter(t):
     '''Factor : NUMBER FACTORIAL
@@ -176,7 +171,7 @@ def p_UnaryExpressionOperatorAfter(t):
       t[0] = ExpressionWithUnaryOperation(UnaryOperator(op), t[1], True)
 
 def p_FractionalExpression(t):
-    '''Factor : FRAC LBRACE Expression RBRACE LBRACE Expression RBRACE'''
+    '''FractionalExpression : FRAC LBRACE Expression RBRACE LBRACE Expression RBRACE'''
 
     t[0] = FractionalExpression(t[3], t[6])
 

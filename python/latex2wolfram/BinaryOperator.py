@@ -11,6 +11,7 @@ class BinaryOperator(BaseExpression):
     DIV   = "/"
     MOD   = "%"
     POW   = "^"
+    CROSS = "cross"
 
     def __init__(self, operator):
         """

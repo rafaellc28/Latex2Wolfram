@@ -355,3 +355,9 @@ def test105():
 
 def test106():
 	check_test_num(106)
+
+def test107():
+	check_test_num(107)
+
+def test108():
+	check_test_num(108)

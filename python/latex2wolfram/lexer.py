@@ -97,6 +97,7 @@ tokens = [
    'END_NMATRIX',
    'AMPERSAND',
    'DETERMINANT',
+   'CROSS'
 ] + list(reserved.values())
 
 # Define a rule so we can track line numbers
@@ -130,6 +131,7 @@ t_LT = r'<'
 t_GE = r'\\geq'
 t_GT = r'>'
 
+t_CROSS = r'\\times'
 t_SUM = r'\\sum'
 t_PROD = r'\\prod'
 t_IN = r'\\in'
