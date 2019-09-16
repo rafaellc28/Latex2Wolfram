@@ -37,7 +37,7 @@ precedence = (
     ('left', 'SUM', 'PROD'),
     ('left', 'FACTORIAL'),
     ('left', 'PLUS', 'MINUS'),
-    ('left', 'TIMES', 'DIVIDE', 'MOD', 'CHOOSE'),
+    ('left', 'TIMES', 'DIVIDE', 'MOD', 'CHOOSE', 'DOT'),
     ('left', 'UPLUS', 'UMINUS'),
     ('right', 'CARET'),
     ('left', 'LFLOOR', 'RFLOOR', 'LCEIL', 'RCEIL', 'SINH', 'ASINH', 'SIN', 'ASIN', 'COSH', 'ACOSH', 'COS', 'ACOS', 'TANH', 'ATANH', 'TAN', 'ATAN',
@@ -83,6 +83,7 @@ def p_Factor(t):
 
 def p_Term(t):
   '''Term : Term TIMES Factor
+          | Term DOT Factor
           | Term CROSS Factor
           | Term DIVIDE Factor
           | Term MOD Factor
@@ -96,6 +97,9 @@ def p_Term(t):
     _type = t.slice[2].type
     if _type == "TIMES":
         op = BinaryOperator(BinaryOperator.TIMES)
+
+    elif _type == "DOT":
+        op = BinaryOperator(BinaryOperator.DOT)
 
     elif _type == "CROSS":
         op = BinaryOperator(BinaryOperator.CROSS)

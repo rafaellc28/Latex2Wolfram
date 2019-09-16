@@ -8,6 +8,7 @@ class BinaryOperator(BaseExpression):
     PLUS  = "+"
     MINUS = "-"
     TIMES = "*"
+    DOT   = "."
     DIV   = "/"
     MOD   = "%"
     POW   = "^"

@@ -97,7 +97,8 @@ tokens = [
    'END_NMATRIX',
    'AMPERSAND',
    'DETERMINANT',
-   'CROSS'
+   'CROSS',
+   'DOT'
 ] + list(reserved.values())
 
 # Define a rule so we can track line numbers
@@ -163,7 +164,11 @@ t_PLUS = r'\+'
 t_MINUS = r'-'
 
 def t_TIMES(t):
-   r'\*|\\cdot|\\ast'
+   r'\*|\\ast'
+   return t
+
+def t_DOT(t):
+   r'\\cdot'
    return t
 
 def t_DIVIDE(t):

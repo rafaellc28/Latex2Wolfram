@@ -356,6 +356,9 @@ class CodeGenerator:
         elif node.operator == BinaryOperator.TIMES:
             operator = TIMES
 
+        elif node.operator == BinaryOperator.DOT:
+            operator = DOT
+
         elif node.operator == BinaryOperator.CROSS:
             operator = CROSS
 
