@@ -95,6 +95,11 @@ class CodeGenerator:
     def generateCode_ExpressionWithBinaryOperation(self, node):
         
         if node.op.operator == BinaryOperator.POW:
+            exponent = node.expression2.generateCode(self)
+
+            if exponent.upper() in ["T", "(T)"] and isinstance(node.expression1, ExpressionsRow):
+                return BEGIN_EXPRESSION + TRANSPOSE + SPACE + node.expression1.generateCode(self) + END_EXPRESSION
+
             expression2 = self._getGeneratedExpression(node.expression2)
         else:
             expression2 = node.expression2.generateCode(self)
@@ -129,9 +134,6 @@ class CodeGenerator:
         return (COMMA+SPACE).join(map(lambda el: el.generateCode(self), node.values))
 
     # Matrix
-    def generateCode_ExpressionsRows(self, node):
-        return BEGIN_MATRIX + (COMMA+SPACE).join(map(lambda el: el.generateCode(self), node.values)) + END_MATRIX
-
     def generateCode_ExpressionsRow(self, node):
         return BEGIN_VECTOR + (COMMA+SPACE).join(map(lambda el: el.generateCode(self), node.values)) + END_VECTOR
 
