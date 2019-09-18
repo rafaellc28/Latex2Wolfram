@@ -370,3 +370,6 @@ def test110():
 
 def test111():
 	check_test_num(111)
+
+def test112():
+	check_test_num(112)

@@ -78,6 +78,9 @@ CSC    = "csc"
 ACOT   = "acot"
 COT    = "cot"
 
+ADJ      = "adj"
+ADJUGATE = "adjugate"
+
 PERCENT = "%"
 FACTORIAL = "!"
 PLUS  = "+"

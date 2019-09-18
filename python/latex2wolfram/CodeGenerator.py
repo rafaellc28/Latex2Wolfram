@@ -227,8 +227,11 @@ class CodeGenerator:
         if isinstance(node.function, Identifier):
             function = node.function.generateCode(self)
 
+            if function == ADJ:
+                function = ADJUGATE
+                
         else:
-
+            
             if node.function == FunctionName.SQRT:
                 function = SQRT
 
