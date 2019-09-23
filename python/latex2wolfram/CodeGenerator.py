@@ -229,6 +229,9 @@ class CodeGenerator:
 
             if function == ADJ:
                 function = ADJUGATE
+
+            elif function == LU:
+                function = LU_DECOMPOSITION_OF
                 
         else:
             

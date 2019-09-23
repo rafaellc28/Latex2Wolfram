@@ -80,6 +80,8 @@ COT    = "cot"
 
 ADJ      = "adj"
 ADJUGATE = "adjugate"
+LU = "LU"
+LU_DECOMPOSITION_OF = "LU decomposition of"
 
 PERCENT = "%"
 FACTORIAL = "!"
