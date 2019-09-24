@@ -82,6 +82,8 @@ ADJ      = "adj"
 ADJUGATE = "adjugate"
 LU = "LU"
 LU_DECOMPOSITION_OF = "LU decomposition of"
+QR = "QR"
+QR_DECOMPOSITION = "QR decomposition"
 
 PERCENT = "%"
 FACTORIAL = "!"
