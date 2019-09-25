@@ -233,9 +233,6 @@ class CodeGenerator:
             elif function == LU:
                 function = LU_DECOMPOSITION_OF
 
-            elif function == QR:
-                function = QR_DECOMPOSITION
-                
         else:
             
             if node.function == FunctionName.SQRT:
