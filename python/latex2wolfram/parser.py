@@ -349,6 +349,18 @@ def p_FunctionExpression(t):
 
               | GRADIENT NUMBER
 
+              | GRADIENT DOT LPAREN ExpressionList RPAREN
+
+              | GRADIENT DOT ID
+
+              | GRADIENT DOT NUMBER
+
+              | GRADIENT CROSS LPAREN ExpressionList RPAREN
+
+              | GRADIENT CROSS ID
+
+              | GRADIENT CROSS NUMBER
+
               | DETERMINANT LPAREN Matrix RPAREN
 
               | DETERMINANT Matrix
@@ -446,7 +458,12 @@ def p_FunctionExpression(t):
         function = FunctionName(FunctionName.DEG)
 
     elif _type == "GRADIENT":
-        function = FunctionName(FunctionName.GRAD)
+        if t.slice[2].type == "DOT":
+          function = FunctionName(FunctionName.DIV)
+        elif t.slice[2].type == "CROSS":
+          function = FunctionName(FunctionName.CURL)
+        else:
+          function = FunctionName(FunctionName.GRAD)
 
     elif _type == "DETERMINANT":
         function = FunctionName(FunctionName.DET)
@@ -456,7 +473,10 @@ def p_FunctionExpression(t):
 
     if len(t) > 5:
 
-      if _type == "LOG":
+      if _type == "GRADIENT":
+        t[0] = ExpressionWithFunction(function, t[4])
+
+      elif _type == "LOG":
         t[0] = ExpressionWithFunction(function, t[7], t[4])
 
       elif _type == "SQRT":
@@ -469,8 +489,13 @@ def p_FunctionExpression(t):
       t[0] = ExpressionWithFunction(function, t[3])
         
     else:
+      if _type == "GRADIENT":
+        if t.slice[3].type == "ID":
+          t[3] = Identifier(ID(t[3]))
 
-      if t.slice[2].type == "LPAREN":
+        t[0] = ExpressionWithFunction(function, t[3])
+
+      elif t.slice[2].type == "LPAREN":
         t[0] = ExpressionWithFunction(function)
 
       else:

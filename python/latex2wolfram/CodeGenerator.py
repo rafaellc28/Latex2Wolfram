@@ -325,6 +325,12 @@ class CodeGenerator:
             elif node.function == FunctionName.GRAD:
                 function = GRADIENT
 
+            elif node.function == FunctionName.DIV:
+                function = DIVERGENCE
+
+            elif node.function == FunctionName.CURL:
+                function = CURL
+
             elif node.function == FunctionName.DET:
                 function = DETERMINANT
 

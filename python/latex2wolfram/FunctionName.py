@@ -22,6 +22,8 @@ class FunctionName(BaseExpression):
     GCD    = "gcd"
     DEG    = "deg"
     GRAD   = "grad"
+    DIV    = "div"
+    CURL   = "curl"
     DET    = "det"
     NORM   = "norm"
 
