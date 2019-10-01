@@ -400,3 +400,9 @@ def test120():
 
 def test121():
 	check_test_num(121)
+
+def test122():
+	check_test_num(122)
+
+def test123():
+	check_test_num(123)
