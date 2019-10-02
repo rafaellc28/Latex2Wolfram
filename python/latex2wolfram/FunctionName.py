@@ -24,6 +24,7 @@ class FunctionName(BaseExpression):
     GRAD   = "grad"
     DIV    = "div"
     CURL   = "curl"
+    LAPL   = "lapl"
     DET    = "det"
     NORM   = "norm"
 

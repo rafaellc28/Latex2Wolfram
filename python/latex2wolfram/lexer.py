@@ -84,6 +84,7 @@ tokens = [
    'DEG',
    'CHOOSE',
    'GRADIENT',
+   'LAPLACIAN',
    'BEGIN_CASE',
    'END_CASE',
    'BACKSLASHES',
@@ -231,6 +232,7 @@ t_GCD    = r'\\gcd'
 t_DEG    = r'\\deg'
 t_CHOOSE = r'\\choose'
 t_GRADIENT = r'\\nabla'
+t_LAPLACIAN = r'\\Delta'
 t_AMPERSAND = r'&'
 t_DETERMINANT = r'\\det'
 

@@ -356,17 +356,23 @@ def p_FunctionExpression(t):
               | GRADIENT DOT NUMBER
 
               | GRADIENT CROSS LPAREN ExpressionList RPAREN
-
+              
               | GRADIENT CROSS ID
-
+              
               | GRADIENT CROSS NUMBER
-
+              
+              | LAPLACIAN LPAREN Expression RPAREN
+              
+              | LAPLACIAN NUMBER
+              
+              | LAPLACIAN ID
+              
               | DETERMINANT LPAREN Matrix RPAREN
-
+              
               | DETERMINANT Matrix
-
+              
               | ID LPAREN ExpressionList RPAREN
-
+              
               | ID LPAREN RPAREN'''
 
     _type = t.slice[1].type
@@ -464,6 +470,9 @@ def p_FunctionExpression(t):
           function = FunctionName(FunctionName.CURL)
         else:
           function = FunctionName(FunctionName.GRAD)
+
+    elif _type == "LAPLACIAN":
+        function = FunctionName(FunctionName.LAPL)
 
     elif _type == "DETERMINANT":
         function = FunctionName(FunctionName.DET)

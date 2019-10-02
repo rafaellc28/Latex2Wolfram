@@ -325,6 +325,9 @@ class CodeGenerator:
             elif node.function == FunctionName.GRAD:
                 function = GRADIENT
 
+            elif node.function == FunctionName.LAPL:
+                function = LAPLACIAN
+
             elif node.function == FunctionName.DIV:
                 function = DIVERGENCE
 
