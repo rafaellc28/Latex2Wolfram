@@ -406,3 +406,12 @@ def test122():
 
 def test123():
 	check_test_num(123)
+
+def test124():
+	check_test_num(124)
+
+def test125():
+	check_test_num(125)
+
+def test126():
+	check_test_num(126)
