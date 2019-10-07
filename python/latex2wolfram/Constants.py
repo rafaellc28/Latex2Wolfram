@@ -87,6 +87,8 @@ LU = "LU"
 LU_DECOMPOSITION_OF = "LU decomposition of"
 QR = "QR"
 QR_DECOMPOSITION = "QR decomposition"
+HESSENBERG = "HESSENBERG"
+HESSENBERG_DECOMPOSITION = "Hessenberg decomposition"
 
 PERCENT = "%"
 FACTORIAL = "!"

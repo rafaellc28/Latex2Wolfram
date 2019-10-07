@@ -233,6 +233,9 @@ class CodeGenerator:
             elif function == LU:
                 function = LU_DECOMPOSITION_OF
 
+            elif function.upper() == HESSENBERG:
+                function = HESSENBERG_DECOMPOSITION
+
         else:
             
             if node.function == FunctionName.SQRT:
