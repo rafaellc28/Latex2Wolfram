@@ -421,3 +421,9 @@ def test127():
 
 def test128():
 	check_test_num(128)
+
+def test129():
+	check_test_num(129)
+
+def test130():
+	check_test_num(130)
