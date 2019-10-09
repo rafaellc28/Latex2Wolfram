@@ -25,7 +25,7 @@ precedence = (
     ('left', 'ID'),
     ('left', 'NUMBER', 'INFINITY'),
     ('left', 'BEGIN_CASE', 'END_CASE', 'BEGIN_BMATRIX', 'END_BMATRIX', 'BEGIN_PMATRIX', 'END_PMATRIX', 'BACKSLASHES'),
-    ('left', 'INTEGRAL', 'DIFFERENTIAL', 'D', 'PARTIAL', 'LIMIT', 'TO'),
+    ('left', 'INTEGRAL', 'DIFFERENTIAL', 'D', 'I', 'PARTIAL', 'LIMIT', 'TO'),
     ('right', 'COMMA'),
     ('right', 'PIPE'),
     ('right', 'LPAREN', 'RPAREN'),
@@ -53,6 +53,7 @@ def p_Main(t):
 
 def p_Factor(t):
   '''Factor : NUMBER
+            | ImaginaryNumber
             | ID
             | INFINITY
             | IteratedExpression
@@ -600,6 +601,14 @@ def p_Derivative4(t):
 
     else:
       t[0] = Derivative(t[8][:1], t[4])
+
+def p_ImaginaryNumber(t):
+    '''ImaginaryNumber : I
+                       | NUMBER I'''
+    if len(t) > 2:
+      t[0] = ImaginaryNumber(t[1])
+    else:
+      t[0] = ImaginaryNumber()
 
 def p_DifferentialVariable1(t):
   '''DifferentialVariable : ID PrimeList LPAREN ExpressionList RPAREN

@@ -63,6 +63,7 @@ tokens = [
    'INTEGRAL',
    'DIFFERENTIAL',
    'D', 
+   'I', 
    'PARTIAL',
    'SUM',
    'PROD', 
@@ -286,6 +287,10 @@ def t_INTEGRAL(t):
 
 def t_D(t):
    r'd(?!\\_|[a-zA-Z0-9])'
+   return t
+
+def t_I(t):
+   r'i(?!\\_|[a-zA-Z0-9])'
    return t
 
 def t_DIFFERENTIAL(t):

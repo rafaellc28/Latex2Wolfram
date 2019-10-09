@@ -182,6 +182,15 @@ class CodeGenerator:
 
         return differential + SPACE + expression
 
+    # Derivative
+    def generateCode_ImaginaryNumber(self, node):
+        res = I
+
+        if node.number:
+            res = node.number.generateCode(self) + res
+            
+        return res
+
     # Limit
     def generateCode_Limit(self, node):
 
