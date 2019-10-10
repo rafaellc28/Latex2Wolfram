@@ -433,3 +433,9 @@ def test131():
 
 def test132():
 	check_test_num(132)
+
+def test133():
+	check_test_num(133)
+
+def test134():
+	check_test_num(134)
