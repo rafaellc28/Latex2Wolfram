@@ -442,3 +442,6 @@ def test134():
 
 def test135():
 	check_test_num(135)
+
+def test136():
+	check_test_num(136)
