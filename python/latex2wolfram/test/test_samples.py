@@ -454,3 +454,6 @@ def test138():
 
 def test139():
 	check_test_num(139)
+
+def test140():
+	check_test_num(140)
