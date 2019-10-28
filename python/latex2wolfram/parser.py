@@ -56,6 +56,7 @@ def p_Factor(t):
             | ImaginaryNumber
             | ID
             | INFINITY
+            | Symbol
             | IteratedExpression
             | Derivative
             | Integral
@@ -371,13 +372,19 @@ def p_FunctionExpression(t):
               | DETERMINANT LPAREN Matrix RPAREN
               
               | DETERMINANT Matrix
+
+              | Symbol LPAREN ExpressionList RPAREN
               
               | ID LPAREN ExpressionList RPAREN
               
               | ID LPAREN RPAREN'''
 
     _type = t.slice[1].type
-    if _type == "SQRT":
+
+    if _type == "Symbol":
+        function = t[1]
+
+    elif _type == "SQRT":
         function = FunctionName(FunctionName.SQRT)
 
     elif _type == "LFLOOR":
@@ -799,8 +806,13 @@ def p_Constraint(t):
   t[0] = Constraint(op, t[1], t[3])
 
 def p_Symbol(t):
-  '''Factor : PI'''
-  t[0] = Symbol(Symbol.PI)
+  '''Symbol : PI
+            | PHI_LOWER'''
+
+  if t.slice[1].type == "PI":
+    t[0] = Symbol(Symbol.PI)
+  else:
+    t[0] = Symbol(Symbol.PHI_LOWER)
 
 def p_error(t):
   if t:

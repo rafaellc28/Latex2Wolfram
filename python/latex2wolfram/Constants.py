@@ -109,6 +109,7 @@ MIN   = "min"
 
 PI = "pi"
 PRIME = "'"
+EULER_PHI = "Eulerphi"
 
 LIMIT = "lim"
 APPROACHES = "->"

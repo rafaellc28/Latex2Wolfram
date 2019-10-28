@@ -78,6 +78,7 @@ tokens = [
    'FACTORIAL',
    'PERCENT',
    'PI',
+   'PHI_LOWER',
    'LIMIT',
    'TO',
    'PRIME',
@@ -126,6 +127,7 @@ def t_TO(t):
    return t
 
 t_PI = r'\\pi'
+t_PHI_LOWER = r'\\phi'
 
 t_EQ = r'='
 t_NEQ = r'\\neq'
