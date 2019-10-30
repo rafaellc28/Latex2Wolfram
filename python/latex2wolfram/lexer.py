@@ -79,6 +79,7 @@ tokens = [
    'PERCENT',
    'PI',
    'PHI_LOWER',
+   'MU',
    'LIMIT',
    'TO',
    'PRIME',
@@ -128,6 +129,7 @@ def t_TO(t):
 
 t_PI = r'\\pi'
 t_PHI_LOWER = r'\\phi'
+t_MU = r'\\mu'
 
 t_EQ = r'='
 t_NEQ = r'\\neq'

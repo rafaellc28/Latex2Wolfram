@@ -807,12 +807,17 @@ def p_Constraint(t):
 
 def p_Symbol(t):
   '''Symbol : PI
-            | PHI_LOWER'''
+            | PHI_LOWER
+            | MU'''
 
   if t.slice[1].type == "PI":
     t[0] = Symbol(Symbol.PI)
-  else:
+
+  elif t.slice[1].type == "PHI_LOWER":
     t[0] = Symbol(Symbol.PHI_LOWER)
+
+  else:
+    t[0] = Symbol(Symbol.MU)
 
 def p_error(t):
   if t:

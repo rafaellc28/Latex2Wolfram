@@ -456,6 +456,9 @@ class CodeGenerator:
 
         elif node.symbol == Symbol.PHI_LOWER:
             symbol = EULER_PHI
+
+        elif node.symbol == Symbol.MU:
+            symbol = MU
             
         return symbol
 
