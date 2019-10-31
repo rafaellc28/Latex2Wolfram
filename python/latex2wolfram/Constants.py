@@ -111,6 +111,7 @@ PI = "pi"
 PRIME = "'"
 EULER_PHI = "Eulerphi"
 MU = "mu"
+SIGMA = "sigma"
 
 LIMIT = "lim"
 APPROACHES = "->"

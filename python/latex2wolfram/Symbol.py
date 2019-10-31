@@ -8,6 +8,7 @@ class Symbol(BaseExpression):
     PI = "pi"
     PRIME = "prime"
     PHI_LOWER = "phi_lower"
+    SIGMA_LOWER = "sigma_lower"
     MU = "mu"
 
     def __init__(self, symbol):
