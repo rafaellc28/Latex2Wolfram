@@ -475,3 +475,6 @@ def test145():
 
 def test146():
 	check_test_num(146)
+
+def test147():
+	check_test_num(147)

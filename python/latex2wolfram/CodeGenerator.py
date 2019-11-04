@@ -45,13 +45,19 @@ class CodeGenerator:
 
     # Expression
     def generateCode_ExpressionWithFunction(self, node):
-        if not isinstance(node.function, str):
+
+        if isinstance(node.function, Symbol) and node.function.symbol == Symbol.SIGMA_LOWER and node.expression2 != None:
+            function = node.function.generateCode(self) + UNDERLINE + node.expression2.generateCode(self)
+
+        elif not isinstance(node.function, str):
             function = node.function.generateCode(self)
+
         else:
             function = node.function
 
         if function == FunctionName.SQRT and node.expression2 != None:
             res = BEGIN_ARGUMENT_LIST + node.expression2.generateCode(self) + TH + SPACE + ROOTOF
+
         else:
             res = function
 
@@ -63,7 +69,8 @@ class CodeGenerator:
         if node.expression1 != None:
             res += node.expression1.generateCode(self)
 
-        if node.expression2 != None and function != FunctionName.SQRT and function != FunctionName.LOG:
+        if node.expression2 != None and function != FunctionName.SQRT and function != FunctionName.LOG and \
+            not (function.startswith(SIGMA) and node.expression2 != None):
             res += COMMA+SPACE + node.expression2.generateCode(self)
 
         res += END_ARGUMENT_LIST

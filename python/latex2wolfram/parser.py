@@ -58,6 +58,7 @@ def p_Factor(t):
             | INFINITY
             | Symbol
             | IteratedExpression
+            | DivisorFunction
             | Derivative
             | Integral
             | Limit
@@ -608,6 +609,11 @@ def p_Derivative4(t):
 
     else:
       t[0] = Derivative(t[8][:1], t[4])
+
+def p_DivisorFunction(t):
+  '''DivisorFunction : SIGMA_LOWER UNDERLINE LBRACE NUMBER RBRACE LPAREN ExpressionList RPAREN'''
+  t[0] = ExpressionWithFunction(Symbol(Symbol.SIGMA_LOWER), t[7], t[4])
+
 
 def p_ImaginaryNumber(t):
     '''ImaginaryNumber : I

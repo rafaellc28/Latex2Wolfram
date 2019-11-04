@@ -105,6 +105,8 @@ POW   = "^"
 SUM   = "sum"
 PROD  = "product"
 MAX   = "max"
+
+UNDERLINE = "_"
 MIN   = "min"
 
 PI = "pi"
