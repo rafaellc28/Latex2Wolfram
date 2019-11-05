@@ -64,6 +64,7 @@ tokens = [
    'DIFFERENTIAL',
    'D', 
    'I', 
+   'E',
    'PARTIAL',
    'SUM',
    'PROD', 
@@ -297,6 +298,10 @@ def t_D(t):
 
 def t_I(t):
    r'i(?!\\_|[a-zA-Z0-9])'
+   return t
+
+def t_E(t):
+   r'e(?!\\_|[a-zA-Z0-9])'
    return t
 
 def t_DIFFERENTIAL(t):

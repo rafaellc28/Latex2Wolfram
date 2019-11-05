@@ -478,3 +478,6 @@ def test146():
 
 def test147():
 	check_test_num(147)
+
+def test148():
+	check_test_num(148)

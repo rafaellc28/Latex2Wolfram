@@ -189,9 +189,18 @@ class CodeGenerator:
 
         return differential + SPACE + expression
 
-    # Derivative
+    # Imaginary Number
     def generateCode_ImaginaryNumber(self, node):
         res = I
+
+        if node.number:
+            res = node.number.generateCode(self) + res
+            
+        return res
+
+    # Napier Number
+    def generateCode_NapierNumber(self, node):
+        res = E
 
         if node.number:
             res = node.number.generateCode(self) + res

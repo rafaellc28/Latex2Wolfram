@@ -22,6 +22,7 @@ TAB = "\t"
 INTEGRATE="integrate"
 D="d"
 I="i"
+E="e"
 FROM="from"
 TO="to"
 
