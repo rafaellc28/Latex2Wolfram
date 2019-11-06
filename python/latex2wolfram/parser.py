@@ -824,6 +824,7 @@ def p_Symbol(t):
   '''Symbol : PI
             | PHI_LOWER
             | SIGMA_LOWER
+            | ZETA
             | MU'''
 
   if t.slice[1].type == "PI":
@@ -834,6 +835,9 @@ def p_Symbol(t):
 
   elif t.slice[1].type == "SIGMA_LOWER":
     t[0] = Symbol(Symbol.SIGMA_LOWER)
+
+  elif t.slice[1].type == "ZETA":
+    t[0] = Symbol(Symbol.ZETA)
 
   else:
     t[0] = Symbol(Symbol.MU)

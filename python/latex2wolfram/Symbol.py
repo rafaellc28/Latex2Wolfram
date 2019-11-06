@@ -10,6 +10,7 @@ class Symbol(BaseExpression):
     PHI_LOWER = "phi_lower"
     SIGMA_LOWER = "sigma_lower"
     MU = "mu"
+    ZETA = "zeta"
 
     def __init__(self, symbol):
         """

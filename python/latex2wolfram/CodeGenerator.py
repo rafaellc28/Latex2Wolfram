@@ -478,6 +478,9 @@ class CodeGenerator:
 
         elif node.symbol == Symbol.MU:
             symbol = MU
+
+        elif node.symbol == Symbol.ZETA:
+            symbol = ZETA
             
         return symbol
 

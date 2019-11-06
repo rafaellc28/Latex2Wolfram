@@ -115,6 +115,7 @@ PRIME = "'"
 EULER_PHI = "Eulerphi"
 MU = "mu"
 SIGMA = "sigma"
+ZETA = "zeta"
 
 LIMIT = "lim"
 APPROACHES = "->"
