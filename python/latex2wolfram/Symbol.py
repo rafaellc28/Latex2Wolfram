@@ -11,6 +11,7 @@ class Symbol(BaseExpression):
     SIGMA_LOWER = "sigma_lower"
     MU = "mu"
     ZETA = "zeta"
+    GAMMA = "gamma"
 
     def __init__(self, symbol):
         """

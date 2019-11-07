@@ -116,6 +116,7 @@ EULER_PHI = "Eulerphi"
 MU = "mu"
 SIGMA = "sigma"
 ZETA = "zeta"
+GAMMA = "gamma"
 
 LIMIT = "lim"
 APPROACHES = "->"
