@@ -493,3 +493,6 @@ def test152():
 
 def test152():
 	check_test_num(152)
+
+def test153():
+	check_test_num(153)
