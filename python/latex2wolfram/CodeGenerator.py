@@ -484,6 +484,9 @@ class CodeGenerator:
 
         elif node.symbol == Symbol.GAMMA:
             symbol = GAMMA
+
+        elif node.symbol == Symbol.PSI_LOWER:
+            symbol = DIGAMMA
             
         return symbol
 

@@ -84,6 +84,7 @@ tokens = [
    'MU',
    'ZETA',
    'GAMMA',
+   'PSI_LOWER',
    'LIMIT',
    'TO',
    'PRIME',
@@ -136,7 +137,8 @@ t_PHI_LOWER = r'\\phi'
 t_MU = r'\\mu'
 t_SIGMA_LOWER = r'\\sigma'
 t_ZETA = r'\\zeta'
-t_GAMMA = r'\\gamma'
+t_GAMMA = r'\\Gamma'
+t_PSI_LOWER = r'\\psi'
 
 t_EQ = r'='
 t_NEQ = r'\\neq'

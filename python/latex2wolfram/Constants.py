@@ -117,6 +117,7 @@ MU = "mu"
 SIGMA = "sigma"
 ZETA = "zeta"
 GAMMA = "gamma"
+DIGAMMA = "digamma"
 
 LIMIT = "lim"
 APPROACHES = "->"
