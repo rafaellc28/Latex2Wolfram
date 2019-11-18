@@ -505,3 +505,9 @@ def test155():
 
 def test156():
 	check_test_num(156)
+
+def test157():
+	check_test_num(157)
+
+def test158():
+	check_test_num(158)
