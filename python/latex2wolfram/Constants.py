@@ -116,6 +116,7 @@ EULER_PHI = "Eulerphi"
 MU = "mu"
 SIGMA = "sigma"
 ZETA = "zeta"
+BETA = "Beta"
 GAMMA = "gamma"
 DIGAMMA = "digamma"
 

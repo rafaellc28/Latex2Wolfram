@@ -826,6 +826,7 @@ def p_Symbol(t):
             | PSI_LOWER
             | SIGMA_LOWER
             | ZETA
+            | BETA
             | GAMMA
             | MU'''
 
@@ -843,6 +844,9 @@ def p_Symbol(t):
 
   elif t.slice[1].type == "ZETA":
     t[0] = Symbol(Symbol.ZETA)
+
+  elif t.slice[1].type == "BETA":
+    t[0] = Symbol(Symbol.BETA)
 
   elif t.slice[1].type == "GAMMA":
     t[0] = Symbol(Symbol.GAMMA)

@@ -482,6 +482,9 @@ class CodeGenerator:
         elif node.symbol == Symbol.ZETA:
             symbol = ZETA
 
+        elif node.symbol == Symbol.BETA:
+            symbol = BETA
+
         elif node.symbol == Symbol.GAMMA:
             symbol = GAMMA
 
