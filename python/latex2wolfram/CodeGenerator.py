@@ -476,11 +476,14 @@ class CodeGenerator:
         elif node.symbol == Symbol.SIGMA_LOWER:
             symbol = SIGMA
 
+        elif node.symbol == Symbol.ZETA_LOWER:
+            symbol = ZETA
+
+        elif node.symbol == Symbol.ETA_LOWER:
+            symbol = ETA
+
         elif node.symbol == Symbol.MU:
             symbol = MU
-
-        elif node.symbol == Symbol.ZETA:
-            symbol = ZETA
 
         elif node.symbol == Symbol.BETA:
             symbol = BETA

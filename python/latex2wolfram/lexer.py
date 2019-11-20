@@ -78,14 +78,15 @@ tokens = [
    'GE',
    'FACTORIAL',
    'PERCENT',
-   'PI',
+   'ETA_LOWER',
+   'ZETA_LOWER',
    'PHI_LOWER',
+   'PSI_LOWER',
    'SIGMA_LOWER',
    'MU',
-   'ZETA',
+   'PI',
    'BETA',
    'GAMMA',
-   'PSI_LOWER',
    'LIMIT',
    'TO',
    'PRIME',
@@ -137,7 +138,8 @@ t_PI = r'\\pi'
 t_PHI_LOWER = r'\\phi'
 t_MU = r'\\mu'
 t_SIGMA_LOWER = r'\\sigma'
-t_ZETA = r'\\zeta'
+t_ETA_LOWER = r'\\eta'
+t_ZETA_LOWER = r'\\zeta'
 t_BETA = r'\\Beta'
 t_GAMMA = r'\\Gamma'
 t_PSI_LOWER = r'\\psi'

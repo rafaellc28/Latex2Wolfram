@@ -4,14 +4,14 @@ class Symbol(BaseExpression):
     """
     Class representing the Symbol in the AST
     """
-
-    PI = "pi"
     PRIME = "prime"
     PHI_LOWER = "phi_lower"
     PSI_LOWER = "psi_lower"
     SIGMA_LOWER = "sigma_lower"
+    ZETA_LOWER = "zeta_lower"
+    ETA_LOWER = "eta_lower"
     MU = "mu"
-    ZETA = "zeta"
+    PI = "pi"
     BETA = "beta"
     GAMMA = "gamma"
 
