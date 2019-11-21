@@ -10,6 +10,7 @@ class Symbol(BaseExpression):
     SIGMA_LOWER = "sigma_lower"
     ZETA_LOWER = "zeta_lower"
     ETA_LOWER = "eta_lower"
+    DELTA_LOWER = "delta_lower"
     MU = "mu"
     PI = "pi"
     BETA = "beta"

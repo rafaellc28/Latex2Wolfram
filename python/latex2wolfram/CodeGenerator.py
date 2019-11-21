@@ -482,6 +482,9 @@ class CodeGenerator:
         elif node.symbol == Symbol.ETA_LOWER:
             symbol = ETA
 
+        elif node.symbol == Symbol.DELTA_LOWER:
+            symbol = DELTA
+
         elif node.symbol == Symbol.MU:
             symbol = MU
 

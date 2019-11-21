@@ -83,6 +83,7 @@ tokens = [
    'PHI_LOWER',
    'PSI_LOWER',
    'SIGMA_LOWER',
+   'DELTA_LOWER',
    'MU',
    'PI',
    'BETA',
@@ -134,15 +135,16 @@ def t_TO(t):
    r'\\to'
    return t
 
-t_PI = r'\\pi'
 t_PHI_LOWER = r'\\phi'
-t_MU = r'\\mu'
 t_SIGMA_LOWER = r'\\sigma'
 t_ETA_LOWER = r'\\eta'
 t_ZETA_LOWER = r'\\zeta'
+t_PSI_LOWER = r'\\psi'
+t_DELTA_LOWER = r'\\delta'
 t_BETA = r'\\Beta'
 t_GAMMA = r'\\Gamma'
-t_PSI_LOWER = r'\\psi'
+t_PI = r'\\pi'
+t_MU = r'\\mu'
 
 t_EQ = r'='
 t_NEQ = r'\\neq'
