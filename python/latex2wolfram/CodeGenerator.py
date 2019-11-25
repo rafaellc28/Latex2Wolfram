@@ -485,6 +485,9 @@ class CodeGenerator:
         elif node.symbol == Symbol.DELTA_LOWER:
             symbol = DELTA
 
+        elif node.symbol == Symbol.THETA_LOWER:
+            symbol = THETA
+
         elif node.symbol == Symbol.MU:
             symbol = MU
 
