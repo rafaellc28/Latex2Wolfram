@@ -12,6 +12,7 @@ class Symbol(BaseExpression):
     ETA_LOWER = "eta_lower"
     DELTA_LOWER = "delta_lower"
     THETA_LOWER = "theta_lower"
+    LAMBDA_LOWER = "lambda_lower"
     MU = "mu"
     PI = "pi"
     BETA = "beta"
