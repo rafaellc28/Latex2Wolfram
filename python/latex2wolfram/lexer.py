@@ -86,6 +86,8 @@ tokens = [
    'DELTA_LOWER',
    'THETA_LOWER',
    'LAMBDA_LOWER',
+   'EPSILON_LOWER',
+   'TAU_LOWER',
    'MU',
    'PI',
    'BETA',
@@ -145,6 +147,8 @@ t_PSI_LOWER = r'\\psi'
 t_DELTA_LOWER = r'\\delta'
 t_THETA_LOWER = r'\\theta'
 t_LAMBDA_LOWER = r'\\lambda'
+t_EPSILON_LOWER = r'\\epsilon'
+t_TAU_LOWER = r'\\tau'
 t_BETA = r'\\Beta'
 t_GAMMA = r'\\Gamma'
 t_PI = r'\\pi'
