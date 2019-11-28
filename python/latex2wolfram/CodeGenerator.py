@@ -497,6 +497,12 @@ class CodeGenerator:
         elif node.symbol == Symbol.TAU_LOWER:
             symbol = TAU
 
+        elif node.symbol == Symbol.KAPPA_LOWER:
+            symbol = KAPPA
+
+        elif node.symbol == Symbol.OMEGA_LOWER:
+            symbol = OMEGA
+
         elif node.symbol == Symbol.MU:
             symbol = MU
 

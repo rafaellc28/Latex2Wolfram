@@ -15,6 +15,8 @@ class Symbol(BaseExpression):
     LAMBDA_LOWER = "lambda_lower"
     EPSILON_LOWER = "epsilon_lower"
     TAU_LOWER = "tau_lower"
+    KAPPA_LOWER = "kappa_lower"
+    OMEGA_LOWER = "omega_lower"
     MU = "mu"
     PI = "pi"
     BETA = "beta"

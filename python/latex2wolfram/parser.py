@@ -832,6 +832,8 @@ def p_Symbol(t):
             | LAMBDA_LOWER
             | EPSILON_LOWER
             | TAU_LOWER
+            | KAPPA_LOWER
+            | OMEGA_LOWER
             | BETA
             | GAMMA
             | MU'''
@@ -868,6 +870,12 @@ def p_Symbol(t):
 
   elif t.slice[1].type == "TAU_LOWER":
     t[0] = Symbol(Symbol.TAU_LOWER)
+
+  elif t.slice[1].type == "KAPPA_LOWER":
+    t[0] = Symbol(Symbol.KAPPA_LOWER)
+
+  elif t.slice[1].type == "OMEGA_LOWER":
+    t[0] = Symbol(Symbol.OMEGA_LOWER)
 
   elif t.slice[1].type == "BETA":
     t[0] = Symbol(Symbol.BETA)
