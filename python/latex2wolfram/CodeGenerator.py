@@ -470,6 +470,9 @@ class CodeGenerator:
         elif node.symbol == Symbol.PRIME:
             symbol = PRIME
 
+        elif node.symbol == Symbol.ALPHA_LOWER:
+            symbol = ALPHA
+
         elif node.symbol == Symbol.PHI_LOWER:
             symbol = EULER_PHI
 

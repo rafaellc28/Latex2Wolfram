@@ -90,6 +90,7 @@ tokens = [
    'TAU_LOWER',
    'KAPPA_LOWER',
    'OMEGA_LOWER',
+   'ALPHA_LOWER',
    'MU',
    'PI',
    'BETA',
@@ -153,6 +154,7 @@ t_EPSILON_LOWER = r'\\epsilon'
 t_TAU_LOWER = r'\\tau'
 t_KAPPA_LOWER = r'\\kappa'
 t_OMEGA_LOWER = r'\\omega'
+t_ALPHA_LOWER = r'\\alpha'
 t_BETA = r'\\Beta'
 t_GAMMA = r'\\Gamma'
 t_PI = r'\\pi'
