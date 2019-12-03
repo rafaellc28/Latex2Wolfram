@@ -5,6 +5,7 @@ class Symbol(BaseExpression):
     Class representing the Symbol in the AST
     """
     PRIME = "prime"
+    XI_LOWER = "xi_lower"
     PHI_LOWER = "phi_lower"
     PSI_LOWER = "psi_lower"
     SIGMA_LOWER = "sigma_lower"
