@@ -92,6 +92,7 @@ tokens = [
    'OMEGA_LOWER',
    'ALPHA_LOWER',
    'XI_LOWER',
+   'CHI_LOWER',
    'MU',
    'PI',
    'BETA',
@@ -157,6 +158,7 @@ t_KAPPA_LOWER = r'\\kappa'
 t_OMEGA_LOWER = r'\\omega'
 t_ALPHA_LOWER = r'\\alpha'
 t_XI_LOWER = r'\\xi'
+t_CHI_LOWER = r'\\chi'
 t_BETA = r'\\Beta'
 t_GAMMA = r'\\Gamma'
 t_PI = r'\\pi'

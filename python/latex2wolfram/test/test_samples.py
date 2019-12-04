@@ -544,3 +544,6 @@ def test168():
 
 def test169():
 	check_test_num(169)
+
+def test170():
+	check_test_num(170)

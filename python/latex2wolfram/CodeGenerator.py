@@ -476,6 +476,9 @@ class CodeGenerator:
         elif node.symbol == Symbol.XI_LOWER:
             symbol = XI
 
+        elif node.symbol == Symbol.CHI_LOWER:
+            symbol = CHI
+
         elif node.symbol == Symbol.PHI_LOWER:
             symbol = EULER_PHI
 

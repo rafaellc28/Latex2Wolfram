@@ -6,6 +6,7 @@ class Symbol(BaseExpression):
     """
     PRIME = "prime"
     XI_LOWER = "xi_lower"
+    CHI_LOWER = "chi_lower"
     PHI_LOWER = "phi_lower"
     PSI_LOWER = "psi_lower"
     SIGMA_LOWER = "sigma_lower"

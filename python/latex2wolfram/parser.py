@@ -823,6 +823,7 @@ def p_Constraint(t):
 def p_Symbol(t):
   '''Symbol : PI
             | XI_LOWER
+            | CHI_LOWER
             | PHI_LOWER
             | PSI_LOWER
             | SIGMA_LOWER
@@ -845,6 +846,9 @@ def p_Symbol(t):
 
   elif t.slice[1].type == "ALPHA_LOWER":
     t[0] = Symbol(Symbol.ALPHA_LOWER)
+
+  elif t.slice[1].type == "CHI_LOWER":
+    t[0] = Symbol(Symbol.CHI_LOWER)
 
   elif t.slice[1].type == "XI_LOWER":
     t[0] = Symbol(Symbol.XI_LOWER)
