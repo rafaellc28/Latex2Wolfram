@@ -512,6 +512,12 @@ class CodeGenerator:
         elif node.symbol == Symbol.OMEGA_LOWER:
             symbol = OMEGA
 
+        elif node.symbol == Symbol.NU_LOWER:
+            symbol = NU
+
+        elif node.symbol == Symbol.RHO_LOWER:
+            symbol = RHO
+
         elif node.symbol == Symbol.MU:
             symbol = MU
 
