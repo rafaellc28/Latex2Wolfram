@@ -839,6 +839,7 @@ def p_Symbol(t):
             | ALPHA_LOWER
             | NU_LOWER
             | RHO_LOWER
+            | OMICRON_LOWER
             | BETA
             | GAMMA
             | MU'''
@@ -896,6 +897,9 @@ def p_Symbol(t):
 
   elif t.slice[1].type == "RHO_LOWER":
     t[0] = Symbol(Symbol.RHO_LOWER)
+
+  elif t.slice[1].type == "OMICRON_LOWER":
+    t[0] = Symbol(Symbol.OMICRON_LOWER)
 
   elif t.slice[1].type == "BETA":
     t[0] = Symbol(Symbol.BETA)

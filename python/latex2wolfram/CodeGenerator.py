@@ -518,6 +518,9 @@ class CodeGenerator:
         elif node.symbol == Symbol.RHO_LOWER:
             symbol = RHO
 
+        elif node.symbol == Symbol.OMICRON_LOWER:
+            symbol = OMICRON
+
         elif node.symbol == Symbol.MU:
             symbol = MU
 

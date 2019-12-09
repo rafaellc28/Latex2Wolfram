@@ -22,6 +22,7 @@ class Symbol(BaseExpression):
     ALPHA_LOWER = "alpha_lower"
     NU_LOWER = "nu_lower"
     RHO_LOWER = "rho_lower"
+    OMICRON_LOWER = "omicron_lower"
     MU = "mu"
     PI = "pi"
     BETA = "beta"
