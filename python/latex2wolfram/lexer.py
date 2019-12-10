@@ -96,6 +96,7 @@ tokens = [
    'NU_LOWER',
    'RHO_LOWER',
    'OMICRON_LOWER',
+   'UPSILON_LOWER',
    'MU',
    'PI',
    'BETA',
@@ -165,6 +166,7 @@ t_CHI_LOWER = r'\\chi'
 t_NU_LOWER = r'\\nu'
 t_RHO_LOWER = r'\\rho'
 t_OMICRON_LOWER = r'\\omicron'
+t_UPSILON_LOWER = r'\\upsilon'
 t_BETA = r'\\Beta'
 t_GAMMA = r'\\Gamma'
 t_PI = r'\\pi'

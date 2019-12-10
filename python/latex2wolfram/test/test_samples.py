@@ -556,3 +556,6 @@ def test172():
 
 def test173():
 	check_test_num(173)
+
+def test174():
+	check_test_num(174)
