@@ -524,6 +524,9 @@ class CodeGenerator:
         elif node.symbol == Symbol.UPSILON_LOWER:
             symbol = UPSILON
 
+        elif node.symbol == Symbol.IOTA_LOWER:
+            symbol = IOTA
+
         elif node.symbol == Symbol.MU:
             symbol = MU
 

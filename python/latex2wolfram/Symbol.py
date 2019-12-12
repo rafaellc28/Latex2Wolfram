@@ -24,6 +24,7 @@ class Symbol(BaseExpression):
     RHO_LOWER = "rho_lower"
     OMICRON_LOWER = "omicron_lower"
     UPSILON_LOWER = "upsilon_lower"
+    IOTA_LOWER = "iota_lower"
     MU = "mu"
     PI = "pi"
     BETA = "beta"
