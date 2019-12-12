@@ -132,7 +132,7 @@ TAU = "tau"
 KAPPA = "kappa"
 OMEGA = "omega"
 ZETA = "zeta"
-BETA = "Beta"
+BETA = "beta"
 GAMMA = "gamma"
 DIGAMMA = "digamma"
 
