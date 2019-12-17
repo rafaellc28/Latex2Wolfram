@@ -844,9 +844,9 @@ def p_Symbol(t):
             | IOTA_LOWER
             | BETA_LOWER
             | GAMMA_LOWER
+            | MU_LOWER
             | BETA
-            | GAMMA
-            | MU'''
+            | GAMMA'''
 
   if t.slice[1].type == "PI":
     t[0] = Symbol(Symbol.PI)
@@ -924,7 +924,7 @@ def p_Symbol(t):
     t[0] = Symbol(Symbol.GAMMA)
 
   else:
-    t[0] = Symbol(Symbol.MU)
+    t[0] = Symbol(Symbol.MU_LOWER)
 
 def p_error(t):
   if t:

@@ -27,7 +27,7 @@ class Symbol(BaseExpression):
     IOTA_LOWER = "iota_lower"
     BETA_LOWER = "beta_lower"
     GAMMA_LOWER = "gamma_lower"
-    MU = "mu"
+    MU_LOWER = "mu_lower"
     PI = "pi"
     BETA = "beta"
     GAMMA = "gamma"
