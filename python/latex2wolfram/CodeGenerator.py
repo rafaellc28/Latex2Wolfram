@@ -530,6 +530,9 @@ class CodeGenerator:
         elif node.symbol == Symbol.BETA_LOWER:
             symbol = BETA
 
+        elif node.symbol == Symbol.GAMMA_LOWER:
+            symbol = GAMMA
+
         elif node.symbol == Symbol.MU:
             symbol = MU
 

@@ -99,6 +99,7 @@ tokens = [
    'UPSILON_LOWER',
    'IOTA_LOWER',
    'BETA_LOWER',
+   'GAMMA_LOWER',
    'MU',
    'PI',
    'BETA',
@@ -171,6 +172,7 @@ t_OMICRON_LOWER = r'\\omicron'
 t_UPSILON_LOWER = r'\\upsilon'
 t_IOTA_LOWER = r'\\iota'
 t_BETA_LOWER = r'\\beta'
+t_GAMMA_LOWER = r'\\gamma'
 t_BETA = r'\\Beta'
 t_GAMMA = r'\\Gamma'
 t_PI = r'\\pi'
