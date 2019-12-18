@@ -467,6 +467,9 @@ class CodeGenerator:
         if node.symbol == Symbol.PI:
             symbol = PI
 
+        elif node.symbol == Symbol.PI_UPPER:
+            symbol = PI
+
         elif node.symbol == Symbol.PRIME:
             symbol = PRIME
 

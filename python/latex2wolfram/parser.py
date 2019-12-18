@@ -845,11 +845,15 @@ def p_Symbol(t):
             | BETA_LOWER
             | GAMMA_LOWER
             | MU_LOWER
+            | PI_UPPER
             | BETA
             | GAMMA'''
 
   if t.slice[1].type == "PI":
     t[0] = Symbol(Symbol.PI)
+
+  elif t.slice[1].type == "PI_UPPER":
+    t[0] = Symbol(Symbol.PI_UPPER)
 
   elif t.slice[1].type == "ALPHA_LOWER":
     t[0] = Symbol(Symbol.ALPHA_LOWER)

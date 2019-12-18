@@ -28,6 +28,7 @@ class Symbol(BaseExpression):
     BETA_LOWER = "beta_lower"
     GAMMA_LOWER = "gamma_lower"
     MU_LOWER = "mu_lower"
+    PI_UPPER = "pi_upper"
     PI = "pi"
     BETA = "beta"
     GAMMA = "gamma"

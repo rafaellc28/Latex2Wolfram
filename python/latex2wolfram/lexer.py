@@ -101,6 +101,7 @@ tokens = [
    'BETA_LOWER',
    'GAMMA_LOWER',
    'MU_LOWER',
+   'PI_UPPER',
    'PI',
    'BETA',
    'GAMMA',
@@ -177,6 +178,7 @@ t_MU_LOWER = r'\\mu'
 t_BETA = r'\\Beta'
 t_GAMMA = r'\\Gamma'
 t_PI = r'\\pi'
+t_PI_UPPER = r'\\Pi'
 
 t_EQ = r'='
 t_NEQ = r'\\neq'
