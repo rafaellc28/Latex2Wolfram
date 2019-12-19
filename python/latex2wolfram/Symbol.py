@@ -32,6 +32,7 @@ class Symbol(BaseExpression):
     PI = "pi"
     BETA = "beta"
     GAMMA = "gamma"
+    MU = "mu"
 
     def __init__(self, symbol):
         """

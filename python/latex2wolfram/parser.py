@@ -847,7 +847,8 @@ def p_Symbol(t):
             | MU_LOWER
             | PI_UPPER
             | BETA
-            | GAMMA'''
+            | GAMMA
+            | MU'''
 
   if t.slice[1].type == "PI":
     t[0] = Symbol(Symbol.PI)
@@ -926,6 +927,9 @@ def p_Symbol(t):
 
   elif t.slice[1].type == "GAMMA":
     t[0] = Symbol(Symbol.GAMMA)
+
+  elif t.slice[1].type == "MU":
+    t[0] = Symbol(Symbol.MU)
 
   else:
     t[0] = Symbol(Symbol.MU_LOWER)

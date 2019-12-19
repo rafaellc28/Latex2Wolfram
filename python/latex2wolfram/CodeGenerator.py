@@ -539,15 +539,18 @@ class CodeGenerator:
         elif node.symbol == Symbol.MU_LOWER:
             symbol = MU
 
+        elif node.symbol == Symbol.PSI_LOWER:
+            symbol = DIGAMMA
+
         elif node.symbol == Symbol.BETA:
             symbol = BETA
 
         elif node.symbol == Symbol.GAMMA:
             symbol = GAMMA
 
-        elif node.symbol == Symbol.PSI_LOWER:
-            symbol = DIGAMMA
-            
+        elif node.symbol == Symbol.MU:
+            symbol = MU
+
         return symbol
 
     # Number
