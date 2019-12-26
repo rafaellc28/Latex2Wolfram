@@ -848,6 +848,7 @@ def p_Symbol(t):
             | PI_UPPER
             | BETA
             | GAMMA
+            | KAPPA
             | MU'''
 
   if t.slice[1].type == "PI":
@@ -930,6 +931,9 @@ def p_Symbol(t):
 
   elif t.slice[1].type == "MU":
     t[0] = Symbol(Symbol.MU)
+
+  elif t.slice[1].type == "KAPPA":
+    t[0] = Symbol(Symbol.KAPPA)
 
   else:
     t[0] = Symbol(Symbol.MU_LOWER)

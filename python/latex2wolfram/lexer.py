@@ -106,6 +106,7 @@ tokens = [
    'BETA',
    'GAMMA',
    'MU',
+   'KAPPA',
    'LIMIT',
    'TO',
    'PRIME',
@@ -178,6 +179,7 @@ t_GAMMA_LOWER = r'\\gamma'
 t_MU_LOWER = r'\\mu'
 t_BETA = r'\\Beta'
 t_GAMMA = r'\\Gamma'
+t_KAPPA = r'\\Kappa'
 t_MU = r'\\Mu'
 t_PI = r'\\pi'
 t_PI_UPPER = r'\\Pi'

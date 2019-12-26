@@ -33,6 +33,7 @@ class Symbol(BaseExpression):
     BETA = "beta"
     GAMMA = "gamma"
     MU = "mu"
+    KAPPA = "kappa"
 
     def __init__(self, symbol):
         """
