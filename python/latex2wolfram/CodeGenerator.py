@@ -554,6 +554,9 @@ class CodeGenerator:
         elif node.symbol == Symbol.KAPPA:
             symbol = KAPPA
 
+        elif node.symbol == Symbol.OMICRON:
+            symbol = OMICRON
+
         return symbol
 
     # Number

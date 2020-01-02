@@ -34,6 +34,7 @@ class Symbol(BaseExpression):
     GAMMA = "gamma"
     MU = "mu"
     KAPPA = "kappa"
+    OMICRON = "omicron"
 
     def __init__(self, symbol):
         """
