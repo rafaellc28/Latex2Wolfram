@@ -850,6 +850,7 @@ def p_Symbol(t):
             | GAMMA
             | KAPPA
             | OMICRON
+            | IOTA
             | MU'''
 
   if t.slice[1].type == "PI":
@@ -938,6 +939,9 @@ def p_Symbol(t):
 
   elif t.slice[1].type == "OMICRON":
     t[0] = Symbol(Symbol.OMICRON)
+
+  elif t.slice[1].type == "IOTA":
+    t[0] = Symbol(Symbol.IOTA)
 
   else:
     t[0] = Symbol(Symbol.MU_LOWER)

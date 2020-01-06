@@ -108,6 +108,7 @@ tokens = [
    'MU',
    'KAPPA',
    'OMICRON',
+   'IOTA',
    'LIMIT',
    'TO',
    'PRIME',
@@ -182,6 +183,7 @@ t_BETA = r'\\Beta'
 t_GAMMA = r'\\Gamma'
 t_KAPPA = r'\\Kappa'
 t_MU = r'\\Mu'
+t_IOTA = r'\\Iota'
 t_OMICRON = r'\\Omicron'
 t_PI = r'\\pi'
 t_PI_UPPER = r'\\Pi'
