@@ -557,6 +557,9 @@ class CodeGenerator:
         elif node.symbol == Symbol.OMICRON:
             symbol = OMICRON
 
+        elif node.symbol == Symbol.OMEGA:
+            symbol = OMEGA
+
         elif node.symbol == Symbol.IOTA:
             symbol = IOTA
 

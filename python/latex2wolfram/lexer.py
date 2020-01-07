@@ -108,6 +108,7 @@ tokens = [
    'MU',
    'KAPPA',
    'OMICRON',
+   'OMEGA',
    'IOTA',
    'LIMIT',
    'TO',
@@ -185,6 +186,7 @@ t_KAPPA = r'\\Kappa'
 t_MU = r'\\Mu'
 t_IOTA = r'\\Iota'
 t_OMICRON = r'\\Omicron'
+t_OMEGA = r'\\Omega'
 t_PI = r'\\pi'
 t_PI_UPPER = r'\\Pi'
 

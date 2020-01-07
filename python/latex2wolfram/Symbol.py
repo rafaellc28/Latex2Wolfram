@@ -36,6 +36,7 @@ class Symbol(BaseExpression):
     KAPPA = "kappa"
     OMICRON = "omicron"
     IOTA = "iota"
+    OMEGA = "omega"
 
     def __init__(self, symbol):
         """
