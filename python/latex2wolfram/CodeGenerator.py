@@ -566,6 +566,9 @@ class CodeGenerator:
         elif node.symbol == Symbol.IOTA:
             symbol = IOTA
 
+        elif node.symbol == Symbol.PSI:
+            symbol = PSI
+
         return symbol
 
     # Number

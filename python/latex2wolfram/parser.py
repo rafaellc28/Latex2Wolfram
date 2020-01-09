@@ -853,6 +853,7 @@ def p_Symbol(t):
             | OMEGA
             | LAMBDA
             | IOTA
+            | PSI
             | MU'''
 
   if t.slice[1].type == "PI":
@@ -950,6 +951,9 @@ def p_Symbol(t):
 
   elif t.slice[1].type == "IOTA":
     t[0] = Symbol(Symbol.IOTA)
+
+  elif t.slice[1].type == "PSI":
+    t[0] = Symbol(Symbol.PSI)
 
   else:
     t[0] = Symbol(Symbol.MU_LOWER)

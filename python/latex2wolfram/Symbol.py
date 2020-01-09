@@ -38,6 +38,7 @@ class Symbol(BaseExpression):
     IOTA = "iota"
     OMEGA = "omega"
     LAMBDA = "lambda"
+    PSI = "psi"
 
     def __init__(self, symbol):
         """

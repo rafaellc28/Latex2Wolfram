@@ -111,6 +111,7 @@ tokens = [
    'OMEGA',
    'LAMBDA',
    'IOTA',
+   'PSI',
    'LIMIT',
    'TO',
    'PRIME',
@@ -189,6 +190,7 @@ t_IOTA = r'\\Iota'
 t_OMICRON = r'\\Omicron'
 t_LAMBDA = r'\\Lambda'
 t_OMEGA = r'\\Omega'
+t_PSI = r'\\Psi'
 t_PI = r'\\pi'
 t_PI_UPPER = r'\\Pi'
 

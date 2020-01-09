@@ -135,6 +135,7 @@ ZETA = "zeta"
 BETA = "beta"
 GAMMA = "gamma"
 DIGAMMA = "digamma"
+PSI = "psi"
 
 LIMIT = "lim"
 APPROACHES = "->"
