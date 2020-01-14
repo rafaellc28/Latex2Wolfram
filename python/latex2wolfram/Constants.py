@@ -136,6 +136,7 @@ BETA = "beta"
 GAMMA = "gamma"
 DIGAMMA = "digamma"
 PSI = "psi"
+PHI = "phi"
 
 LIMIT = "lim"
 APPROACHES = "->"

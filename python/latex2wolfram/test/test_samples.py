@@ -592,3 +592,42 @@ def test184():
 
 def test185():
 	check_test_num(185)
+
+def test186():
+	check_test_num(186)
+
+def test187():
+	check_test_num(187)
+
+def test188():
+	check_test_num(188)
+
+def test189():
+	check_test_num(189)
+
+def test190():
+	check_test_num(190)
+
+def test191():
+	check_test_num(191)
+
+def test192():
+	check_test_num(192)
+
+def test193():
+	check_test_num(193)
+
+def test194():
+	check_test_num(194)
+
+def test195():
+	check_test_num(195)
+
+def test196():
+	check_test_num(196)
+
+def test197():
+	check_test_num(197)
+
+def test198():
+	check_test_num(198)

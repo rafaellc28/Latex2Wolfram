@@ -854,7 +854,20 @@ def p_Symbol(t):
             | LAMBDA
             | IOTA
             | PSI
-            | MU'''
+            | MU
+            | PHI
+            | SIGMA
+            | ETA
+            | ZETA
+            | THETA
+            | EPSILON
+            | TAU
+            | ALPHA
+            | XI
+            | CHI
+            | NU
+            | RHO
+            | UPSILON'''
 
   if t.slice[1].type == "PI":
     t[0] = Symbol(Symbol.PI)
@@ -955,6 +968,45 @@ def p_Symbol(t):
   elif t.slice[1].type == "PSI":
     t[0] = Symbol(Symbol.PSI)
 
+  elif t.slice[1].type == "PHI":
+    t[0] = Symbol(Symbol.PHI)
+  
+  elif t.slice[1].type == "SIGMA":
+    t[0] = Symbol(Symbol.SIGMA)
+  
+  elif t.slice[1].type == "ETA":
+    t[0] = Symbol(Symbol.ETA)
+  
+  elif t.slice[1].type == "ZETA":
+    t[0] = Symbol(Symbol.ZETA)
+  
+  elif t.slice[1].type == "THETA":
+    t[0] = Symbol(Symbol.THETA)
+  
+  elif t.slice[1].type == "EPSILON":
+    t[0] = Symbol(Symbol.EPSILON)
+  
+  elif t.slice[1].type == "TAU":
+    t[0] = Symbol(Symbol.TAU)
+  
+  elif t.slice[1].type == "ALPHA":
+    t[0] = Symbol(Symbol.ALPHA)
+  
+  elif t.slice[1].type == "XI":
+    t[0] = Symbol(Symbol.XI)
+  
+  elif t.slice[1].type == "CHI":
+    t[0] = Symbol(Symbol.CHI)
+  
+  elif t.slice[1].type == "NU":
+    t[0] = Symbol(Symbol.NU)
+  
+  elif t.slice[1].type == "RHO":
+    t[0] = Symbol(Symbol.RHO)
+  
+  elif t.slice[1].type == "UPSILON":
+    t[0] = Symbol(Symbol.UPSILON)
+  
   else:
     t[0] = Symbol(Symbol.MU_LOWER)
 

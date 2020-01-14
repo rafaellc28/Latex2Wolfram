@@ -569,6 +569,45 @@ class CodeGenerator:
         elif node.symbol == Symbol.PSI:
             symbol = PSI
 
+        elif node.symbol == Symbol.PHI:
+            symbol = PHI
+
+        elif node.symbol == Symbol.SIGMA:
+            symbol = SIGMA
+
+        elif node.symbol == Symbol.ETA:
+            symbol = ETA
+
+        elif node.symbol == Symbol.ZETA:
+            symbol = ZETA
+
+        elif node.symbol == Symbol.THETA:
+            symbol = THETA
+
+        elif node.symbol == Symbol.EPSILON:
+            symbol = EPSILON
+
+        elif node.symbol == Symbol.TAU:
+            symbol = TAU
+
+        elif node.symbol == Symbol.ALPHA:
+            symbol = ALPHA
+          
+        elif node.symbol == Symbol.XI:
+            symbol = XI
+          
+        elif node.symbol == Symbol.CHI:
+            symbol = CHI
+
+        elif node.symbol == Symbol.NU:
+            symbol = NU
+
+        elif node.symbol == Symbol.RHO:
+            symbol = RHO
+
+        elif node.symbol == Symbol.UPSILON:
+            symbol = UPSILON
+
         return symbol
 
     # Number

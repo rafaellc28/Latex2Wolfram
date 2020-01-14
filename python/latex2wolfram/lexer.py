@@ -112,6 +112,19 @@ tokens = [
    'LAMBDA',
    'IOTA',
    'PSI',
+   'PHI',
+   'SIGMA',
+   'ETA',
+   'ZETA',
+   'THETA',
+   'EPSILON',
+   'TAU',
+   'ALPHA',
+   'XI',
+   'CHI',
+   'NU',
+   'RHO',
+   'UPSILON',
    'LIMIT',
    'TO',
    'PRIME',
@@ -191,6 +204,20 @@ t_OMICRON = r'\\Omicron'
 t_LAMBDA = r'\\Lambda'
 t_OMEGA = r'\\Omega'
 t_PSI = r'\\Psi'
+t_PHI = r'\\Phi'
+t_SIGMA = r'\\Sigma'
+t_ETA = r'\\Eta'
+t_ZETA = r'\\Zeta'
+t_THETA = r'\\Theta'
+t_EPSILON = r'\\Epsilon'
+t_TAU = r'\\Tau'
+t_ALPHA = r'\\Alpha'
+t_XI = r'\\Xi'
+t_CHI = r'\\Chi'
+t_NU = r'\\Nu'
+t_RHO = r'\\Rho'
+t_UPSILON = r'\\Upsilon'
+
 t_PI = r'\\pi'
 t_PI_UPPER = r'\\Pi'
 
