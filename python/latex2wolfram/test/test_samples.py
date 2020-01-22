@@ -640,3 +640,6 @@ def test200():
 
 def test201():
 	check_test_num(201)
+
+def test202():
+	check_test_num(202)
