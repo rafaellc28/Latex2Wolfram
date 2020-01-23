@@ -123,10 +123,10 @@ class CodeGenerator:
         return expression
 
     def generateCode_IteratedExpression(self, node):
-        res = BEGIN_ARGUMENT_LIST + node.op.generateCode(self) + BEGIN_ARGUMENT_LIST + node.expression.generateCode(self) + \
+        res = node.op.generateCode(self) + BEGIN_ARGUMENT_LIST + node.expression.generateCode(self) + \
             END_ARGUMENT_LIST + COMMA + SPACE + FROM + SPACE + node.indexingExpression.identifier.generateCode(self) + EQUAL +\
             node.indexingExpression.range.lowerBound.generateCode(self) + SPACE + TO + SPACE + \
-            node.indexingExpression.range.upperBound.generateCode(self) + END_ARGUMENT_LIST
+            node.indexingExpression.range.upperBound.generateCode(self)
 
         return res
 

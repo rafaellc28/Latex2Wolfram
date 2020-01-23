@@ -1,1 +1,1 @@
-(sum(j ^ 4), from j=1 to 100)
+sum(j ^ 4), from j=1 to 100
