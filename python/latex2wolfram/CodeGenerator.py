@@ -101,6 +101,8 @@ class CodeGenerator:
 
     def generateCode_ExpressionWithBinaryOperation(self, node):
         
+        expression1 = node.expression1.generateCode(self)
+
         if node.op.operator == BinaryOperator.POW:
             exponent = node.expression2.generateCode(self)
 
@@ -108,10 +110,14 @@ class CodeGenerator:
                 return BEGIN_EXPRESSION + TRANSPOSE + SPACE + node.expression1.generateCode(self) + END_EXPRESSION
 
             expression2 = self._getGeneratedExpression(node.expression2)
+
+            if isinstance(node.expression1, FractionalExpression):
+                expression1 = BEGIN_ARGUMENT_LIST + expression1 + END_ARGUMENT_LIST
+                
         else:
             expression2 = node.expression2.generateCode(self)
 
-        return node.expression1.generateCode(self) + SPACE + node.op.generateCode(self) + SPACE + expression2
+        return expression1 + SPACE + node.op.generateCode(self) + SPACE + expression2
 
     def generateCode_ExpressionWithUnaryOperation(self, node):
         
