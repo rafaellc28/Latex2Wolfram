@@ -646,3 +646,6 @@ def test202():
 
 def test203():
 	check_test_num(203)
+
+def test204():
+	check_test_num(204)
